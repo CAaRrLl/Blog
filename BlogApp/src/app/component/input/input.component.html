@@ -1,0 +1,19 @@
+<div class="container">
+    <div *ngFor="let v of view.frame;let i = index" class="cell" id="_{{i}}">
+        <input type={{v.type}} 
+               [placeholder]="v.placeholder"
+               [readonly]="v.readonly"
+               [(ngModel)]="v.content"
+               (keyup)="checkValid(i)"
+               class="input" >
+        <app-icon class="icon" [tag]="v.icon"></app-icon>
+    </div>
+</div>
+<div #tip class="tooltip-container" *ngIf="tipShow">
+    <div class="tooltip">
+        <app-icon style="color:#1b8dae" tag="warn"></app-icon>
+        <span style="color:#6e6e6e">{{invalidTip}}</span>
+        <div class="triangle-before"></div>
+        <div class="triangle-after"></div>
+    </div>
+</div>

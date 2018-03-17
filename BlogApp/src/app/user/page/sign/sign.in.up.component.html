@@ -1,0 +1,26 @@
+<div class="background">
+    <div class="sign">
+        <ul class="menu">
+            <li><a [ngClass]="signInTabClass" (click)="setTab(true)" href="javascript:void(0)">登录</a></li>
+            <li><a [ngClass]="signUpTabClass" (click)="setTab(false)" href="javascript:void(0)">注册</a></li>
+        </ul>
+        <app-input [class.show]="currentTab" [class.hidden]="!currentTab" [view]="signInView" 
+            (validChange)="validChange($event)" #in></app-input>
+        <a *ngIf="currentTab" class="btn-blog sign-btn" 
+            (click)="in.showFirstValidTip();signIn()">登录</a>                    
+        <app-input [class.show]="!currentTab" [class.hidden]="currentTab" [view]="signUpView"  
+            (validChange)="validChange($event)" #up></app-input>
+        <a *ngIf="!currentTab" class="btn-blog sign-btn" style="background-color: #08aa08" 
+            (click)="up.showFirstValidTip();signUp()">注册</a>
+        <h6>{{currentTabTip}}</h6>
+        <div class="share" style="background-color: #e35b5b">
+            <app-icon class="icon" tag="weibo"></app-icon>
+        </div>
+        <div class="share" style="background-color: #1b8dae">
+            <app-icon class="icon" tag="qq"></app-icon>
+        </div>
+        <div class="share" style="background-color: #08aa08">
+            <app-icon class="icon" tag="wechat"></app-icon>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,186 @@
+/* You can add global styles to this file, and also import other style files */
+/*全局样式*/
+.btn-blog{
+    background-color: #18a1ff;
+    border-radius: 50px;
+    cursor: pointer;
+    padding: 10px 50px;
+    color: white;
+    -webkit-transition: background-color 1s,box-shadow 0.5s;
+    -moz-transition: background-color 1s,box-shadow 0.5s;
+    transition: background-color 1s,box-shadow 0.5s;
+    display: block;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+.btn-blog:hover{
+    background-color: #2e8b86;
+    box-shadow: 0px 1px 2px 1px #9E9E9E;
+}
+
+
+[class*="input-"] {
+    border: 1px solid #999;
+    background-color: #f5f5f5;
+}
+
+.input-top{
+    border-radius: 5px 5px 0px 0px;
+    border-bottom: none;
+}
+
+.input-item{
+    border-bottom: none;
+}
+.input-bottom{
+    border-radius: 0px 0px 5px 5px;
+}
+
+[class*="-icon"] {
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/*user e800*/
+@font-face {
+    font-family: 'fontello';
+    src: url('assets/font/user/fontello.eot?');
+    src: url('assets/font/user/fontello.eot?#iefix') format('embedded-opentype'),
+    url('assets/font/user/fontello.woff?') format('woff'),
+    url('assets/font/user/fontello.ttf?') format('truetype'),
+    url('assets/font/user/fontello.svg?#fontello') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.user-icon
+{
+    font-family: "fontello";
+}
+
+/*lock e801*/
+@font-face {
+    font-family: 'fontlock';
+    src: url('assets/font/lock/fontlock.eot?');
+    src: url('assets/font/lock/fontlock.eot?#iefix') format('embedded-opentype'),
+    url('assets/font/lock/fontlock.woff?') format('woff'),
+    url('assets/font/lock/fontlock.ttf?') format('truetype'),
+    url('assets/font/lock/fontlock.svg?#fontlock') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.lock-icon
+{
+    font-family: "fontlock";
+}
+
+/*qq F1D6*/
+@font-face {
+    font-family: 'fontqq';
+    src: url('assets/font/qq/fontqq.eot?');
+    src: url('assets/font/qq/fontqq.eot?#iefix') format('embedded-opentype'),
+    url('assets/font/qq/fontqq.woff?') format('woff'),
+    url('assets/font/qq/fontqq.ttf?') format('truetype'),
+    url('assets/font/qq/fontqq.svg?#fontqq') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.qq-icon
+{
+    font-family: "fontqq";
+}
+
+/*wechat F1D7*/
+@font-face {
+    font-family: 'fontwechat';
+    src: url('assets/font/wechat/fontwechat.eot?');
+    src: url('assets/font/wechat/fontwechat.eot?#iefix') format('embedded-opentype'),
+    url('assets/font/wechat/fontwechat.woff?') format('woff'),
+    url('assets/font/wechat/fontwechat.ttf?') format('truetype'),
+    url('assets/font/wechat/fontwechat.svg?#fontwechat') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.wechat-icon
+{
+    font-family: "fontwechat";
+}
+
+/*weibo F18A*/
+@font-face {
+    font-family: 'fontweibo';
+    src: url('assets/font/weibo/fontweibo.eot?');
+    src: url('assets/font/weibo/fontweibo.eot?#iefix') format('embedded-opentype'),
+    url('assets/font/weibo/fontweibo.woff?') format('woff'),
+    url('assets/font/weibo/fontweibo.ttf?') format('truetype'),
+    url('assets/font/weibo/fontweibo.svg?#fontweibo') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.weibo-icon
+{
+    font-family: "fontweibo";
+}
+
+/*phone e800*/
+@font-face {
+    font-family: 'fontphone';
+    src: url('assets/font/phone/fontphone.eot?');
+    src: url('assets/font/phone/fontphone.eot?#iefix') format('embedded-opentype'),
+    url('assets/font/phone/fontphone.woff?') format('woff'),
+    url('assets/font/phone/fontphone.ttf?') format('truetype'),
+    url('assets/font/phone/fontphone.svg?#fontphone') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.phone-icon
+{
+    font-family: "fontphone";
+}
+
+/*email F0E0*/
+@font-face {
+    font-family: 'fontemail';
+    src: url('assets/font/email/fontemail.eot?');
+    src: url('assets/font/email/fontemail.eot?#iefix') format('embedded-opentype'),
+    url('assets/font/email/fontemail.woff?') format('woff'),
+    url('assets/font/email/fontemail.ttf?') format('truetype'),
+    url('assets/font/email/fontemail.svg?#fontemail') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.email-icon
+{
+    font-family: "fontemail";
+}
+
+/*warn e800*/
+@font-face {
+    font-family: 'fontwarn';
+    src: url('assets/font/warn/fontwarn.eot?');
+    src: url('assets/font/warn/fontwarn.eot?#iefix') format('embedded-opentype'),
+    url('assets/font/warn/fontwarn.woff?') format('woff'),
+    url('assets/font/warn/fontwarn.ttf?') format('truetype'),
+    url('assets/font/warn/fontwarn.svg?#fontwarn') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.warn-icon
+{
+    font-family: "fontwarn";
+}

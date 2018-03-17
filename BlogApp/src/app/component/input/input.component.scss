@@ -1,0 +1,102 @@
+$blue:#1b8dae;
+.container{
+    display: inline-grid;
+    [class*="cell"] {
+        position: relative;
+        display: inline-block;
+        .icon{
+            position: absolute;
+            color: #717171;
+            z-index: 1;
+            top: 6px;
+            left: 14px;
+            font-size: 18px;
+        }
+    }
+    .cell{
+      .input{
+        border: 1px solid #999;
+        background-color: #fafafa;
+        border-bottom: none;
+        display: block;
+        margin: auto;
+        padding: 12px 0px 12px 40px;
+        width: 220px;
+        font-size: 13px;         
+      }
+    }
+    .cell:first-child{
+        .input{
+            border-radius: 4px 4px 0px 0px;      
+        }
+    }
+    .cell:last-child{
+        .input{
+            border-radius: 0px 0px 4px 4px;   
+            border-bottom: 1px solid #999;         
+        }
+    }
+    .cell:only-of-type{
+        .input{
+            border-radius: 4px 4px 4px 4px; 
+        }
+      }
+  }
+  .tooltip-container{
+    position: absolute;
+    z-index: 1;
+    left: 282px;
+    top: 6px;
+    @media only screen and (max-width: 600px) {
+      position: absolute;
+      z-index: 1;
+      left: 30px;
+      top: 50px;
+    }
+    .tooltip{
+      background-color: white;
+      border: 1px solid $blue;
+      border-radius: 2px;
+      position: relative;
+      padding: 6px;
+      font-size: 12px;
+      width: max-content;
+      width: -moz-max-content;  
+      .triangle-before{
+        border-left: 8px solid rgba(27, 141, 174, 0);
+        border-right: 8px solid $blue;
+        border-bottom: 5px solid rgba(27, 141, 174, 0);
+        border-top: 5px solid rgba(27, 141, 174, 0);
+        position: absolute;
+        left: -17px;
+        top: 9px;
+        @media only screen and (max-width: 600px) {
+          border-left: 8px solid rgba(27, 141, 174, 0);
+          border-right: 8px solid rgba(27, 141, 174, 0);
+          border-bottom: 8px solid $blue;
+          border-top: 5px solid rgba(27, 141, 174, 0);
+          position: absolute;
+          left: 15px;
+          top: -13px;
+        }
+      }
+      .triangle-after{
+        border-left: 8px solid rgba(27, 141, 174, 0);
+        border-right: 8px solid white;
+        border-bottom: 5px solid rgba(27, 141, 174, 0);
+        border-top: 5px solid rgba(27, 141, 174, 0);
+        position: absolute;
+        left: -15px;
+        top: 9px;
+        @media only screen and (max-width: 600px) {
+          border-left: 8px solid rgba(27, 141, 174, 0);
+          border-right: 8px solid rgba(27, 141, 174, 0);
+          border-bottom: 8px solid white;
+          border-top: 5px solid rgba(27, 141, 174, 0);
+          position: absolute;
+          left: 15px;
+          top: -12px;
+        }
+      }
+    }
+  }

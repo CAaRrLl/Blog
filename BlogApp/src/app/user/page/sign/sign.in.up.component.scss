@@ -1,0 +1,123 @@
+$width:350px;  //登录窗口宽
+$height:500px;  //登录窗口高
+.background{
+  background-color: #eaf8ff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  .sign{
+    display: table-cell;
+    padding: 20px 20px 50px;
+    background-color: white;
+    border-radius: 2px;
+    box-shadow: 0px 1px 4px 1px #9cbfd5;
+    margin: auto;
+    width: 350px;
+    height: 500px;
+    text-align: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    @media only screen and (max-width: 600px) {
+      width: auto;
+      height: auto;
+      display: block;
+    }
+    .menu{
+      display: inline-block;
+      padding: 0;
+      margin: 40px;
+      .radius{
+        float: left;
+        position: relative;
+        margin: 10px;
+        color:#7b7b7b;
+      }
+    }
+    .sign-btn{
+      display: inline-block;
+      padding-left: 120px;
+      padding-right: 120px;
+      margin-top: 40px;
+    }
+    .share{
+      display: inline-table;
+      cursor: pointer;
+      width: 64px;
+      height: 64px;
+      border-radius: 100px;
+      position: relative;
+      margin-left: 5px;
+      margin-right: 5px;
+      margin-top: 25px;
+      margin-bottom: 40px;
+      .icon{
+        position: absolute;
+        color: white;
+        font-size: 30px;
+        top: 10px;
+        left: 16px;
+      }
+    }
+  }
+}
+
+li{
+  float: left;
+  list-style-type:none;
+  .tab-active{
+    text-decoration: none;
+    color: #f36527;
+    font-size: 22px;
+    margin: 10px;
+    padding: 10px;
+    border-bottom: 2px solid #f36527
+  }
+  .tab{
+    text-decoration: none;
+    color: #7b7b7b;
+    font-size: 22px;
+    margin: 10px;
+    padding: 10px;
+    &:hover{
+      border-bottom: 2px solid #f36527
+    }
+  }
+}
+
+h6{
+  color: #999999;
+  position: relative;
+  font-weight: 300;
+  margin: 0;
+  &:before{
+    content: "";
+    position: absolute;
+    width: 60px;
+    border-bottom: 1px solid #9E9E9E;
+    background: #9E9E9E;
+    display: block;
+    left: 50px;
+    top: 8px;
+  }
+  &:after{
+    content: "";
+    position: absolute;
+    width: 60px;
+    border-bottom: 1px solid #9E9E9E;
+    background: #9E9E9E;
+    top: 8px;
+    right: 50px;
+  }
+}
+.show{
+  visibility: visible;
+}
+.hidden{
+  visibility: hidden;
+  position: absolute;
+}
