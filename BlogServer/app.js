@@ -14,7 +14,7 @@ app.post('/api/frontlog',function(req,res){
 
 var server=app.listen(3200,function(){
     var host=server.address().address;
-    var port=server.address().port;
+    var port=serve=r.address().port;
 
     console.log('Example app listening at http://%s:%s',host,port);
 })
