@@ -1,20 +1,30 @@
 var express=require('express');
+var cookieParser=require('cookie-parser');
+var session=require('express-session');
+var api_router=require('./api_router');
+var db=require('./common/db');
+var config=require('./config');
+var logger=require('./common/logger').logger;
+
 var app=express();
 
-app.get('/',function(req,res){
-    res.send('Hello World');
-})
+//注册日志中间件
+app.use(require('./common/logger').connectLogger);
 
-app.post('/api/frontlog',function(req,res){
-    res.header('Access-Control-Allow-Origin','*');
-    console.log(req);
-    res.writeHead('200',{'Content-Type':'text/plain'});
-    res.end('get');
-})
+app.use(cookieParser(config.session_secret));
+app.use(session({
+    secret:config.session_secret,
+    resave:false,
+    saveUninitialized:false
+}));
 
-var server=app.listen(3200,function(){
-    var host=server.address().address;
-    var port=serve=r.address().port;
+//前端api请求
+app.use('/api',api_router);
 
-    console.log('Example app listening at http://%s:%s',host,port);
+//初始化数据库
+require('./model/init').init_table();
+
+//服务器监听
+app.listen(config.port,function(){
+    logger.info('server is listening on port',config.port)
 })

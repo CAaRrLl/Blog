@@ -282,7 +282,6 @@
 |id|是|String|文章标识符|
 |title|是|String|文章标题|
 |essay|是|String|文章|
-|time|是|String|文章保存时间|
 
 ``response``
 ```
@@ -304,6 +303,61 @@
     data:{}
 }
 ```
+
+### 发布文章
+``GET``
+``api/essay/publish``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|id|是|String|文章标识符|
+``response``
+```
+成功
+{
+    code:1000,
+    msg:"",
+    data:{}
+}
+失败
+{
+    code:2006,
+    msg:"文章不存在",
+    data:{}
+}
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+### 删除文章
+``GET``
+``api/essay/delete``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|id|是|String|文章标识符|
+``response``
+```
+成功
+{
+    code:1000,
+    msg:"",
+    data:{}
+}
+失败
+{
+    code:2006,
+    msg:"文章不存在",
+    data:{}
+}
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
+
 ##查看用户自己发布的文章
 ``GET``
 ``api/essay/mypublish``
