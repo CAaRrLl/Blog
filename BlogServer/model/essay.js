@@ -46,7 +46,7 @@ var essay_publish=function(id,callback){
 }
 exports.essay_publish=essay_publish;
 
-//删除文章
+//删除文章 todo 事务
 var essay_drop=function(id,callback){
     var sql=`update essay set status=-1 where id =id`;
     var now=new Date();

@@ -48,7 +48,6 @@ export class InputComponent implements OnChanges{
         if(res==null){
             this.view.frame[id].openCheck.isValid=false;    //该input内容不合法
             this.showValidTip(id);
-            console.log('showcheck');
             this.validChange.emit(false);
             return false
         }

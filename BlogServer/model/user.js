@@ -17,7 +17,7 @@ var add_user=function(name,email,phone,password){
 }
 exports.add_user=add_user;
 
-//删除用户(假删除)
+//删除用户(假删除) 用事务 todo
 var delete_user=function(id){
     var sql=`update user set status = -1,updatetime = ? where id = ?`;
     var now=new Date();

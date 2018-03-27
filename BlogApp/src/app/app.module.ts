@@ -8,6 +8,9 @@ import {ComponentModule} from './component/component.module';
 import {MgrModule} from './mgr/mgr.module';
 import {UserModule} from './user/user.module';
 import { Logger } from './service/logger.service';
+import { HttpService } from './service/http.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyInterceptor } from './service/http.interceptor';
 
 @NgModule({
     declarations:[
@@ -15,9 +18,14 @@ import { Logger } from './service/logger.service';
     ],
     imports:[
         BrowserModule,
+        HttpClientModule,
         RouterModule.forRoot(routes)
     ],
-    providers:[Logger],
+    providers:[
+        Logger,
+        HttpService,
+        {provide:HTTP_INTERCEPTORS,useClass:MyInterceptor,multi:true}
+    ],
     bootstrap:[AppComponent]
 })
 

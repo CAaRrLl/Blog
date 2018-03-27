@@ -1,6 +1,8 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import { InputJson } from '../../../component/component.interface';
 import { Logger } from '../../../service/logger.service';
+import { HttpService } from '../../../service/http.service';
+import { api } from '../../../constant/api';
 
 @Component({
     selector:'app-sign-in',
@@ -13,6 +15,8 @@ export class SignInUpComponent{
     signUpView:InputJson=new InputJson();
     currentTab:boolean=true;  //true:登陆 false:注册
     currentTabTip:string='社交帐号登录';
+    isSignIned:boolean=false;
+    isSignUped:boolean=false;
     isValid:boolean;
     signInTabClass={
         'tab-active':this.currentTab,
@@ -22,7 +26,7 @@ export class SignInUpComponent{
         'tab-active':!this.currentTab,
         'tab':this.currentTab
     }
-    constructor(private log:Logger){
+    constructor(private log:Logger,private http:HttpService){
         this.signInView.frame.push({placeholder:'手机号或邮箱号',type:'text',icon:'user',content:'',openCheck: {
             regExp:/(^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$)|([0-9]{11})/,
             errorTip:'帐号格式不正确！',
@@ -72,9 +76,36 @@ export class SignInUpComponent{
          this.isValid=result;
     }
     signUp(){
-        if(!this.isValid) return;
+        if(!this.isValid||this.isSignUped) return;
+        let body={
+            name:this.signUpView.frame[0].content,
+            phone:this.signUpView.frame[1].content,
+            email:this.signUpView.frame[2].content,
+            password:this.signUpView.frame[3].content
+        }
+        this.log.debug('SignInUpComponent','signUp',body);
+        console.log(api.register);
+        this.http.postJson(api.register,body).subscribe(
+            success=>{
+                this.log.debug('SignInUpComponent','signUp',success);
+            },fail=>{
+                this.log.error('SignInUpComponent','signUp',fail);
+            }
+        )
     }
     signIn(){
-        if(!this.isValid) return;
+        if(!this.isValid||this.isSignIned) return;
+        let body={
+            account:this.signInView.frame[0].content,
+            password:this.signInView.frame[1].content
+        }
+        this.log.debug('SignInUpComponent','signIn',body);
+        this.http.postJson(api.userlogin,body).subscribe(
+            success=>{
+                this.log.debug('SignInUpComponent','signIn',success);
+            },fail=>{
+                this.log.error('SignInUpComponent','signIn',fail);
+            }
+        )
     }
  }

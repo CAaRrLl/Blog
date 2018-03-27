@@ -6,6 +6,7 @@ import {ComponentModule} from '../component/component.module'
 import {CommonModule} from '@angular/common';
 import {UserComponent} from './user.component';
 import {SignInUpComponent} from './page/sign/sign.in.up.component';
+import { AppModule } from '../app.module';
 
 @NgModule({
     declarations:[
@@ -13,8 +14,8 @@ import {SignInUpComponent} from './page/sign/sign.in.up.component';
         SignInUpComponent,
     ],
     imports:[
-        FormsModule,
         CommonModule,
+        FormsModule,
         ComponentModule,
         RouterModule.forChild(UserRoutes)
     ],
