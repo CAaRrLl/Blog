@@ -3,7 +3,7 @@ echo "frontend npm instal?:$INSTALL_F"
 echo "frontend npm run build?:$BUILD_F"
 echo "backend npm install?:$INSTALL_B"
 
-if [ ! -n "$PORT"];then
+if [ ! $PORT];then
     export PORT=6600
 fi
 echo "port:$PORT"
