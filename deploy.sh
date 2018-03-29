@@ -47,6 +47,6 @@ if [ "$INSTALL_B" = "TRUE" ]; then
 fi
 
 echo "start server..."
-nohup npm run prod &
+daemonize -E BUILD_ID=dontKillMe npm run prod
 
 echo "bye"
