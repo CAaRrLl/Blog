@@ -3,7 +3,7 @@ echo "frontend npm instal?:$INSTALL_F"
 echo "frontend npm run build?:$BUILD_F"
 echo "backend npm install?:$INSTALL_B"
 
-if [ ! $PORT];then
+if [ ! $PORT ];then
     export PORT=6600
 fi
 echo "port:$PORT"
@@ -18,12 +18,12 @@ echo "后端:$BACK_END_DIR"
 
 cd $FRONT_END_DIR
 
-if ["$INSTALL_F"=="TRUE"]; then
+if [ "$INSTALL_F"="TRUE" ]; then
     echo "frontend npm install..."
     npm install
 fi
 
-if ["$BUILD_F"=="TRUE"]; then
+if [ "$BUILD_F"="TRUE" ]; then
     echo "frontend build..."
     npm run build
 fi
@@ -32,17 +32,16 @@ echo "stop server"
 
 export APP_PID=`lsof -i:$PORT -t`
 
-if [$APP_PID]; then
+if [ ! -z $APP_PID ]; then
     echo "old app pid:$APP_PID"
     `kill -9 $APP_PID`
+    echo "clean old dist"
+    `rm -rf $BACK_END_DIR/public/dist`
 fi
-
-echo "clean old dist"
-rm -rf $BACK_END_DIR/public/dist
 
 cd $BACK_END_DIR
 
-if ["$INSTALL_B"=="TRUE"]; then
+if [ "$INSTALL_B"="TRUE" ]; then
     echo "backend npm install..."
     npm install
 fi
