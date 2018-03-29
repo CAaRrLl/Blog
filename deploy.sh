@@ -23,11 +23,6 @@ if [ "$INSTALL_F"="TRUE" ]; then
     npm install
 fi
 
-if [ "$BUILD_F"="TRUE" ]; then
-    echo "frontend build..."
-    npm run build
-fi
-
 echo "stop server"
 
 export APP_PID=`lsof -i:$PORT -t`
@@ -39,6 +34,11 @@ if [ ! -z $APP_PID ]; then
     `rm -rf $BACK_END_DIR/public/dist`
 fi
 
+if [ "$BUILD_F"="TRUE" ]; then
+    echo "frontend build..."
+    npm run build
+fi
+
 cd $BACK_END_DIR
 
 if [ "$INSTALL_B"="TRUE" ]; then
@@ -47,6 +47,6 @@ if [ "$INSTALL_B"="TRUE" ]; then
 fi
 
 echo "start server..."
-npm run prod &
+npm run prod
 
 echo "bye"
