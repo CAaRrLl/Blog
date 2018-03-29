@@ -3,10 +3,10 @@ echo "frontend npm instal?:$INSTALL_F"
 echo "frontend npm run build?:$BUILD_F"
 echo "backend npm install?:$INSTALL_B"
 
-if ["-z $BLOG_PORT"];then
-    export BLOG_PORT=6600
+if [! -n $PORT];then
+    export PORT=6600
 fi
-echo "port:$BLOG_PORT"
+echo "port:$PORT"
 
 export BLOG_DIR=`pwd`
 export FRONT_END_DIR=$BLOG_DIR/BlogApp
@@ -30,9 +30,9 @@ fi
 
 echo "stop server"
 
-export APP_PID=`lsof -i:$BLOG_PORT -t`
+export APP_PID=`lsof -i:$PORT -t`
 
-if ["! -z $APP_PID"]; then
+if [! -z $APP_PID]; then
     kill -9 $APP_PID
 fi
 
@@ -47,6 +47,6 @@ if ["$INSTALL_B"="TRUE"]; then
 fi
 
 echo "start server..."
-npm run prod
+npm run prod &
 
 echo "bye"
