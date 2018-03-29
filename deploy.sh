@@ -36,7 +36,7 @@ if [! -z "$APP_PID"]; then
     `kill -9 $APP_PID`
 fi
 
-echo "clean dist"
+echo "clean old dist"
 rm -rf $BACK_END_DIR/public/dist
 
 cd $BACK_END_DIR
