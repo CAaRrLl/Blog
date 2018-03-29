@@ -47,6 +47,6 @@ if [ "$INSTALL_B" = "TRUE" ]; then
 fi
 
 echo "start server..."
-npm run prod &
+nohup npm run prod &
 
 echo "bye"
