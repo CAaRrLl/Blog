@@ -26,9 +26,9 @@ fi
 echo "stop server"
 
 export APP_PID=`lsof -i:$PORT -t`
+echo "old app pid:$APP_PID"
 
 if [ ! -z "$APP_PID" ]; then
-    echo "old app pid:$APP_PID"
     `kill -9 $APP_PID`
     echo "clean old dist"
     `rm -rf $BACK_END_DIR/public/dist`
@@ -47,6 +47,6 @@ if [ "$INSTALL_B" = "TRUE" ]; then
 fi
 
 echo "start server..."
-npm run prod
+npm run prod &
 
 echo "bye"
