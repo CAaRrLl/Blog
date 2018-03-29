@@ -3,7 +3,7 @@ echo "frontend npm instal?:$INSTALL_F"
 echo "frontend npm run build?:$BUILD_F"
 echo "backend npm install?:$INSTALL_B"
 
-if [! -n $PORT];then
+if [ ! -n "$PORT"];then
     export PORT=6600
 fi
 echo "port:$PORT"
@@ -32,8 +32,8 @@ echo "stop server"
 
 export APP_PID=`lsof -i:$PORT -t`
 
-if [! -z $APP_PID]; then
-    kill -9 $APP_PID
+if [! -z "$APP_PID"]; then
+    `kill -9 $APP_PID`
 fi
 
 echo "clean dist"
