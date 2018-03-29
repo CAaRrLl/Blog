@@ -3,7 +3,7 @@ var static_dir=path.join(__dirname,'public');
 
 var config = {
     debug: process.env.NODE_ENV==='prod'?false:true,
-    port:6600,
+    port:process.env.PORT?process.env.PORT:'6600',
 
     database:{
         host: 'www.proj.xin',
