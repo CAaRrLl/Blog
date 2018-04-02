@@ -1,0 +1,140 @@
+/* You can add global styles to this file, and also import other style files */
+/*全局样式*/
+.btn-blog{
+    background-color: #18a1ff;
+    border-radius: 50px;
+    cursor: pointer;
+    padding: 10px 50px;
+    color: white;
+    -webkit-transition: background-color 1s,box-shadow 0.5s;
+    -moz-transition: background-color 1s,box-shadow 0.5s;
+    transition: background-color 1s,box-shadow 0.5s;
+    display: block;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+.btn-blog:hover{
+    background-color: #2e8b86;
+    box-shadow: 0px 1px 2px 1px #9E9E9E;
+}
+
+
+[class*="input-"] {
+    border: 1px solid #999;
+    background-color: #f5f5f5;
+}
+
+.input-top{
+    border-radius: 5px 5px 0px 0px;
+    border-bottom: none;
+}
+
+.input-item{
+    border-bottom: none;
+}
+.input-bottom{
+    border-radius: 0px 0px 5px 5px;
+}
+
+[class*="-icon"] {
+    font-style: normal;
+    font-weight: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin font-face($name) {
+    @font-face {
+        font-family: 'font#{$name}';
+        src: url('assets/font/#{$name}/font#{$name}.eot?');
+        src: url('assets/font/#{$name}/font#{$name}.eot?#iefix') format('embedded-opentype'),
+        url('assets/font/#{$name}/font#{$name}.woff?') format('woff'),
+        url('assets/font/#{$name}/font#{$name}.ttf?') format('truetype'),
+        url('assets/font/#{$name}/font#{$name}.svg?#font#{$name}') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+}
+
+/*user e800*/
+@include font-face(user);
+.user-icon
+{
+    font-family: "fontuser";
+}
+
+/*lock e801*/
+@include font-face(lock);
+.lock-icon
+{
+    font-family: "fontlock";
+}
+
+/*qq F1D6*/
+@include font-face(qq);
+.qq-icon
+{
+    font-family: "fontqq";
+}
+
+/*wechat F1D7*/
+@include font-face(wechat);
+.wechat-icon
+{
+    font-family: "fontwechat";
+}
+
+/*weibo F18A*/
+@include font-face(weibo);
+.weibo-icon
+{
+    font-family: "fontweibo";
+}
+
+/*phone e800*/
+@include font-face(phone);
+.phone-icon
+{
+    font-family: "fontphone";
+}
+
+/*email F0E0*/
+@include font-face(email);
+.email-icon
+{
+    font-family: "fontemail";
+}
+
+/*warn e800*/
+@include font-face(warn);
+.warn-icon
+{
+    font-family: "fontwarn";
+}
+
+/*spin e839*/
+@include font-face(spin);
+.spin-icon
+{
+    font-family: "fontspin";
+}
+
+/*spin2 e830*/
+@include font-face(spin2);
+.spin2-icon
+{
+    font-family: "fontspin2";
+}
+
+/*spin3 e834*/
+@include font-face(spin3);
+.spin3-icon
+{
+    font-family: "fontspin3";
+}

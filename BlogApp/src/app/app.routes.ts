@@ -8,9 +8,5 @@ export const routes:Routes = [
     {
         path: 'mgr', 
         loadChildren: './mgr/mgr.module#MgrModule'
-    },
-    {
-        path: 'cp',
-        loadChildren: './component/component.module#ComponentModule'
     }
 ];

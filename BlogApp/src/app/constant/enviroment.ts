@@ -4,7 +4,7 @@ const server={
     host:'127.0.0.1',
     port:'6600',
     devHost:'127.0.0.1',
-    devPort:'6000'
+    devPort:'6600'
 }
 const host=`${server.protocol}://${environment.production?server.host:server.devHost}`;
 const port=`${environment.production?server.port:server.devPort}`;

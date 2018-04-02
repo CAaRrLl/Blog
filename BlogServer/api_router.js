@@ -1,17 +1,20 @@
-var express=require('express');
-var router=express.Router();
+
+var express = require('express');
+var signUp = require('./controllers/sign').signUp;
+var signIn = require('./controllers/sign').signIn;
+var router = express.Router();
 
 //管理员
 router.post('/admin/login');
-router.get('/get/userlist',function(req, res, next){
+router.get('/get/userlist', function(req, res, next){
     res.status(200);
     res.send('hello admin');
 });
 router.get('/lock/user');
 
 //用户
-router.post('/user/login');
-router.post('/user/register');
+router.post('/user/login', signIn);
+router.post('/user/register', signUp);
 
 //注销
 router.get('/layout');

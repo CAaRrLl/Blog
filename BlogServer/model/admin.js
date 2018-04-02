@@ -50,8 +50,8 @@ var table=`
 create table if not exists admin(
     id int auto_increment primary key, 
     name varchar(20) not null, 
-    email varchar(20) not null, 
-    phone varchar(20) not null,  
+    email varchar(20) not null unique, 
+    phone varchar(20) not null unique,  
     password varchar(20) not null, 
     portrait varchar(50),  
     status int default 1,     

@@ -1,4 +1,4 @@
-export const code={
+var code = {
     success: 1000,
     passwordNoMatch: 2001,
     accountNoExist: 2002,
@@ -8,4 +8,6 @@ export const code={
     userNoExist: 2007,
     paramsErr: 2005,
     dataBaseErr: 2008
-} 
+}
+
+exports.code = code;

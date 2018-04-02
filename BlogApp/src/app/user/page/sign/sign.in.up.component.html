@@ -6,12 +6,16 @@
         </ul>
         <app-input [class.show]="currentTab" [class.hidden]="!currentTab" [view]="signInView" 
             (validChange)="validChange($event)" #in></app-input>
-        <a *ngIf="currentTab" class="btn-blog sign-btn" 
-            (click)="in.showFirstValidTip();signIn()">登录</a>                    
+        <a *ngIf="currentTab" class="btn-blog sign-btn" (click)="in.showFirstValidTip();signIn()">
+            <app-icon *ngIf="signIning" class="load" tag="spin3"></app-icon>
+            登录
+        </a>                    
         <app-input [class.show]="!currentTab" [class.hidden]="currentTab" [view]="signUpView"  
             (validChange)="validChange($event)" #up></app-input>
-        <a *ngIf="!currentTab" class="btn-blog sign-btn" style="background-color: #08aa08" 
-            (click)="up.showFirstValidTip();signUp()">注册</a>
+        <a *ngIf="!currentTab" class="btn-blog sign-btn" style="background-color: #08aa08" (click)="up.showFirstValidTip();signUp()">
+            <app-icon *ngIf="signUping" class="load" tag="spin3"></app-icon>
+            注册
+        </a>
         <h6>{{currentTabTip}}</h6>
         <div class="share" style="background-color: #e35b5b">
             <app-icon class="icon" tag="weibo"></app-icon>

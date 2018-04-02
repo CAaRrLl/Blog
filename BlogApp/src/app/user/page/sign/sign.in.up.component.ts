@@ -11,24 +11,26 @@ import { api } from '../../../constant/api';
 })
 
 export class SignInUpComponent{
-    signInView:InputJson=new InputJson();
-    signUpView:InputJson=new InputJson();
-    currentTab:boolean=true;  //true:登陆 false:注册
-    currentTabTip:string='社交帐号登录';
-    isSignIned:boolean=false;
-    isSignUped:boolean=false;
-    isValid:boolean;
-    signInTabClass={
-        'tab-active':this.currentTab,
-        'tab':!this.currentTab
+    signInView: InputJson = new InputJson();
+    signUpView: InputJson = new InputJson();
+    currentTab: boolean = true;  //true:登陆 false:注册
+    currentTabTip: string = '社交帐号登录';
+    isSignIned: boolean = false;
+    isSignUped: boolean = false;
+    signIning: boolean = false;
+    signUping: boolean = false;
+    isValid: boolean;
+    signInTabClass = {
+        'tab-active': this.currentTab,
+        'tab': !this.currentTab
     }
-    signUpTabClass={
-        'tab-active':!this.currentTab,
-        'tab':this.currentTab
+    signUpTabClass = {
+        'tab-active': !this.currentTab,
+        'tab': this.currentTab
     }
     constructor(private log:Logger,private http:HttpService){
         this.signInView.frame.push({placeholder:'手机号或邮箱号',type:'text',icon:'user',content:'',openCheck: {
-            regExp:/(^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$)|([0-9]{11})/,
+            regExp:/(^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$)|(^[0-9]{11}$)/,
             errorTip:'帐号格式不正确！',
             isValid:false
         }});
@@ -43,7 +45,7 @@ export class SignInUpComponent{
             isValid:false
         }});
         this.signUpView.frame.push({placeholder:'手机号码',type:'text',icon:'phone',content:'',openCheck: {
-            regExp:/([0-9]{11})/,
+            regExp:/(^[0-9]{11}$)/,
             errorTip:'手机格式不正确！',
             isValid:false
         }});
@@ -84,10 +86,11 @@ export class SignInUpComponent{
             password:this.signUpView.frame[3].content
         }
         this.log.debug('SignInUpComponent','signUp',body);
-        console.log(api.register);
+        this.signUping = true;
         this.http.postJson(api.register,body).subscribe(
             success=>{
                 this.log.debug('SignInUpComponent','signUp',success);
+                
             },fail=>{
                 this.log.error('SignInUpComponent','signUp',fail);
             }
@@ -100,8 +103,9 @@ export class SignInUpComponent{
             password:this.signInView.frame[1].content
         }
         this.log.debug('SignInUpComponent','signIn',body);
+        this.signIning = true;
         this.http.postJson(api.userlogin,body).subscribe(
-            success=>{
+            success=>{ 
                 this.log.debug('SignInUpComponent','signIn',success);
             },fail=>{
                 this.log.error('SignInUpComponent','signIn',fail);
