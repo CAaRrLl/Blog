@@ -58,7 +58,6 @@ var signIn = function (req, res, next) {
         }
         var session = result[0];
         gen_session(session.id, session, res, req);
-        logger.debug(res.cookie,req.session);
         res.status(200).send({code: code.success ,msg:'',data: {}});
     });
 }

@@ -8,5 +8,9 @@ export const routes:Routes = [
     {
         path: 'mgr', 
         loadChildren: './mgr/mgr.module#MgrModule'
+    },
+    {
+        path: 'blog',
+        loadChildren: './blog/blog.module#BlogModule'
     }
 ];
