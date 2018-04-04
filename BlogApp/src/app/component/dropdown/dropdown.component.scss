@@ -1,0 +1,30 @@
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin animation($animation) {
+  animation: $animation;
+  -webkit-animation: $animation;
+  -moz-animation: $animation;
+  -o-animation: $animation;
+}
+
+@include keyframes(spin) {
+  0% {transform: rotate(0deg)}
+  50% {transform: rotate(180deg)}
+  100% {transform: rotate(360deg)}
+}
+.spin{
+  @include animation(spin 1s linear 0s infinite);
+}

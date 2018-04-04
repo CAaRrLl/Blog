@@ -1,4 +1,10 @@
-<div class = "navigation">
-    <img class = "icon" [src] = "iconSrc">
-    <span class = "mark"></span>
+<div class="navigation">
+    <img class="icon" [src]="iconSrc" (click)="toHome()">
+    <h3 class="mark" (click)="toHome()">{{iconTip}}</h3>
+    <div class="content">
+        <a (click)="toHome()">首页</a>
+        <a (click)="toSignIn()">登陆</a>
+        <a (click)="toSignUp()">注册</a>
+        <a>写文章</a>
+    </div>
 </div>

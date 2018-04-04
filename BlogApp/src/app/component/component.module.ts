@@ -1,26 +1,25 @@
 import {NgModule} from "@angular/core";
-import {ComponentRouter} from './component.routes';
 import {RouterModule} from '@angular/router';
 import {InputComponent} from "./input/input.component";
-import {MyComponent} from "./component";
 import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { FontIconComponent } from "./fontIcon/fontIcon.component";
+import { DropdownComponent } from "./dropdown/dropdown.component";
 
 @NgModule({
     declarations:[
-        MyComponent,
         InputComponent,
-        FontIconComponent
+        FontIconComponent,
+        DropdownComponent
     ],
     imports:[
         FormsModule,
-        CommonModule,
-        RouterModule.forChild(ComponentRouter)
+        CommonModule
     ],
     providers:[],
     exports:[
         InputComponent,
+        DropdownComponent,
         FontIconComponent
     ]
 })

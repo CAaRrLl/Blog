@@ -1,8 +1,9 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ElementRef, ViewChild, OnInit} from '@angular/core';
 import { InputJson } from '../../../component/component.interface';
 import { Logger } from '../../../service/logger.service';
 import { HttpService } from '../../../service/http.service';
 import { api } from '../../../constant/api';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector:'app-sign-in',
@@ -10,7 +11,7 @@ import { api } from '../../../constant/api';
     styleUrls:['./sign.in.up.component.scss']
 })
 
-export class SignInUpComponent{
+export class SignInUpComponent implements OnInit{
     signInView: InputJson = new InputJson();
     signUpView: InputJson = new InputJson();
     currentTab: boolean = true;  //true:登陆 false:注册
@@ -28,7 +29,8 @@ export class SignInUpComponent{
         'tab-active': !this.currentTab,
         'tab': this.currentTab
     }
-    constructor(private log:Logger,private http:HttpService){
+
+    constructor(private log:Logger,private http:HttpService,private aroute: ActivatedRoute) {
         this.signInView.frame.push({placeholder:'手机号或邮箱号',type:'text',icon:'user',content:'',openCheck: {
             regExp:/(^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$)|(^[0-9]{11}$)/,
             errorTip:'帐号格式不正确！',
@@ -60,6 +62,20 @@ export class SignInUpComponent{
             isValid:false
         }});
     }
+
+    ngOnInit() {
+        this.aroute.queryParams.subscribe(params => {
+            switch (params['tab']) {
+                case 'in':
+                    this.setTab(true);
+                    break;
+                case 'up':
+                    this.setTab(false);
+                    break;
+            }
+        });
+    }
+
     setTab(tab:boolean){
         this.currentTab=tab;
         this.signInTabClass={
