@@ -5,22 +5,31 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { FontIconComponent } from "./fontIcon/fontIcon.component";
 import { DropdownComponent } from "./dropdown/dropdown.component";
+import { AlertComponent } from "./alert/alert.component";
+import { AlertService } from "./alert/alert.service";
+import { SearchComponent } from "./search/search.component";
 
 @NgModule({
     declarations:[
         InputComponent,
         FontIconComponent,
-        DropdownComponent
+        DropdownComponent,
+        AlertComponent,
+        SearchComponent
     ],
     imports:[
         FormsModule,
         CommonModule
     ],
-    providers:[],
+    providers:[
+        AlertService
+    ],
     exports:[
         InputComponent,
         DropdownComponent,
-        FontIconComponent
+        FontIconComponent,
+        AlertComponent,
+        SearchComponent
     ]
 })
 

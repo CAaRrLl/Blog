@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 body {
     margin: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 /*全局样式*/
 .btn-blog{
@@ -140,4 +141,18 @@ body {
 .spin3-icon
 {
     font-family: "fontspin3";
+}
+
+/*menu e800*/
+@include font-face(menu);
+.menu-icon
+{
+    font-family: "fontmenu";
+}
+
+/*search e801*/
+@include font-face(search);
+.search-icon
+{
+    font-family: "fontsearch";
 }

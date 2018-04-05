@@ -3,7 +3,8 @@ import { InputJson } from '../../../component/component.interface';
 import { Logger } from '../../../service/logger.service';
 import { HttpService } from '../../../service/http.service';
 import { api } from '../../../constant/api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { route } from '../../../constant/router';
 
 @Component({
     selector:'app-sign-in',
@@ -30,7 +31,7 @@ export class SignInUpComponent implements OnInit{
         'tab': this.currentTab
     }
 
-    constructor(private log:Logger,private http:HttpService,private aroute: ActivatedRoute) {
+    constructor(private log:Logger,private http:HttpService,private aroute: ActivatedRoute,private route: Router) {
         this.signInView.frame.push({placeholder:'手机号或邮箱号',type:'text',icon:'user',content:'',openCheck: {
             regExp:/(^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$)|(^[0-9]{11}$)/,
             errorTip:'帐号格式不正确！',
@@ -76,7 +77,7 @@ export class SignInUpComponent implements OnInit{
         });
     }
 
-    setTab(tab:boolean){
+    setTab(tab:boolean) {
         this.currentTab=tab;
         this.signInTabClass={
             'tab-active':this.currentTab,
@@ -90,10 +91,10 @@ export class SignInUpComponent implements OnInit{
         if(tab) this.currentTabTip='社交帐号登录';
         else this.currentTabTip='社交帐号注册';
     }
-    validChange(result){
+    validChange(result) {
          this.isValid=result;
     }
-    signUp(){
+    signUp() {
         if(!this.isValid||this.isSignUped) return;
         let body={
             name:this.signUpView.frame[0].content,
@@ -112,7 +113,7 @@ export class SignInUpComponent implements OnInit{
             }
         )
     }
-    signIn(){
+    signIn() {
         if(!this.isValid||this.isSignIned) return;
         let body={
             account:this.signInView.frame[0].content,
@@ -123,6 +124,7 @@ export class SignInUpComponent implements OnInit{
         this.http.postJson(api.userlogin,body).subscribe(
             success=>{ 
                 this.log.debug('SignInUpComponent','signIn',success);
+                this.route.navigate([route.home]);
             },fail=>{
                 this.log.error('SignInUpComponent','signIn',fail);
             }

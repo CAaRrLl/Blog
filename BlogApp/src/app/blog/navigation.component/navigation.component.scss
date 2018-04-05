@@ -1,4 +1,11 @@
 $blue:#1890ff;
+$block:#880b0b;
+.appear {
+    opacity: 1!important;
+}
+.show {
+    visibility: visible!important;
+}
 @mixin transition ($content) {
     transition: $content;
     -moz-transition: $content;
@@ -24,11 +31,11 @@ $blue:#1890ff;
         font-weight: bolder;
         vertical-align: middle;
         margin: 0;
-        color: #880b0b;
+        color: $block;
         margin-left: -0.5rem;
         cursor: pointer;
     }
-    .content {
+    .content-pc {
         height: 100%;
         vertical-align: middle;
         float: right;
@@ -47,5 +54,83 @@ $blue:#1890ff;
                 color:$blue;
             }
         }  
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+    .search {
+        @media screen and (max-width: 420px){
+            position: fixed;
+            top: 4rem;
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+    }
+    .content-phone {
+        float: right;
+        height: 100%;
+        .menu {
+            font-size: 1rem;
+            margin: 1rem;
+            color: $block;
+            display: grid;
+            padding: 0.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            &:active {
+                background-color: rgba(220, 174, 174, 0.49);
+            }           
+        }
+        @media screen and (min-width: 769px) {
+            display: none;
+        }
+        ul {
+            text-align: center;
+            list-style: none;
+            margin: 0;
+            position: absolute;
+            padding: 0;
+            width: 12rem;
+            right: 0.5rem;
+            background-color: white;
+            border-radius: 2px;
+            box-shadow: 0px 0px 8px 0px #d9d9d9;
+            opacity: 0;
+            visibility: hidden;
+            $target: opacity 0.3s;
+            @include transition($target);
+            &:before {
+                top: -1rem;
+                right: 1rem;
+                position: absolute;
+                content: '';
+                border-bottom: 10px solid #ededed;
+                border-left: 7px solid rgba(255, 255, 255, 0);
+                border-top: 7px solid rgba(255, 255, 255, 0);
+                border-right: 7px solid rgba(255, 255, 255, 0);
+            }
+            &:after {
+                top: -0.9rem;
+                right: 1rem;
+                position: absolute;
+                content: '';
+                border-bottom: 10px solid rgb(255, 255, 255);
+                border-left: 7px solid rgba(255, 255, 255, 0);
+                border-top: 7px solid rgba(255, 255, 255, 0);
+                border-right: 7px solid rgba(255, 255, 255, 0);
+            }
+            li {
+                cursor: pointer;
+                margin-bottom: 0.5rem;
+                margin-top: 0.5rem;
+                height: 1.8rem;
+                line-height: 1.7;
+                color: #767676;
+                &:active {
+                    background-color: #efedeb;
+                }
+            }
+        }
     }
 }

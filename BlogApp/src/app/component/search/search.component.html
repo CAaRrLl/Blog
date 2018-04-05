@@ -1,0 +1,6 @@
+<div class="container">
+    <input class="input" [placeholder]="tip" type="text" 
+    (focus)="focus(true)" 
+    (change)="change($event.target.value)">
+    <app-icon class="search" tag="search" (click)="emitVal()"></app-icon>
+</div>
