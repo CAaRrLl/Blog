@@ -29,7 +29,8 @@ export class NavigationComponent implements OnInit{
             setTimeout(() => {this.isShow = false}, 300);
         });
         menu.addEventListener("click", (event) => {
-            event.stopPropagation();
+            let e = event ? event : window.event;
+            e.stopPropagation();
         })
     }
 
