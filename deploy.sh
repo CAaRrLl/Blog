@@ -1,4 +1,7 @@
 #!/bin/bash
+
+trap "echo Fail unexpectedly" ERR
+
 echo "frontend npm instal?:$INSTALL_F"
 echo "frontend npm run build?:$BUILD_F"
 echo "backend npm install?:$INSTALL_B"
