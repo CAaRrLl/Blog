@@ -1,7 +1,7 @@
 import { Component,Input } from "@angular/core";
 import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
 import { AlertService, AlertModel } from "./alert.service";
-import { Observable } from 'Rxjs';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
     selector: 'app-alert',
@@ -30,7 +30,7 @@ export class AlertComponent implements OnInit{
     }
 
     popModel(index: number) {
-        
+
     }
 
     pushModel(model: AlertModel) {
