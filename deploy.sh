@@ -1,6 +1,12 @@
 #!/bin/bash
 
-trap "echo Fail unexpectedly" ERR
+exitOnErr(){
+  exitCode=$?
+  echo failed to deploy with exit code $exitCode on deploy.sh $1
+  exit $exitCode
+}
+
+trap 'exitOnErr $LINENO' ERR
 
 echo "frontend npm instal?:$INSTALL_F"
 echo "frontend npm run build?:$BUILD_F"
