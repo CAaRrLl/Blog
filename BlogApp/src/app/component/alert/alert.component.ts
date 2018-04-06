@@ -13,7 +13,7 @@ export class AlertComponent implements OnInit{
 
     private time: number = 300;
 
-    private alerts: AlertModel[] = [];
+    alerts: AlertModel[] = [];
 
     private Observable:Observable<any>;
 
