@@ -158,6 +158,13 @@ ul {
     font-family: "fontspin3";
 }
 
+/*spin4 e838*/
+@include font-face(spin4);
+.spin4-icon
+{
+    font-family: "fontspin4";
+}
+
 /*menu e800*/
 @include font-face(menu);
 .menu-icon
@@ -184,4 +191,25 @@ ul {
 .close-icon
 {
     font-family: "fontclose";
+}
+
+/*success e800*/
+@include font-face(success);
+.success-icon
+{
+    font-family: 'fontsuccess'
+}
+
+/*error e801*/
+@include font-face(error);
+.error-icon
+{
+    font-family: 'fonterror'
+}
+
+/*warn2 e800*/
+@include font-face(warn2);
+.warn2-icon
+{
+    font-family: 'fontwarn2'
 }

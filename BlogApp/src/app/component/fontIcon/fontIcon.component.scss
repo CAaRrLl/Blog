@@ -26,5 +26,5 @@
   100% {transform: rotate(360deg)}
 }
 .spin{
-  @include animation(spin 1s linear 0s infinite);
+  @include animation(spin 2s linear 0s infinite);
 }

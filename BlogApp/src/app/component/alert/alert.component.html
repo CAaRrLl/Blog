@@ -1,0 +1,8 @@
+<div class="alert appear" *ngFor="let alert of alerts;let i=index">
+    <app-icon class="icon" style="color: rgb(13, 122, 172)" *ngIf="alert.type===0" tag="spin4"></app-icon>
+    <app-icon class="icon" style="color: rgb(218, 50, 50)" *ngIf="alert.type===1" tag="error"></app-icon>
+    <app-icon class="icon" style="color: rgb(211, 185, 41)" *ngIf="alert.type===2" tag="warn2"></app-icon>
+    <app-icon class="icon" style="color: rgb(9, 197, 9)" *ngIf="alert.type===3" tag="success"></app-icon>
+    <span class="msg">{{alert.msg}}</span>
+    <app-icon class="close" tag="close" (click)="popModel(i)"></app-icon>
+</div>

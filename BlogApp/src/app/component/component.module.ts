@@ -6,7 +6,6 @@ import { CommonModule } from "@angular/common";
 import { FontIconComponent } from "./fontIcon/fontIcon.component";
 import { DropdownComponent } from "./dropdown/dropdown.component";
 import { AlertComponent } from "./alert/alert.component";
-import { AlertService } from "./alert/alert.service";
 import { SearchComponent } from "./search/search.component";
 
 @NgModule({
@@ -21,9 +20,7 @@ import { SearchComponent } from "./search/search.component";
         FormsModule,
         CommonModule
     ],
-    providers:[
-        AlertService
-    ],
+    providers:[],
     exports:[
         InputComponent,
         DropdownComponent,

@@ -11,8 +11,12 @@ export const iconMap={
     spin: '&#xe839',
     spin2: '&#xe830',
     spin3: '&#xe834',
+    spin4: '&#xe838',
     menu: '&#xe800',
     search: '&#xe801',
     clock: '&#xe800',
-    close: '&#xe801'
+    close: '&#xe801',
+    success: '&#xe800',
+    error: '&#xe801',
+    warn2: '&#xe800'
 }

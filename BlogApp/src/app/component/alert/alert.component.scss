@@ -1,3 +1,11 @@
+$time: 0.3s;
+@mixin transition($content) {
+  transition: $content;
+  -webkit-transition: $content;
+  -moz-transition: $content;
+  -o-transition: $content;
+}
+
 @mixin keyframes($name) {
   @keyframes #{$name} {
     @content;
@@ -20,11 +28,55 @@
   -o-animation: $animation;
 }
 
-@include keyframes(spin) {
-  0% {transform: rotate(0deg)}
-  50% {transform: rotate(180deg)}
-  100% {transform: rotate(360deg)}
+@include keyframes(appear) {
+  0% {margin-top: -2.5rem; opacity: 0}
+  100% {margin-top: 1rem; opacity: 1;}
 }
-.spin{
-  @include animation(spin 1s linear 0s infinite);
+
+.alert {
+  cursor: pointer;
+  position: relative;
+  background-color: #ffffff;
+  height: 2.5rem;
+  margin-top: 1rem;
+  border-radius: 0.3rem;
+  z-index: 2;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 2px 5px 0px #e9e9e9;
+  &:hover {
+    .close {
+      visibility: visible;
+    }
+  }
+  .icon {
+    font-size: 1.4rem;
+    padding-left: 1rem;
+    padding-right: 0.8rem;
+    vertical-align: middle;
+    display: inline-flex;
+  }
+  .msg {
+    font-size: 0.9rem;
+    display: inline-flex;
+    vertical-align: middle;
+    line-height: 2.5rem;
+    padding-right: 1rem;
+  }
+  .close {
+    display: inline-flex;
+    vertical-align: middle;
+    font-size: 0.8rem;
+    padding-right: 0.8rem;
+    color: #757575;
+    visibility: hidden;
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+.appear {
+  @include animation(appear $time ease-in-out 0s 1)
 }

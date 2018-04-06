@@ -1,6 +1,7 @@
 import { Component,Input } from "@angular/core";
 import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
-import { Subject } from "rxjs/Subject";
+import { AlertService, AlertModel } from "./alert.service";
+import { Observable } from 'Rxjs';
 
 @Component({
     selector: 'app-alert',
@@ -8,43 +9,47 @@ import { Subject } from "rxjs/Subject";
     styleUrls: ['./alert.component.scss']
 })
 
-export class AlertComponent{
-    private subject: Subject<AlertModel> = new Subject<AlertModel>();
-    
-    getObservable() {
-        return this.subject.asObservable();
+export class AlertComponent implements OnInit{
+
+    private time: number = 300;
+
+    private alerts: AlertModel[] = [];
+
+    private Observable:Observable<any>;
+
+    private lock: boolean = false;
+
+    constructor(private alert: AlertService) {
+        this.alert.getObservable().subscribe((model: AlertModel) => {
+            this.pushModel(model);
+        });
     }
 
-    show(model: AlertModel) {
-        this.subject.next(model);
+    ngOnInit() {
+        this.Observable = Observable.timer(0);
     }
 
-    disapear(type: number, msg: string) {
-        let model: AlertModel = {
-            type: type,
-            msg: msg,
-            time: 0
-        };
-        this.subject.next(model);
+    popModel(index: number) {
+        
     }
 
-    appear(type: number, msg: string) {
-        let model: AlertModel = {
-            type: type,
-            msg: msg,
-            time: -1
+    pushModel(model: AlertModel) {
+        const observer = () => {
+            this.alerts.push(model);
+            this.Observable = Observable.timer(this.time);
+            this.lock = false;
+        }
+        if(!this.lock) {
+            this.lock = true;
+            this.Observable.subscribe(observer);
+        }else {
+            let timer = setInterval(()=>{
+                if(!this.lock) {
+                    this.lock = true;
+                    this.Observable.subscribe(observer);
+                    clearInterval(timer);
+                }
+            },0);
         }
     }
-}
-
-export interface AlertModel {
-    type: number,
-    msg: string,
-    time: number
-}
-
-export enum AlertType {
-    Error,
-    Warn,
-    Success
 }
