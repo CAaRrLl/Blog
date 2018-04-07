@@ -7,6 +7,17 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
   <link rel="icon" type="image/x-icon" href="./assets/icon/favicon.ico">
+  <script type="text/javascript">
+    window.onerror = function(errorMessage, scriptURI, lineNumber,columnNumber,errorObj) {
+      var p=document.getElementById('globalerror');
+      p.innerHTML=JSON.stringify({
+        "错误信息：" :errorMessage,
+        "出错文件：" :scriptURI,
+        "出错行号：" :lineNumber,
+        "出错列号：" :columnNumber,
+        "错误详情：" :errorObj });
+      }
+</script>
 </head>
 <body>
   <app-root>

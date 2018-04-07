@@ -4,5 +4,5 @@
     <app-icon class="icon" style="color: rgb(211, 185, 41)" *ngIf="alert.type===2" tag="warn2"></app-icon>
     <app-icon class="icon" style="color: rgb(9, 197, 9)" *ngIf="alert.type===3" tag="success"></app-icon>
     <span class="msg">{{alert.msg}}</span>
-    <app-icon class="close" tag="close" (click)="popModel(i)"></app-icon>
+    <app-icon [class.close-disable]="alert.type===0" class="close" tag="close" (click)="popModel(alert)"></app-icon>
 </div>

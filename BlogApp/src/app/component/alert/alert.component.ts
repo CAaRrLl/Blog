@@ -1,6 +1,6 @@
-import { Component,Input } from "@angular/core";
+import { Component,Input, Renderer2, ElementRef } from "@angular/core";
 import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
-import { AlertService, AlertModel } from "./alert.service";
+import { AlertService, AlertModel, AlertType } from "./alert.service";
 import { Observable } from 'rxjs/Rx';
 
 @Component({
@@ -19,8 +19,14 @@ export class AlertComponent implements OnInit{
 
     private lock: boolean = false;
 
-    constructor(private alert: AlertService) {
+    constructor(private alert: AlertService, private render: Renderer2, private el: ElementRef) {
         this.alert.getObservable().subscribe((model: AlertModel) => {
+            if(model.time === 0) {
+                for(let i = 0; i < this.alerts.length; i++) {
+                    this.popModelByIndex(i);
+                }
+                return;
+            }
             this.pushModel(model);
         });
     }
@@ -29,13 +35,45 @@ export class AlertComponent implements OnInit{
         this.Observable = Observable.timer(0);
     }
 
-    popModel(index: number) {
+    popModel(model: AlertModel) {
+        if(model.type === AlertType.Loading && model.time === -1) return;
+        let alert = this.el.nativeElement.children[this.alerts.indexOf(model)];
+        this.render.addClass(alert, 'disappear');
+        this.render.setStyle(alert, 'margin-top', '-2.5rem');
+        this.render.setStyle(alert, 'opactiy', '0');
+        setTimeout(() => {
+            let index = this.alerts.indexOf(model);
+            if(index !== -1) {
+                this.alerts.splice(index, 1);
+            }
+        }, this.time);
+    }
 
+    popModelByIndex(index: number) {
+        let model = this.alerts[index];
+        let alert = this.el.nativeElement.children[this.alerts.indexOf(model)];
+        this.render.addClass(alert, 'disappear');
+        this.render.setStyle(alert, 'margin-top', '-2.5rem');
+        this.render.setStyle(alert, 'opactiy', '0');
+        setTimeout(() => {
+            let index = this.alerts.indexOf(model);
+            if(index !== -1) {
+                this.alerts.splice(index, 1);
+            }
+        }, this.time);
     }
 
     pushModel(model: AlertModel) {
         const observer = () => {
             this.alerts.push(model);
+            if(model.time !== -1 && model.time !== 0) {
+                setTimeout(() => {
+                    let index = this.alerts.indexOf(model);
+                    if(index !== -1) {
+                        this.popModel(model);
+                    }
+                }, model.time + this.time);
+            }
             this.Observable = Observable.timer(this.time);
             this.lock = false;
         }

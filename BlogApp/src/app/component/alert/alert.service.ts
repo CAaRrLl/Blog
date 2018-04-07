@@ -13,10 +13,10 @@ export class AlertService{
         this.subject.next(model);
     }
 
-    disapear(type: number, msg: string) {
+    disapear() {
         let model: AlertModel = {
-            type: type,
-            msg: msg,
+            type: -1,
+            msg: '',
             time: 0
         };
         this.subject.next(model);
