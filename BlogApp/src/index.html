@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <title>BlogApp</title>
   <base href="/">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
   <link rel="icon" type="image/x-icon" href="./assets/icon/favicon.ico">
+  <link rel="stylesheet" href="./assets/css/prestyle.css" type="text/css" media="screen" />
   <script type="text/javascript">
     window.onerror = function(errorMessage, scriptURI, lineNumber,columnNumber,errorObj) {
       var p=document.getElementById('globalerror');
@@ -17,11 +17,21 @@
         "出错列号：" :columnNumber,
         "错误详情：" :errorObj });
       }
-</script>
+  </script>
 </head>
 <body>
   <app-root>
-    loading
+    <div id="pre-container">
+      <div id="pre-loading-container">
+        <span id="pre-loading-bar-l"></span>
+        <span id="pre-loading-bar-r"></span>
+        <span id="pre-loading-bar-l"></span>
+        <span id="pre-loading-bar-r"></span>
+        <span id="pre-loading-bar-l"></span>
+        <span id="pre-loading-bar-r"></span>
+        <p id="pre-loading">LOADING...</p>
+      </div>
+    </div>
   </app-root>
 </body>
 </html>
