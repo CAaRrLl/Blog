@@ -6,6 +6,7 @@ import { Logger } from './service/logger.service';
   template:`
         <router-outlet></router-outlet>
         <app-alert></app-alert>
+        <app-dialog></app-dialog>
     `
 })
 export class AppComponent implements OnInit{

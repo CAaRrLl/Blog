@@ -7,6 +7,7 @@ import { FontIconComponent } from "./fontIcon/fontIcon.component";
 import { DropdownComponent } from "./dropdown/dropdown.component";
 import { AlertComponent } from "./alert/alert.component";
 import { SearchComponent } from "./search/search.component";
+import { DialogComponent } from "./dialog/dialog.component";
 
 @NgModule({
     declarations:[
@@ -14,7 +15,8 @@ import { SearchComponent } from "./search/search.component";
         FontIconComponent,
         DropdownComponent,
         AlertComponent,
-        SearchComponent
+        SearchComponent,
+        DialogComponent
     ],
     imports:[
         FormsModule,
@@ -26,7 +28,8 @@ import { SearchComponent } from "./search/search.component";
         DropdownComponent,
         FontIconComponent,
         AlertComponent,
-        SearchComponent
+        SearchComponent,
+        DialogComponent
     ]
 })
 

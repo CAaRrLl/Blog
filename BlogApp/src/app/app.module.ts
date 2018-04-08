@@ -9,6 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyInterceptor } from './service/http.interceptor';
 import { ComponentModule } from './component/component.module';
 import { AlertService } from './component/alert/alert.service';
+import { DialogService } from './component/dialog/dialog.service';
 
 @NgModule({
     declarations:[
@@ -21,7 +22,8 @@ import { AlertService } from './component/alert/alert.service';
         RouterModule.forRoot(routes)
     ],
     providers:[
-        AlertService,        
+        AlertService,   
+        DialogService,     
         Logger,
         HttpService,
         {provide:HTTP_INTERCEPTORS,useClass:MyInterceptor,multi:true}

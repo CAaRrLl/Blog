@@ -1,0 +1,11 @@
+<div class="dialog-container" *ngIf="!model?.hidden">
+    <div class="dialog">
+        <app-icon class="close" tag="error" (click)="cancel()"></app-icon>
+        <p *ngIf="isSimpleText">{{model.content}}</p>
+        <div *ngIf="!isSimpleText" #container></div>
+        <div class="func" *ngIf="!hiddenCancel||!hiddenConfirm">
+            <a (click)="cancel()" *ngIf="!hiddenCancel">{{cancelName}}</a>
+            <a (click)="confirm()" *ngIf="!hiddenConfirm">{{confirmName}}</a>
+        </div>
+    </div>
+</div>
