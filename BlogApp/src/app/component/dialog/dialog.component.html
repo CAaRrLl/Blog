@@ -1,6 +1,6 @@
-<div class="dialog-container" *ngIf="!model?.hidden">
-    <div class="dialog">
-        <app-icon class="close" tag="error" (click)="cancel()"></app-icon>
+<div class="dialog-container appear" *ngIf="!model?.hidden">
+    <div class="dialog appear">
+        <app-icon class="close" tag="close" (click)="cancel()"></app-icon>
         <p *ngIf="isSimpleText">{{model.content}}</p>
         <div *ngIf="!isSimpleText" #container></div>
         <div class="func" *ngIf="!hiddenCancel||!hiddenConfirm">

@@ -1,5 +1,6 @@
 $time: 0.3s;
-$color: #85443c;
+$hovercolor: #ec6c4c;
+$confirmColor: #c5583d;
 @mixin transition($content) {
   transition: $content;
   -webkit-transition: $content;
@@ -30,13 +31,21 @@ $color: #85443c;
 }
 
 @include keyframes(appear) {
-  0% {margin-top: -2.5rem; opacity: 0}
-  100% {margin-top: 1rem; opacity: 1;}
+  0% {opacity: 0}
+  100% {opacity: 1;}
 }
 
 @include keyframes(disappear) {
-  0% {margin-top: 1rem; opacity: 1}
-  100% {margin-top: -2.5rem; opacity: 0;}
+  0% {opacity: 1}
+  100% {opacity: 0;}
+}
+
+.appear {
+  @include animation(appear $time linear 0s 1);
+}
+
+.disappear {
+  @include animation(disappear $time linear 0s 1);
 }
 
 .dialog-container {
@@ -57,7 +66,7 @@ $color: #85443c;
     -moz-transform: translate(-50%, -50%);
     -webkit-transform: translate(-50%, -50%);
     box-shadow: 0px 1px 4px 0px #afafaf;
-    border-radius: 0.8rem;
+    border-radius: 0.5rem;
     background-color: white;
     min-width: 20rem;
     @media screen and (max-width: 768px) {
@@ -71,43 +80,40 @@ $color: #85443c;
       display: block;
       text-align: right;
       cursor: pointer;
-      font-size: 1.5rem;
-      padding-right: 0.4rem;
+      font-size: 1rem;
+      padding-right: 0.5rem;
+      padding-top: 0.2rem;
       color: #838383;
       &:hover {
-        color: $color;
+        color: $confirmColor;
       }
     }
     .func {
       height: 4rem;
-      border-radius: 0 0 0.8rem 0.8rem;
+      border-radius: 0 0 0.5rem 0.5rem;
       text-align: center;
-      background-color: $color;
+      padding: 0.5rem;
       a {
-        color: white;
-        border-radius: 10rem;
-        padding-right: 1rem;
+        border-radius: 0.5rem;
+        padding-right: 2rem;
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
-        padding-left: 1rem;
-        border: 1.5px solid;
+        padding-left: 2rem;
         display: inline-block;
         cursor: pointer;
         margin-top: 0.75rem;
         margin-left: 0.5rem;
+        box-shadow: 0px 0px 1px 1px #9d9d9d;
         margin-right: 0.5rem;
         &:hover {
-          background-color: white;
-          color: $color;
-          border-color: $color;
+          color: $confirmColor;
         }
         &:last-child {
-          background-color: #a85033;
+          background-color: $confirmColor;
           color: white;
-          border-color: $color; 
+          box-shadow: 0px 0px 1px 1px $confirmColor;
           &:hover {
-            border-color: #d35931;
-            background-color: #d35931;
+            background-color: $hovercolor;
           }
         }
       }

@@ -28,7 +28,12 @@ export class DialogComponent{
 
     constructor(private dialog: DialogService, private render: Renderer2, private el: ElementRef) {
         this.dialog.getObservable().subscribe((model: DialogModel) => {
-            this.model = model;
+            if(model.hidden&&!this.model.hidden) {
+                this.fadeOut();
+                setTimeout(() => {
+                    this.model = model;
+                }, this.time);
+            }else this.model = model;
             if(typeof this.model.content === 'string') {
                 this.isSimpleText = true;
             }else {
@@ -71,7 +76,10 @@ export class DialogComponent{
             func = this.model.cancelBtn.func;
         } else {
             func = () => {
-                this.model.hidden = true;
+                this.fadeOut();
+                setTimeout(() => {
+                    this.model.hidden = true;
+                }, this.time);
             }
         }
         func();
@@ -94,5 +102,14 @@ export class DialogComponent{
         for(const param in params){
             newComponentRef.instance[param]=params[param];
         }
+    }
+
+    private fadeOut() {
+        let dialog = this.el.nativeElement.querySelector('.dialog');
+        let dialogContainer = this.el.nativeElement.querySelector('.dialog-container');
+        this.render.addClass(dialog, 'disappear');
+        this.render.addClass(dialogContainer, 'disappear');
+        this.render.setStyle(dialog, 'opacity', '0');
+        this.render.setStyle(dialogContainer, 'opactiy', '0');
     }
 }
