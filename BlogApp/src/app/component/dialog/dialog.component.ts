@@ -105,11 +105,9 @@ export class DialogComponent{
     }
 
     private fadeOut() {
-        let dialog = this.el.nativeElement.querySelector('.dialog');
         let dialogContainer = this.el.nativeElement.querySelector('.dialog-container');
-        this.render.addClass(dialog, 'disappear');
-        this.render.addClass(dialogContainer, 'disappear');
-        this.render.setStyle(dialog, 'opacity', '0');
-        this.render.setStyle(dialogContainer, 'opactiy', '0');
+        let dialog = this.el.nativeElement.querySelector('.dialog');
+        this.render.setStyle(dialogContainer, 'opacity', '0');
+        this.render.setStyle(dialog, 'top', '0');
     }
 }

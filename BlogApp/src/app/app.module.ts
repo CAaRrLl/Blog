@@ -10,6 +10,7 @@ import { MyInterceptor } from './service/http.interceptor';
 import { ComponentModule } from './component/component.module';
 import { AlertService } from './component/alert/alert.service';
 import { DialogService } from './component/dialog/dialog.service';
+import { LocalStorageService } from './service/localstorage.service';
 
 @NgModule({
     declarations:[
@@ -26,6 +27,7 @@ import { DialogService } from './component/dialog/dialog.service';
         DialogService,     
         Logger,
         HttpService,
+        LocalStorageService,
         {provide:HTTP_INTERCEPTORS,useClass:MyInterceptor,multi:true}
     ],
     bootstrap:[AppComponent]
