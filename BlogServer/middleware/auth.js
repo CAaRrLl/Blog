@@ -10,7 +10,7 @@ var gen_session = function(id, session, res, req) {
     var session_id = tool.session_code(id);
     req.session[session_id] = session;
     var opts = {
-        maxAge: 1000 * 60 * 2,
+        maxAge: 1000 * 60 * 1,
         httpOnly: true,
         signed: false
     };

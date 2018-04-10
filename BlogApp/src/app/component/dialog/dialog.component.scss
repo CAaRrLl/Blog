@@ -30,22 +30,22 @@ $confirmColor: #c5583d;
   -o-animation: $animation;
 }
 
-@include keyframes(appear) {
+@include keyframes(dialog-appear) {
   0% {opacity: 0;top: 0}
   100% {opacity: 1;top: 50%}
 }
 
-@include keyframes(appear2) {
+@include keyframes(dialog-appear2) {
   0% {opacity: 0}
   100% {opacity: 1;}
 }
 
 .appear {
-  @include animation(appear $time ease-out 0s 1);
+  @include animation(dialog-appear $time ease-out 0s 1);
 }
 
 .appear2 {
-  @include animation(appear2 $time ease-out 0s 1);
+  @include animation(dialog-appear2 $time ease-out 0s 1);
 }
 
 .dialog-container {

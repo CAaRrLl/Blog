@@ -6,6 +6,8 @@ import { api } from '../../../constant/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { route } from '../../../constant/router';
 import { AlertService, AlertType } from '../../../component/alert/alert.service';
+import { LocalStorageService, LKEY } from '../../../service/localstorage.service';
+import { constant } from '../../../constant/constant';
 
 @Component({
     selector:'app-sign-in',
@@ -33,7 +35,7 @@ export class SignInUpComponent implements OnInit{
     }
 
     constructor(private log: Logger,private http: HttpService,private alert: AlertService,
-        private aroute: ActivatedRoute,private route: Router) {
+        private aroute: ActivatedRoute,private route: Router, private localStorageService: LocalStorageService) {
         this.signInView.frame.push({placeholder:'手机号或邮箱号',type:'text',icon:'user',content:'',openCheck: {
             regExp:/(^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$)|(^[0-9]{11}$)/,
             errorTip:'帐号格式不正确！',
@@ -78,11 +80,11 @@ export class SignInUpComponent implements OnInit{
             }
         });
 
-        this.alert.show({type:AlertType.Loading, msg: '粉红色的尽快发货即可收到回复可见', time: 1000});
-        this.alert.show({type:AlertType.Success, msg: '粉红见', time: 3000});
-        this.alert.show({type:AlertType.Warn, msg: '粉红色的回复可见', time: 3000});
-        this.alert.show({type:AlertType.Error, msg: '粉红色的尽快发货即可收到回复可见', time: 1000});
-        this.alert.show({type:AlertType.Loading, msg: '粉红色的尽快回复可见', time: 2000});
+        // this.alert.show({type:AlertType.Loading, msg: '粉红色的尽快发货即可收到回复可见', time: 1000});
+        // this.alert.show({type:AlertType.Success, msg: '粉红见', time: 3000});
+        // this.alert.show({type:AlertType.Warn, msg: '粉红色的回复可见', time: 3000});
+        // this.alert.show({type:AlertType.Error, msg: '粉红色的尽快发货即可收到回复可见', time: 1000});
+        // this.alert.show({type:AlertType.Loading, msg: '粉红色的尽快回复可见', time: 2000});
     }
 
     setTab(tab:boolean) {
@@ -131,8 +133,10 @@ export class SignInUpComponent implements OnInit{
         this.signIning = true;
         this.http.postJson(api.userlogin,body).subscribe(
             success=>{ 
+                this.alert.show({type: AlertType.Success, msg: '登陆成功', time: 1000});
                 this.log.debug('SignInUpComponent','signIn',success);
-                this.route.navigate([route.home]);
+                this.localStorageService.set(LKEY.loginStatus, constant.isUser);
+                this.route.navigate([route.blog]);
             },fail=>{
                 this.log.error('SignInUpComponent','signIn',fail);
             }

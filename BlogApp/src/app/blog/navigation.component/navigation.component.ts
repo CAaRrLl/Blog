@@ -2,6 +2,7 @@ import { Component, ViewChild, ElementRef, Renderer2, OnInit } from '@angular/co
 import { Router } from '@angular/router';
 import { route } from '../../constant/router';
 import { Logger } from '../../service/logger.service';
+import { AlertService, AlertType } from '../../component/alert/alert.service';
 
 @Component({
     selector: 'app-navigation',
@@ -20,7 +21,7 @@ export class NavigationComponent implements OnInit{
     //搜索用关键字
     key: string;
 
-    constructor(private route:Router, private log:Logger) {}
+    constructor(private route:Router, private log:Logger, private alert: AlertService) {}
 
     ngOnInit() {
         let menu = document.getElementById('menu');
@@ -32,6 +33,11 @@ export class NavigationComponent implements OnInit{
             let e = event ? event : window.event;
             e.stopPropagation();
         })
+        // this.alert.show({type:AlertType.Loading, msg: '粉红色的尽快发货即可收到回复可见', time: 1000});
+        // this.alert.show({type:AlertType.Success, msg: '粉红见', time: 3000});
+        // this.alert.show({type:AlertType.Warn, msg: '粉红色的回复可见', time: 3000});
+        // this.alert.show({type:AlertType.Error, msg: '粉红色的尽快发货即可收到回复可见', time: 1000});
+        // this.alert.show({type:AlertType.Loading, msg: '粉红色的尽快回复可见', time: 2000});
     }
 
     //搜索
@@ -51,7 +57,7 @@ export class NavigationComponent implements OnInit{
 
     //进入博客首页
     toHome() {
-        this.route.navigate([route.home]);
+        this.route.navigate([route.blog]);
     }
     
     dropdown() {

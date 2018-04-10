@@ -37,7 +37,7 @@ export class AlertComponent implements OnInit{
 
     popModel(model: AlertModel) {
         if(model.type === AlertType.Loading && model.time === -1) return;
-        let alert = this.el.nativeElement.children[this.alerts.indexOf(model)];
+        let alert = this.el.nativeElement.querySelector('.container').children[this.alerts.indexOf(model)];
         this.render.addClass(alert, 'disappear');
         this.render.setStyle(alert, 'margin-top', '-2.5rem');
         this.render.setStyle(alert, 'opactiy', '0');
@@ -51,7 +51,7 @@ export class AlertComponent implements OnInit{
 
     popModelByIndex(index: number) {
         let model = this.alerts[index];
-        let alert = this.el.nativeElement.children[this.alerts.indexOf(model)];
+        let alert = this.el.nativeElement.querySelector('.container').children[this.alerts.indexOf(model)];
         this.render.addClass(alert, 'disappear');
         this.render.setStyle(alert, 'margin-top', '-2.5rem');
         this.render.setStyle(alert, 'opactiy', '0');

@@ -28,67 +28,73 @@ $time: 0.3s;
   -o-animation: $animation;
 }
 
-@include keyframes(appear) {
+@include keyframes(alert-appear) {
   0% {margin-top: -2.5rem; opacity: 0}
   100% {margin-top: 1rem; opacity: 1;}
 }
 
-@include keyframes(disappear) {
+@include keyframes(alert-disappear) {
   0% {margin-top: 1rem; opacity: 1}
   100% {margin-top: -2.5rem; opacity: 0;}
 }
 
-.alert {
-  cursor: pointer;
-  position: relative;
-  background-color: #ffffff;
-  height: 2.5rem;
-  margin-top: 1rem;
-  border-radius: 0.3rem;
-  z-index: 4;
-  display: table;
-  margin-left: auto;
-  margin-right: auto;
-  box-shadow: 0px 2px 5px 0px #d3d3d3;
-  &:hover {
-    .close {
-      visibility: visible;
-    }
-  }
-  .icon {
-    font-size: 1.4rem;
-    padding-left: 1rem;
-    padding-right: 0.8rem;
-    vertical-align: middle;
-    display: inline-flex;
-  }
-  .msg {
-    font-size: 0.9rem;
-    display: inline-flex;
-    vertical-align: middle;
-    line-height: 2.5rem;
-    padding-right: 1rem;
-  }
-  .close {
-    display: inline-flex;
-    vertical-align: middle;
-    font-size: 0.8rem;
-    padding-right: 0.8rem;
-    color: #757575;
-    visibility: hidden;
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  .alert {
+    cursor: pointer;
+    position: relative;
+    background-color: #ffffff;
+    height: 2.5rem;
+    margin-top: 1rem;
+    border-radius: 0.3rem;
+    z-index: 4;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 2px 5px 0px #d3d3d3;
     &:hover {
-      color: black;
+      .close {
+        visibility: visible;
+      }
     }
-  }
-  .close-disable {
-    visibility: hidden!important;
+    .icon {
+      font-size: 1.4rem;
+      padding-left: 1rem;
+      padding-right: 0.8rem;
+      vertical-align: middle;
+      display: inline-flex;
+    }
+    .msg {
+      font-size: 0.9rem;
+      display: inline-flex;
+      vertical-align: middle;
+      line-height: 2.5rem;
+      padding-right: 1rem;
+    }
+    .close {
+      display: inline-flex;
+      vertical-align: middle;
+      font-size: 0.8rem;
+      padding-right: 0.8rem;
+      color: #757575;
+      visibility: hidden;
+      &:hover {
+        color: black;
+      }
+    }
+    .close-disable {
+      visibility: hidden!important;
+    }
   }
 }
 
 .appear {
-  @include animation(appear $time ease-in-out 0s 1)
+  @include animation(alert-appear $time ease-in-out 0s 1)
 }
 
 .disappear {
-  @include animation(disappear $time ease-in-out 0s 1)
+  @include animation(alert-disappear $time ease-in-out 0s 1)
 }
