@@ -5,6 +5,7 @@ import { Logger } from './service/logger.service';
   selector: 'app-root',
   template:`
         <router-outlet></router-outlet>
+        <app-siderbar></app-siderbar>
         <app-alert></app-alert>
         <app-dialog></app-dialog>
     `

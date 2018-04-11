@@ -8,6 +8,7 @@ import { DropdownComponent } from "./dropdown/dropdown.component";
 import { AlertComponent } from "./alert/alert.component";
 import { SearchComponent } from "./search/search.component";
 import { DialogComponent } from "./dialog/dialog.component";
+import { SiderbarComponent } from "./sidebar.component/siderbar.component";
 
 @NgModule({
     declarations:[
@@ -16,7 +17,8 @@ import { DialogComponent } from "./dialog/dialog.component";
         DropdownComponent,
         AlertComponent,
         SearchComponent,
-        DialogComponent
+        DialogComponent,
+        SiderbarComponent
     ],
     imports:[
         FormsModule,
@@ -29,7 +31,8 @@ import { DialogComponent } from "./dialog/dialog.component";
         FontIconComponent,
         AlertComponent,
         SearchComponent,
-        DialogComponent
+        DialogComponent,
+        SiderbarComponent
     ]
 })
 

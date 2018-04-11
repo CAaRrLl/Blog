@@ -1,0 +1,29 @@
+$time: 0.3s;
+@mixin transition($content) {
+  transition: $content;
+  -webkit-transition: $content;
+  -moz-transition: $content;
+  -o-transition: $content;
+}
+
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin animation($animation) {
+  animation: $animation;
+  -webkit-animation: $animation;
+  -moz-animation: $animation;
+  -o-animation: $animation;
+}
