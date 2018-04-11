@@ -5,11 +5,13 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var errorhandler = require('errorhandler');
 var cors = require('./middleware/cors');
-var web_router = require('./web_router');
+var web_router = require('./web_router').router;
 var api_router = require('./api_router');
 var db = require('./common/db');
 var config = require('./config');
 var logger = require('./common/logger').logger;
+
+var check_auth = require('./middleware/auth').check_auth;
 
 var app=express();
 

@@ -11,6 +11,7 @@ import { ComponentModule } from './component/component.module';
 import { AlertService } from './component/alert/alert.service';
 import { DialogService } from './component/dialog/dialog.service';
 import { LocalStorageService } from './service/localstorage.service';
+import { AuthGuard } from './service/auth.guard.service';
 
 @NgModule({
     declarations:[
@@ -28,6 +29,7 @@ import { LocalStorageService } from './service/localstorage.service';
         Logger,
         HttpService,
         LocalStorageService,
+        AuthGuard,
         {provide:HTTP_INTERCEPTORS,useClass:MyInterceptor,multi:true}
     ],
     bootstrap:[AppComponent]

@@ -212,3 +212,23 @@ ul {
 {
     font-family: 'fontwarn2'
 }
+
+/*home e801*/
+@include font-face(home);
+.home-icon
+{
+    font-family: 'fonthome'
+}
+/*bookmark e800*/
+@include font-face(bookmark);
+.bookmark-icon
+{
+    font-family: 'fontbookmark'
+}
+
+/*logout e801*/
+@include font-face(logout);
+.logout-icon
+{
+    font-family: 'fontlogout'
+}

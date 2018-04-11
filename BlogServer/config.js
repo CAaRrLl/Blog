@@ -15,6 +15,13 @@ var config = {
     template_dir: path.join(static_dir, '/dist'),
     session_secret: 'jjp2018321',
     cookie_name: 'blog',
+    cookie_refresh: 'fresh',
+
+    cookie: {
+        maxAge: 1000 * 60 * 10,
+        httpOnly: true,
+    },
+
     sign_key: '2042201842',
 
     web_host: 'http://127.0.0.1:4200',

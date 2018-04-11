@@ -42,7 +42,9 @@ $time: 0.3s;
   position: fixed;
   top: 0;
   left: 0;
+  margin: auto;
   right: 0;
+  max-width: 25rem;
   .alert {
     cursor: pointer;
     position: relative;

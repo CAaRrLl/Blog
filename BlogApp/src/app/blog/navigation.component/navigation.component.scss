@@ -58,6 +58,25 @@ $block:#880b0b;
             display: none;
         }
     }
+    .user-navi-pc {
+        display: inline-block;
+        border-bottom: 3px solid rgba(255, 255, 255, 0);
+        height: 4rem;
+        vertical-align: middle;
+        line-height: 4;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        @include transition(border-bottom-color 0.8s);
+        &:hover {
+            border-bottom: 3px solid $blue;
+        }
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+    .user-navi-phone {
+        
+    }
     .search {
         @media screen and (max-width: 420px){
             position: fixed;

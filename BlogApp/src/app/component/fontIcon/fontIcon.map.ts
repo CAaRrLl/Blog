@@ -18,5 +18,8 @@ export const iconMap={
     close: '&#xe801',
     success: '&#xe800',
     error: '&#xe801',
-    warn2: '&#xe800'
+    warn2: '&#xe800',
+    home: '&#xe801',
+    bookmark: '&#xe800',
+    logout: '&#xe801',
 }

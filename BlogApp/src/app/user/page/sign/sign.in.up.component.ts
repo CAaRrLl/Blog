@@ -8,6 +8,7 @@ import { route } from '../../../constant/router';
 import { AlertService, AlertType } from '../../../component/alert/alert.service';
 import { LocalStorageService, LKEY } from '../../../service/localstorage.service';
 import { constant } from '../../../constant/constant';
+import { routes } from '../../../app.routes';
 
 @Component({
     selector:'app-sign-in',
@@ -16,6 +17,7 @@ import { constant } from '../../../constant/constant';
 })
 
 export class SignInUpComponent implements OnInit{
+    
     signInView: InputJson = new InputJson();
     signUpView: InputJson = new InputJson();
     currentTab: boolean = true;  //true:登陆 false:注册
@@ -88,6 +90,7 @@ export class SignInUpComponent implements OnInit{
     }
 
     setTab(tab:boolean) {
+        this.isValid = false;
         this.currentTab=tab;
         this.signInTabClass={
             'tab-active':this.currentTab,
@@ -105,7 +108,10 @@ export class SignInUpComponent implements OnInit{
          this.isValid=result;
     }
     signUp() {
-        if(!this.isValid||this.isSignUped) return;
+        if(!this.isValid||this.isSignUped) {
+            this.alert.show({type: AlertType.Warn, msg: '不可重复注册', time: 2000});
+            return;
+        }
         let body={
             name:this.signUpView.frame[0].content,
             phone:this.signUpView.frame[1].content,
@@ -116,9 +122,13 @@ export class SignInUpComponent implements OnInit{
         this.signUping = true;
         this.http.postJson(api.register,body).subscribe(
             success=>{
+                this.alert.show({type: AlertType.Success, msg: '注册成功', time: 2000});
                 this.log.debug('SignInUpComponent','signUp',success);
-                
+                this.signUping = false;
+                this.isSignUped = true;
+                this.setTab(true);
             },fail=>{
+                this.signUping = false;
                 this.log.error('SignInUpComponent','signUp',fail);
             }
         )
@@ -133,13 +143,20 @@ export class SignInUpComponent implements OnInit{
         this.signIning = true;
         this.http.postJson(api.userlogin,body).subscribe(
             success=>{ 
-                this.alert.show({type: AlertType.Success, msg: '登陆成功', time: 1000});
+                this.alert.show({type: AlertType.Success, msg: '登陆成功', time: 2000});
                 this.log.debug('SignInUpComponent','signIn',success);
+                this.signIning = false;
+                this.isSignIned = true;
                 this.localStorageService.set(LKEY.loginStatus, constant.isUser);
                 this.route.navigate([route.blog]);
             },fail=>{
+                this.signIning = false;
                 this.log.error('SignInUpComponent','signIn',fail);
             }
         )
+    }
+    
+    toBlog() {
+        this.route.navigate([route.blog]);
     }
  }

@@ -22,8 +22,13 @@ var sign = function(val, key) {
 
 //检查签名
 var unsign = function(val, key) {
-    var session_code = val.slice(0,val.lastIndex('.'));
+    var session_code = get_sessionid(val);
     return sign(session_code, key) === val ? session_code : false;
+}
+
+//从cookie中提取sessionid
+var get_sessionid = function(val) {
+    return val.slice(0, val.lastIndexOf('.'));
 }
 
 //生成session口令
@@ -38,5 +43,6 @@ tool.check_notnull = check(/^\S+/);
 tool.sign = sign;
 tool.unsign = unsign;
 tool.session_code = session_code;
+tool.get_sessionid = get_sessionid;
 
 module.exports = tool;

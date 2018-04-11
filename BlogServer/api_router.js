@@ -1,7 +1,9 @@
 
 var express = require('express');
+var check_auth = require('./middleware/auth').check_auth;
 var signUp = require('./controllers/sign').signUp;
 var signIn = require('./controllers/sign').signIn;
+var layout = require('./controllers/sign').layout;
 var router = express.Router();
 
 //管理员
@@ -14,10 +16,10 @@ router.get('/lock/user');
 
 //用户
 router.post('/user/login', signIn);
-router.post('/user/register', signUp);
+router.post('/user/register', check_auth, signUp);
 
 //注销
-router.get('/layout');
+router.get('/layout', check_auth, layout);
 
 //文章
 router.get('/essay/getpublish');

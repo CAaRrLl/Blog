@@ -5,6 +5,7 @@ var tool = require('../common/tool');
 var gen_session = require('../middleware/auth').gen_session;
 var add_user = require('../model/user').add_user;
 var check_user = require('../model/user').check_user;
+var web_routes = require('../web_router').routes;
 
 var signUp = function (req, res, next) {
     var name = req.body.name;
@@ -62,3 +63,16 @@ var signIn = function (req, res, next) {
     });
 }
 exports.signIn = signIn;
+
+var layout = function (req, res, next) {
+    var session_id = tool.get_sessionid(req.cookies[config.cookie_name]);
+    var opt = {
+        maxAge: config.cookie.maxAge,
+        httpOnly: config.cookie.httpOnly
+    }
+    delete req.session[session_id];
+    res.clearCookie(config.cookie_name, opt);
+    res.clearCookie(config.cookie_refresh, {maxAge: config.cookie.maxAge - 1000 * 60});
+    res.status(200).send({code: code.success, msg: '', data: {}});
+}
+exports.layout = layout;

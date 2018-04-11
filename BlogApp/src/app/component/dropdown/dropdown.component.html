@@ -1,0 +1,10 @@
+<div class="container">
+    <span *ngIf="headStr" (click)="show($event)">{{headStr}}</span>
+    <img *ngIf="headSrc" (click)="show($event)" [src]="headSrc">
+    <ul *ngIf="isAppear&&(content||headSrc)" (click)="stopPropagation($event)">
+        <li *ngFor="let item of content" (click)="doSomething(item.func)">
+            <app-icon class="icon" [tag]="item.iconTag"></app-icon>
+            {{item.content}}
+        </li>
+    </ul>
+</div>

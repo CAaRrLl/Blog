@@ -7,6 +7,13 @@ $height:500px;  //登录窗口高
   left: 0;
   bottom: 0;
   right: 0;
+  .blog{
+    position: fixed;
+    left: 2rem;
+    max-width: 3rem;
+    cursor: pointer;
+    color: #c64c4c;
+  }
   .sign{
     display: table-cell;
     padding: 20px 20px 50px;

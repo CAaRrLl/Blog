@@ -7,5 +7,7 @@ export const code={
     essayNoExist: 2006,
     userNoExist: 2007,
     paramsErr: 2005,
-    dataBaseErr: 2008
+    dataBaseErr: 2008,
+    sessionExpire: 2009,
+    signForge: 2010
 } 

@@ -3,5 +3,6 @@ const prefix=`${config.server}/api`;
 
 export const api={
     register:`${prefix}/user/register`,      //用户注册post
-    userlogin:`${prefix}/user/login`,       //用户登陆          
+    userlogin:`${prefix}/user/login`,       //用户登陆       
+    layout: `${prefix}/layout`,             //注销   
 }

@@ -20,11 +20,64 @@
   -o-animation: $animation;
 }
 
-@include keyframes(spin) {
-  0% {transform: rotate(0deg)}
-  50% {transform: rotate(180deg)}
-  100% {transform: rotate(360deg)}
-}
-.spin{
-  @include animation(spin 1s linear 0s infinite);
+.container {
+  position: relative;
+  display: inline-block;
+  span {
+    cursor: pointer;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  img {
+    max-width: 2.5rem;
+    border-radius: 3rem;
+    border: 1px solid #c1c1c1;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  ul {
+    text-align: left;
+    top: 4rem;
+    left: 0.1rem;
+    z-index: 1;
+    width: 9rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    &:before {
+        top: -1.4rem;
+        left: 1.5rem;
+        position: absolute;
+        content: '';
+        border-bottom: 14px solid #ededed;
+        border-left: 9px solid rgba(255, 255, 255, 0);
+        border-top: 9px solid rgba(255, 255, 255, 0);
+        border-right: 9px solid rgba(255, 255, 255, 0);
+    }
+    &:after {
+        top: -1.3rem;
+        left: 1.5rem;
+        position: absolute;
+        content: '';
+        border-bottom: 14px solid rgb(255, 255, 255);
+        border-left: 9px solid rgba(255, 255, 255, 0);
+        border-top: 9px solid rgba(255, 255, 255, 0);
+        border-right: 9px solid rgba(255, 255, 255, 0);
+    }
+    li {               
+        height: 2.5rem;
+        line-height: 2.5;
+        color: #767676;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin: 0;
+        &:hover {
+            background-color: #efedeb;
+        }
+        .icon {
+          display: inline-block;
+          width: 1.5rem;
+          color: rgba(136, 11, 11, 0.73);
+        }
+    }
+  }
 }
