@@ -1,29 +1,55 @@
-$time: 0.3s;
+$time: 1s;
 @mixin transition($content) {
   transition: $content;
   -webkit-transition: $content;
   -moz-transition: $content;
   -o-transition: $content;
 }
+.siderbar-background {
+  position: fixed;
+  opacity: 0;
+  background-color: black;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  color: white;
+  $transition: opacity $time;
+  @include transition($transition);
+}
 
-@mixin keyframes($name) {
-  @keyframes #{$name} {
-    @content;
-  }
-  @-webkit-keyframes #{$name} {
-    @content;
-  }
-  @-moz-keyframes #{$name} {
-    @content;
-  }
-  @-moz-keyframes #{$name} {
-    @content;
+.siderbar {
+  top: 0;
+  height: 100%;
+  width: 60vw;
+  position: absolute;
+  color: white;
+  display: none;
+  background-color: #3ba6c3;
+  $transition: transform $time;
+  @include transition($transition);
+  .title {
+    height: 3.5rem;
+    img {
+      max-width: 2rem;
+    }
+    h5 {
+      display: inline-block;
+    }
+    ul {
+      li {
+
+      }
+    }
   }
 }
 
-@mixin animation($animation) {
-  animation: $animation;
-  -webkit-animation: $animation;
-  -moz-animation: $animation;
-  -o-animation: $animation;
+.show {
+  display: inherit;
+}
+
+.showbackground {
+  display: inherit;
+  opacity: 0.3;
 }

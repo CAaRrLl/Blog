@@ -8,6 +8,7 @@ import { constant } from '../../constant/constant';
 import { DropdownList } from '../../component/dropdown/dropdown.component';
 import { HttpService } from '../../service/http.service';
 import { api } from '../../constant/api';
+import { SiderbarService, SiderbarModel } from '../../component/sidebar.component/siderbar.service';
 
 @Component({
     selector: 'app-navigation',
@@ -31,7 +32,7 @@ export class NavigationComponent implements OnInit{
     //搜索用关键字
     key: string;
 
-    constructor(private router:Router, private log:Logger,private alert: AlertService, 
+    constructor(private router:Router, private log:Logger,private alert: AlertService, private siderbar: SiderbarService, 
         private localStorageService: LocalStorageService,private http: HttpService) {
         }
 
@@ -123,6 +124,20 @@ export class NavigationComponent implements OnInit{
             this.toSignIn();
             return;
         }
+    }
+
+    //打开侧边栏
+    siderbarShow() {
+        let model: SiderbarModel = {
+            headSrc: '../../../assets/img/default-head.png',
+            name: '大哥',
+            list: [
+                {iconTag: 'home', content: '我的主页'},
+                {iconTag: 'bookmark', content: '收藏的文章'},
+                {iconTag: 'logout', content: '注销'}
+            ]
+        };
+        this.siderbar.show(model);
     }
 
     dropdown() {

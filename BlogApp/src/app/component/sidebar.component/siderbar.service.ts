@@ -14,10 +14,16 @@ export class SiderbarService{
     }
 
     close() {
-        this.subject.next({hidden: true, content: ''});
+        this.subject.next({headSrc: '', name: '', hidden: true, list: [{iconTag: '', content: ''}]});
     }
 }
 
 export interface SiderbarModel {
-    
+    headSrc: string;
+    name: string;
+    hidden?: boolean;
+    list: {
+        iconTag: string;
+        content: string;
+    } []
 }

@@ -1,0 +1,13 @@
+<div class="siderbar-background" [class.showbackground]="!model.hidden" (click)="closeSiderbar()"></div>
+<div class="siderbar" [class.show]="!model.hidden">
+    <div class="title">
+        <img [src]="model.headSrc">
+        <h5>{{model.name}}</h5>
+    </div>
+    <ul>
+        <li *ngFor="let list of model.list">
+            <app-icon [tag]="list.iconTag"></app-icon>
+            {{list.content}}
+        </li>
+    </ul>
+</div>

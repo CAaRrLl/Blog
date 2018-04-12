@@ -34,6 +34,8 @@ $block:#880b0b;
         color: $block;
         margin-left: -0.5rem;
         cursor: pointer;
+        border-right: 1px solid #e9e9e9;
+        padding-right: 1rem;
     }
     .content-pc {
         height: 100%;
@@ -64,8 +66,8 @@ $block:#880b0b;
         height: 4rem;
         vertical-align: middle;
         line-height: 4;
-        margin-left: 2rem;
-        margin-right: 2rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
         @include transition(border-bottom-color 0.8s);
         &:hover {
             border-bottom: 3px solid $blue;
@@ -75,7 +77,10 @@ $block:#880b0b;
         }
     }
     .user-navi-phone {
-        
+        cursor: pointer;
+        @media screen and (min-width:769px) {
+            display: none;
+        }
     }
     .search {
         @media screen and (max-width: 420px){

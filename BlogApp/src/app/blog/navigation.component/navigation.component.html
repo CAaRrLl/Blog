@@ -8,6 +8,7 @@
         <a (click)="makeEssay()">写文章</a>
     </div>
     <app-dropdown *ngIf="isUser" class="user-navi-pc" [content]="userNavi"></app-dropdown>
+    <app-icon *ngIf="isUser" class="user-navi-phone" tag="user" (click)="siderbarShow()"></app-icon>
     <app-search class="search" (valChange)="search($event)"></app-search>
     <div id="menu" class="content-phone">
         <app-icon class="menu" tag="menu" (click)="dropdown()"></app-icon>
