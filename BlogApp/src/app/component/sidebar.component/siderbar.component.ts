@@ -13,6 +13,8 @@ export class SiderbarComponent{
 
     model: SiderbarModel;
 
+    hidden: boolean = true;
+
     constructor(private siderbar: SiderbarService, private render: Renderer2) {
         this.siderbar.getObservable().subscribe((model) => {
             this.model = model;
