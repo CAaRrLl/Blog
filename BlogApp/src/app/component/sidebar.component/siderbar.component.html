@@ -1,13 +1,11 @@
-<div class="siderbar-background" *ngIf="!hidden" (click)="closeSiderbar()"></div>
-<div class="siderbar" *ngIf="!hidden">
+<div id="background" class="siderbar-background" *ngIf="!hidden" (click)="closeSiderbar()"></div>
+<div id="target" class="siderbar" *ngIf="!hidden" (click)="delegateList($event.target)">
     <div class="title">
         <img [src]="model?.headSrc">
         <h5>{{model?.name}}</h5>
     </div>
-    <ul>
-        <li *ngFor="let l of model?.list">
-            <app-icon [tag]="l.iconTag"></app-icon>
-            {{l.content}}
-        </li>
-    </ul>
+    <div class="list" [id]="l.content" *ngFor="let l of model?.list">
+        <app-icon class="icon" [id]="l.content" [tag]="l.iconTag"></app-icon>
+        <span [id]="l.content">{{l.content}}</span>
+    </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component,Input, OnChanges } from "@angular/core";
 import { OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
+import { EventEmitter } from "protractor";
 
 @Component({
     selector: 'app-dropdown',
@@ -43,8 +44,19 @@ export class DropdownComponent implements OnChanges{
         }
     }
     //停止冒泡
-    stopPropagation(event: Event) {
+    stopPropagation(event) {
         event.stopPropagation();
+    }
+
+    //委托li事件
+    delegateList(event) {
+        for(let i = 0; i< this.content.length; i++) {
+            if(this.content[i].content === event.target.id) {
+                this.doSomething(this.content[i].func);
+                break;
+            }
+        }
+        this.stopPropagation(event);
     }
 }
 export interface DropdownList {

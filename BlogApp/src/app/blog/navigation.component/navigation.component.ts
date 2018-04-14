@@ -29,6 +29,37 @@ export class NavigationComponent implements OnInit{
 
     userNavi: DropdownList[] = [];
 
+    //进入登陆界面
+    toSignIn = () => {
+        this.router.navigate([route.sign], {queryParams: {tab: 'in'}});
+    }
+
+    //进入注册界面
+    toSignUp = () => {
+        this.router.navigate([route.sign], {queryParams: {tab: 'up'}});
+    }
+
+    //进入博客首页
+    toHome = () => {
+        this.router.navigate([route.blog]);
+    }
+
+    //写文章
+    makeEssay = () => {
+        if(!this.isUser) {
+            this.alert.show({type: AlertType.Warn, msg: '需要先登陆', time: 2000});
+            this.toSignIn();
+            return;
+        }
+    }
+
+    naviListFunc = {
+        '首页': this.toHome,
+        '登陆': this.toSignIn,
+        '注册': this.toSignUp,
+        '写文章': this.makeEssay
+    }; 
+
     //搜索用关键字
     key: string;
 
@@ -54,35 +85,7 @@ export class NavigationComponent implements OnInit{
             let e = event ? event : window.event;
             e.stopPropagation();
         })
-        // this.alert.show({type:AlertType.Loading, msg: '粉红色的尽快发货即可收到回复可见', time: 1000});
-        // this.alert.show({type:AlertType.Success, msg: '粉红见', time: 3000});
-        // this.alert.show({type:AlertType.Warn, msg: '粉红色的回复可见', time: 3000});
     }
-
-    //初始化用户导航
-    initUserNavi() {
-        this.userNavi = [
-            {iconTag: 'home', content: '我的主页'},
-            {iconTag: 'bookmark', content: '收藏的文章'},
-            {iconTag: 'logout', content: '注销', func: this.layout}
-        ];
-    }
-
-    // //媒体查询区分手机和电脑
-    // initMedia() {
-    //     let mediaPhone=window.matchMedia('(max-width: 768px)');
-    //     let mediaPc=window.matchMedia('(min-width: 769px)');
-    //     mediaPhone.addListener((widthMedia)=>{
-    //         if(widthMedia.matches){
-    //             this.isPc = false;
-    //         }
-    //     });
-    //     mediaPc.addListener((widthMedia)=>{
-    //         if(widthMedia.matches){
-    //             this.isPc = true;
-    //         }
-    //     });
-    // }
 
     //注销
     layout = () => {
@@ -97,33 +100,18 @@ export class NavigationComponent implements OnInit{
         })
     }
 
+    //初始化用户导航
+    initUserNavi() {
+        this.userNavi = [
+            {iconTag: 'home', content: '我的主页'},
+            {iconTag: 'bookmark', content: '收藏的文章'},
+            {iconTag: 'logout', content: '注销', func: this.layout}
+        ];
+    }
+
     //搜索
     search(val: string) {
         this.log.debug('NavigationComponent', 'search', val);
-    }
-
-    //进入登陆界面
-    toSignIn() {
-        this.router.navigate([route.sign], {queryParams: {tab: 'in'}});
-    }
-
-    //进入注册界面
-    toSignUp() {
-        this.router.navigate([route.sign], {queryParams: {tab: 'up'}});
-    }
-
-    //进入博客首页
-    toHome() {
-        this.router.navigate([route.blog]);
-    }
-
-    //写文章
-    makeEssay() {
-        if(!this.isUser) {
-            this.alert.show({type: AlertType.Warn, msg: '需要先登陆', time: 2000});
-            this.toSignIn();
-            return;
-        }
     }
 
     //打开侧边栏
@@ -134,7 +122,10 @@ export class NavigationComponent implements OnInit{
             list: [
                 {iconTag: 'home', content: '我的主页'},
                 {iconTag: 'bookmark', content: '收藏的文章'},
-                {iconTag: 'logout', content: '注销'}
+                {iconTag: 'logout', content: '注销', func: () => {
+                    this.layout();
+                    this.siderbar.close();
+                }}
             ]
         };
         this.siderbar.show(model);
@@ -147,6 +138,23 @@ export class NavigationComponent implements OnInit{
         }else if(!this.isShow && !this.isAppear) {
             this.isShow = true;
             this.isAppear = true;
+        }
+    }
+
+    //用户功能列表事件委托
+    delegateList(target) {
+        let val = target.innerHTML;
+        this.naviListFunc[val]();
+    }
+
+    //获取json的key
+    getObjectKey(object: any, index: number) {
+        let i = 0;
+        for(const key in object) {
+            if(i === index) {
+                return key;
+            }
+            i++;
         }
     }
 }

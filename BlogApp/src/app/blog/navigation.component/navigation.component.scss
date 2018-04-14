@@ -78,6 +78,9 @@ $block:#880b0b;
     }
     .user-navi-phone {
         cursor: pointer;
+        vertical-align: middle;
+        padding: 1rem;
+        color: #880b0b;
         @media screen and (min-width:769px) {
             display: none;
         }

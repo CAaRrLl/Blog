@@ -22,4 +22,5 @@ export const iconMap={
     home: '&#xe801',
     bookmark: '&#xe800',
     logout: '&#xe801',
+    indentright: '&#xe800',
 }

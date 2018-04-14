@@ -1,4 +1,4 @@
-$time: 1s;
+$time: 0.5s;
 @mixin transition($content) {
   transition: $content;
   -webkit-transition: $content;
@@ -13,7 +13,6 @@ $time: 1s;
   bottom: 0;
   left: 0;
   right: 0;
-  display: none;
   color: white;
   $transition: opacity $time;
   @include transition($transition);
@@ -23,24 +22,48 @@ $time: 1s;
   top: 0;
   height: 100%;
   width: 60vw;
+  transform: translateX(-60vw);
   position: absolute;
   color: white;
-  display: none;
-  background-color: #3ba6c3;
+  background-color: #001529;   
+  font-size: 4.5vw;
   $transition: transform $time;
+  z-index: 1;
   @include transition($transition);
   .title {
-    height: 3.5rem;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+    background-color: #002140;
+    padding-left: 5vw;
+    margin-bottom: 6vh;
     img {
-      max-width: 2rem;
+      display: inline-block;
+      max-height: 8vh;
+      background-color: white;
+      border-radius: 8vh;
+      vertical-align: middle;
+      margin-left: 1vw;
+      margin-right: 3vw;
+      border: 2px solid #a1a1a1;
     }
     h5 {
       display: inline-block;
+      margin: 0;
+      font-size: 2.5vh;
     }
-    ul {
-      li {
-
-      }
+  }
+  .list {
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    padding-left: 6vw;
+    padding-right: 6vw;
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+    &:active {
+      background-color: #024786
+    }
+    .icon {
+      padding-right: 4vw;
     }
   }
 }

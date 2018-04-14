@@ -25,5 +25,6 @@ export interface SiderbarModel {
     list: {
         iconTag: string;
         content: string;
+        func?: Function;
     } []
 }

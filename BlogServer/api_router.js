@@ -16,7 +16,7 @@ router.get('/lock/user');
 
 //用户
 router.post('/user/login', signIn);
-router.post('/user/register', check_auth, signUp);
+router.post('/user/register', signUp);
 
 //注销
 router.get('/layout', check_auth, layout);
