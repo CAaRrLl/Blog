@@ -1,7 +1,9 @@
 <div class="container">
     <span *ngIf="headStr" (click)="show($event)">{{headStr}}</span>
+    <app-icon class="icon" *ngIf="headIcon" [tag]="headIcon" (click)="show($event)"></app-icon>
     <img *ngIf="headSrc" (click)="show($event)" [src]="headSrc">
-    <ul *ngIf="isAppear&&(content||headSrc)" (click)="delegateList($event)">
+    <ul *ngIf="isAppear&&(content.length>0||headSrc)" (click)="delegateList($event)" 
+        [class.left]="isleft" [class.right]="!isleft">
         <li *ngFor="let item of content" [id]="item.content">
             <app-icon class="icon" [tag]="item.iconTag"></app-icon>
             {{item.content}}

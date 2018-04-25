@@ -1,0 +1,29 @@
+<div class="writer">
+    <div class="writer-container writer-left">
+        <a class="btn-blog-simple writer-btn" (click)="toHome()"><app-icon class="reply" tag="reply"></app-icon>首页</a>
+        <div class="new-tag" (click)="addTag()"><app-icon class="plus" tag="plus"></app-icon>新建标签</div>
+        <div class="new-tag-oper" #newTagOper>
+            <input class="create-tag" type="text" [(ngModel)]="newTag" placeholder="请输入新标签">
+            <a class="cancel" (click)="cancelNewTag()">取消</a>
+            <a class="submit" (click)="submitNewTag(newTag)">提交</a>
+        </div>
+        <app-writer-nav night="true" *ngFor="let tag of tags" [active]="isTagActive(tag)" (click)="tagActive(tag)">
+            <span class="writer-nav-span-tag">{{tag}}</span>
+        </app-writer-nav>
+    </div>
+    <div class="writer-container writer-middle">
+        <div class="new-essay" (click)="addEssay()"><app-icon class="plus" tag="pluscircle"></app-icon>新建文章</div>
+        <app-writer-nav class="essay-header" *ngFor="let essay of jsonToArray(essayTags[activeTag])" [active]="isEssayActive(essay.id)"
+            (click)="essayActive(essay.id)">
+            <span class="writer-nav-span-essay">
+                <img [src]="noteImgSrc">
+                <div class="word-num" *ngIf="essay.id===activeEssayKey">字数:{{essay.size}}</div>
+                <div class="title">{{essay.title}}</div>
+                <div class="partial" *ngIf="essay.id===activeEssayKey">{{essay.text}}</div>
+            </span>
+        </app-writer-nav>
+    </div>
+    <div class="writer-container writer-right">
+    
+    </div>
+</div>

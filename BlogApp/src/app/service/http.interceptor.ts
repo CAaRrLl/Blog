@@ -36,12 +36,15 @@ import { route } from '../constant/router';
                                 this.showErrorAlert(event.body.msg);
                                 throw { status: _code, statusText: event.body.msg };
                             case code.sessionNoExist:
-                                this.showErrorAlert(event.body.msg);
+                                this.showWarnAlert(event.body.msg);
                                 throw { status: _code, statusText: event.body.msg };
                             case code.userNoExist:
                                 this.showErrorAlert(event.body.msg);
                                 throw { status: _code, statusText: event.body.msg };
                             case code.userRegistered:
+                                this.showErrorAlert(event.body.msg);
+                                throw { status: _code, statusText: event.body.msg };
+                            case code.dataBaseErr:
                                 this.showErrorAlert(event.body.msg);
                                 throw { status: _code, statusText: event.body.msg };
                             case code.sessionExpire:

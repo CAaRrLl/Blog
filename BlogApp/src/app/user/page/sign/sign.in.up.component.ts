@@ -108,7 +108,11 @@ export class SignInUpComponent implements OnInit{
          this.isValid=result;
     }
     signUp() {
-        if(!this.isValid||this.isSignUped) {
+        if(!this.isValid) {
+            this.alert.show({type: AlertType.Warn, msg: '请检查内容是否合法', time: 2000});
+            return;
+        }
+        if(this.isSignUped) {
             this.alert.show({type: AlertType.Warn, msg: '不可重复注册', time: 2000});
             return;
         }
@@ -134,7 +138,11 @@ export class SignInUpComponent implements OnInit{
         )
     }
     signIn() {
-        if(!this.isValid||this.isSignIned) return;
+        if(!this.isValid) {
+            this.alert.show({type: AlertType.Warn, msg: '请检查内容是否合法', time: 2000});
+            return;
+        }
+        if(this.isSignIned) return;
         let body={
             account:this.signInView.frame[0].content,
             password:this.signInView.frame[1].content

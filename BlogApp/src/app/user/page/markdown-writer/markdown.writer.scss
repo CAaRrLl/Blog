@@ -1,0 +1,189 @@
+$deepGrey: #404040;
+@mixin scroller() {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px
+  }
+  &::-webkit-scrollbar-thumb {  
+    background-color: #d6d6d6;
+    border-radius: 8px;
+  }  
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
+}
+@mixin placeholder($color) {
+  &::-webkit-placeholder {
+    color: $color;
+  }
+  &::-o-placeholder {
+    color: $color;
+  }
+  &::-moz-placeholder {
+    color: $color;
+  }
+  &::placeholder {
+    color: $color;
+  }
+}
+@mixin transition ($content) {
+  transition: $content;
+  -moz-transition: $content;
+  -o-transition: $content;
+  -webkit-transition: $content;
+}
+.writer {
+  height: 100vh;
+  font-size: 0;
+  .writer-container {
+    display: inline-block;
+    height: 100%;
+    font-size: 1rem;
+    vertical-align: middle;
+  }
+  .writer-left {
+    overflow-y: auto;    
+    background-color: $deepGrey;
+    width: 18%;
+    color: white;
+    @include scroller();
+    .new-tag {
+      cursor: pointer;
+      padding-left: 2rem;
+      display: inline-block;
+      position: relative;
+      &:hover {
+        color: #e6e6e6;
+      }
+      .plus {
+        position: absolute;
+        left: 1rem;
+      }
+    }
+    .writer-btn {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      position: relative;
+      .reply {
+        position: absolute;
+        left: 2vw;
+      }
+    }
+    .new-tag-oper {
+      text-align: center;
+      height: 0;
+      opacity: 0;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      overflow: hidden;
+      $action: opacity 0.2s, height 0.2s;
+      @include transition($action);
+      .create-tag {
+        border: 1px solid #666;
+        display: block;
+        margin: auto;
+        background-color: #666;
+        color: white;
+        padding-left: 0.5rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        margin-top: 0.5rem;
+        &:focus {
+          outline: none;
+        }
+        @include placeholder(white);
+      }
+      .cancel {
+        cursor: pointer;
+        color: white;
+        display: inline-block;
+        margin-right: 1rem;
+      }
+      .submit {
+        display: inline-block;
+        cursor: pointer;
+        border-radius: 1rem;
+        border: 1px solid #39cc39;
+        color: #39cc39;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        line-height: 1.8;
+        &:hover {
+          color: rgb(67, 233, 67);
+          border-color: rgb(67, 233, 67);
+        }
+      }
+    }
+  }
+  .writer-middle {
+    overflow-y: scroll;
+    width: 27%;
+    .new-essay {
+      cursor: pointer;
+      padding-top: 1.2rem;
+      padding-bottom: 1.2rem;
+      display: block;
+      position: relative;
+      padding-left: 1rem;
+      box-shadow: 0px 0px 1px 0px #d0d0d0;
+      .plus {
+        margin-right: 0.5rem;
+      }
+    }
+    .essay-header {
+      display: block;
+      box-shadow: 0px 0px 1px 1px #d0d0d0;
+    }
+    @include scroller();
+  }
+  .writer-right {
+    width: 55%;
+  }
+}
+.writer-nav-span-tag {
+  height: 3rem;
+  line-height: 3rem;
+}
+.writer-nav-span-essay {
+  position: relative;
+  height: 5rem;
+  display: inline-block;
+  vertical-align: middle;
+  width: 100%;
+  img {
+    position: absolute;
+    width: 1.6rem;
+    top: 1.3rem;
+  }
+  .word-num {
+    position: absolute;
+    font-size: 0.2rem;
+    color: #727272;
+    bottom: 0.3rem;
+    white-space: nowrap;
+    left: -0.8rem;
+  }
+  .title {
+    position: absolute;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    top: 0.8rem;
+    left: 3rem;
+    font-size: 1.2rem;
+    width: 90%;
+  }
+  .partial {
+    position: absolute;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    bottom: 0.8rem;
+    left: 3rem;
+    color: #727272;
+    font-size: 0.9rem;
+    width: 90%;
+  }
+}

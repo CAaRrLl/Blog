@@ -27,6 +27,9 @@
     cursor: pointer;
     padding-left: 1rem;
     padding-right: 1rem;
+    display: inline-block;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
   img {
     max-width: 2.5rem;
@@ -35,17 +38,22 @@
     vertical-align: middle;
     cursor: pointer;
   }
+  &>.icon {
+    display: inline-block;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    cursor: pointer;
+  }
   ul {
     text-align: left;
-    top: 4rem;
-    left: 0.1rem;
     z-index: 1;
     width: 9rem;
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
     &:before {
         top: -1.4rem;
-        left: 1.5rem;
         position: absolute;
         content: '';
         border-bottom: 14px solid #ededed;
@@ -55,7 +63,6 @@
     }
     &:after {
         top: -1.3rem;
-        left: 1.5rem;
         position: absolute;
         content: '';
         border-bottom: 14px solid rgb(255, 255, 255);
@@ -79,5 +86,23 @@
           color: rgba(136, 11, 11, 0.73);
         }
     }
+  }
+}
+.left {
+  left: 0.1rem;
+  &:before {
+    left: 1.5rem;
+  }
+  &:after {
+    left: 1.5rem;
+  }
+}
+.right {
+  right: 0.4rem;
+  &:before {
+    right: 1.5rem;
+  }
+  &:after {
+    right: 1.5rem;
   }
 }

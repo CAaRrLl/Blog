@@ -4,7 +4,7 @@ var logger=require('../common/logger').logger;
 //删除管理员(假删除)
 var delete_admin=function(id){
     var sql=`update admin set status = -1,updatetime=? where id = ?`;
-    var now=new Date();
+    var now=new Date().getTime();
     db.queryQarams(sql,[now,id],function(err,result){
         if(err){
             logger.error(err);
@@ -19,7 +19,7 @@ exports.delete_admin=delete_admin;
 //冻结管理员
 var lock_admin=function(id){
     var sql=`update admin set status = 0,updatetime=? where id = ?`;
-    var now=new Date();
+    var now=new Date().getTime();
     db.queryQarams(sql,[now,id],function(err,result){
         if(err){
             logger.error(err);
@@ -34,7 +34,7 @@ exports.lock_admin=lock_admin;
 //设置昵称，头像和备注
 var set_portrait=function(id,name,portrait,mark){
     var sql=`update admin set name=?,portrait = ?,mark=?,updatetime=? where id = ?`;
-    var now=new Date();
+    var now=new Date().getTime();
     db.queryQarams(sql,[name,portrait,mark,now,id],function(err,result){
         if(err){
             logger.error(err);
@@ -57,7 +57,7 @@ create table if not exists admin(
     status int default 1,     
     level int default 2,  
     remark varchar(30),  
-    createtime datetime, 
-    updatetime datetime 
+    createtime bigint, 
+    updatetime bigint 
 )`;
 exports.table=table;

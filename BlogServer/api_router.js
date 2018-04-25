@@ -4,6 +4,11 @@ var check_auth = require('./middleware/auth').check_auth;
 var signUp = require('./controllers/sign').signUp;
 var signIn = require('./controllers/sign').signIn;
 var layout = require('./controllers/sign').layout;
+var newTag = require('./controllers/essay').new_tag;
+var getTag = require('./controllers/essay').get_tag;
+var getEssayTag = require('./controllers/essay').get_essay_tag;
+var newEssay = require('./controllers/essay').new_essay;
+var getEssayTag = require('./controllers/essay').get_essay_tag;
 var router = express.Router();
 
 //管理员
@@ -22,10 +27,13 @@ router.post('/user/register', signUp);
 router.get('/layout', check_auth, layout);
 
 //文章
+router.get('/essay/newtag', check_auth, newTag);
+router.get('/essay/tag', check_auth, getTag);
+router.get('/essay/essaytag', check_auth, getEssayTag);
 router.get('/essay/getpublish');
 router.get('/essay/getmarkdown');
 router.post('/essay/gethtml');
-router.post('/essay/new');
+router.post('/essay/new', check_auth, newEssay);
 router.get('/essay/draft');
 router.post('/essay/save');
 router.get('/essay/mypublish');

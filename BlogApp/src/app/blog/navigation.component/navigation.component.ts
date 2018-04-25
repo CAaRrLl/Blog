@@ -9,6 +9,7 @@ import { DropdownList } from '../../component/dropdown/dropdown.component';
 import { HttpService } from '../../service/http.service';
 import { api } from '../../constant/api';
 import { SiderbarService, SiderbarModel } from '../../component/sidebar.component/siderbar.service';
+import { DialogService } from '../../component/dialog/dialog.service';
 
 @Component({
     selector: 'app-navigation',
@@ -24,8 +25,6 @@ export class NavigationComponent implements OnInit{
 
     isAppear: boolean = false;
     isShow: boolean = false;
-
-    isPc: boolean = true;
 
     userNavi: DropdownList[] = [];
 
@@ -51,6 +50,15 @@ export class NavigationComponent implements OnInit{
             this.toSignIn();
             return;
         }
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            this.dialog.show({
+                confirmBtn: {name: '我知道了'},
+                cancelBtn: {hidden: true},
+                content: '该功能目前只支持PC端'
+            })
+            return;
+        }
+        this.router.navigateByUrl(route.writer);
     }
 
     naviListFunc = {
@@ -64,7 +72,7 @@ export class NavigationComponent implements OnInit{
     key: string;
 
     constructor(private router:Router, private log:Logger,private alert: AlertService, private siderbar: SiderbarService, 
-        private localStorageService: LocalStorageService,private http: HttpService) {
+        private localStorageService: LocalStorageService,private http: HttpService, private dialog: DialogService) {
         }
 
     ngOnInit() {

@@ -20,7 +20,22 @@ body {
     background-color: #2e8b86;
     box-shadow: 0px 1px 2px 1px #9E9E9E;
 }
-
+.btn-blog-simple {
+    cursor: pointer;
+    border-radius: 50px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: block;
+    background-color: transparent;
+    color: #ec7259;
+    text-align: center;
+    border: 1.5px solid #ec7259;
+    margin: 25px;
+}
+.btn-blog-simple:hover {
+    border-color: #fd7054;
+    color: #fd7054;
+}
 ul {
     list-style: none;
     margin: 0;
@@ -82,160 +97,108 @@ ul {
 
 /*user e800*/
 @include font-face(user);
-.user-icon
-{
-    font-family: "fontuser";
-}
+.user-icon {font-family: "fontuser"}
 
 /*lock e801*/
 @include font-face(lock);
-.lock-icon
-{
-    font-family: "fontlock";
-}
+.lock-icon {font-family: "fontlock"}
 
 /*qq F1D6*/
 @include font-face(qq);
-.qq-icon
-{
-    font-family: "fontqq";
-}
+.qq-icon {font-family: "fontqq"}
 
 /*wechat F1D7*/
 @include font-face(wechat);
-.wechat-icon
-{
-    font-family: "fontwechat";
-}
+.wechat-icon {font-family: "fontwechat"}
 
 /*weibo F18A*/
 @include font-face(weibo);
-.weibo-icon
-{
-    font-family: "fontweibo";
-}
+.weibo-icon {font-family: "fontweibo"}
 
 /*phone e800*/
 @include font-face(phone);
-.phone-icon
-{
-    font-family: "fontphone";
-}
+.phone-icon {font-family: "fontphone"}
 
 /*email F0E0*/
 @include font-face(email);
-.email-icon
-{
-    font-family: "fontemail";
-}
+.email-icon {font-family: "fontemail"}
 
 /*warn e800*/
 @include font-face(warn);
-.warn-icon
-{
-    font-family: "fontwarn";
-}
+.warn-icon {font-family: "fontwarn"}
 
 /*spin e839*/
 @include font-face(spin);
-.spin-icon
-{
-    font-family: "fontspin";
-}
+.spin-icon {font-family: "fontspin"}
 
 /*spin2 e830*/
 @include font-face(spin2);
-.spin2-icon
-{
-    font-family: "fontspin2";
-}
+.spin2-icon {font-family: "fontspin2"}
 
 /*spin3 e834*/
 @include font-face(spin3);
-.spin3-icon
-{
-    font-family: "fontspin3";
-}
+.spin3-icon {font-family: "fontspin3"}
 
 /*spin4 e838*/
 @include font-face(spin4);
-.spin4-icon
-{
-    font-family: "fontspin4";
-}
+.spin4-icon {font-family: "fontspin4"}
 
 /*menu e800*/
 @include font-face(menu);
-.menu-icon
-{
-    font-family: "fontmenu";
-}
+.menu-icon {font-family: "fontmenu"}
 
 /*search e801*/
 @include font-face(search);
-.search-icon
-{
-    font-family: "fontsearch";
-}
+.search-icon {font-family: "fontsearch"}
 
 /*clock e800*/
 @include font-face(clock);
-.clock-icon
-{
-    font-family: "fontclock";
-}
+.clock-icon {font-family: "fontclock"}
 
 /*close e801*/
 @include font-face(close);
-.close-icon
-{
-    font-family: "fontclose";
-}
+.close-icon {font-family: "fontclose"}
 
 /*success e800*/
 @include font-face(success);
-.success-icon
-{
-    font-family: 'fontsuccess'
-}
+.success-icon {font-family: 'fontsuccess'}
 
 /*error e801*/
 @include font-face(error);
-.error-icon
-{
-    font-family: 'fonterror'
-}
+.error-icon {font-family: 'fonterror'}
 
 /*warn2 e800*/
 @include font-face(warn2);
-.warn2-icon
-{
-    font-family: 'fontwarn2'
-}
+.warn2-icon {font-family: 'fontwarn2'}
 
 /*home e801*/
 @include font-face(home);
-.home-icon
-{
-    font-family: 'fonthome'
-}
+.home-icon {font-family: 'fonthome'}
+
 /*bookmark e800*/
 @include font-face(bookmark);
-.bookmark-icon
-{
-    font-family: 'fontbookmark'
-}
+.bookmark-icon {font-family: 'fontbookmark'}
 
 /*logout e801*/
 @include font-face(logout);
-.logout-icon
-{
-    font-family: 'fontlogout'
-}
+.logout-icon {font-family: 'fontlogout'}
 
 /*indentright e800*/
 @include font-face(indentright);
-.indentright-icon
-{
-    font-family: 'fontindentright'
-}
+.indentright-icon {font-family: 'fontindentright'}
+
+/*cog e801*/
+@include font-face(cog);
+.cog-icon {font-family: 'fontcog'}
+
+/*reply f112*/
+@include font-face(reply);
+.reply-icon {font-family: 'fontreply'}
+
+/*plus e800*/
+@include font-face(plus);
+.plus-icon {font-family: "fontplus"}
+
+/*pluscircle e801*/
+@include font-face(pluscircle);
+.pluscircle-icon {font-family: "fontpluscircle"}

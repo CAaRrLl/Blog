@@ -147,8 +147,8 @@
                 size:5,
                 readtime:11,
                 remark:"很棒",
-                createtime:"2018-02-08 13:10:10.261294",
-                updatetime:"2018-02-09 13:10:10.261294"
+                createtime:1512123213123,
+                updatetime:1512123213123
             },
              {
                 id:13,
@@ -158,8 +158,8 @@
                 size:5,
                 readtime:22,
                 remark:"很棒",
-                createtime:"2018-02-07 13:10:10.261294",
-                updatetime:"2018-02-08 13:10:10.261294"
+                createtime:1512123213123,
+                updatetime:1512123213123
             }
         ],
         count:100
@@ -226,12 +226,12 @@
 
 ### 创建文章
 ``POST``
-``api/eassay/new``
+``api/essay/new``
 ``params``
 |字段|必选项|类型|描述|
 |---|------|----|----|
 |title|是|String|文章标题|
-|time|是|String|文章创建时间|
+|tag|是|String|文章分类|
 
 ``response``
 ```
@@ -251,9 +251,138 @@
 }
 ```
 
+### 新建标签
+``GET``
+``api/essay/newtag``
+``params``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|tag|是|String|文章分类|
+
+``response``
+```
+成功
+{
+    code:1000,
+    msg:"",
+    data:{}
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
+### 获取标签
+``GET``
+``api/essay/tag``
+``params``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|attach|否|boolean|是否返回标签附带的其他信息|
+
+``attach == 0``
+``response``
+```
+成功
+{
+    code:1000,
+    msg:"",
+    data:{
+        taglist:[
+            '随笔',
+            'css学习笔记'
+        ]
+    }
+}
+```
+
+``attach == 1``
+``response``
+```
+成功
+{
+    code:1000,
+    msg:"",
+    data:{
+        taglist:[
+            '随笔',
+            'css学习笔记'
+        ],
+        essaytaglist:[
+            {id: 12, title: 'css学习笔记一'},
+            {id: 13, title: 'css学习笔记二'}
+        ],
+        firstessay:{
+            id:12,
+            title:"web响应式开发",
+            text:"内容靠脑补",      //只给一部分
+            size:5,
+            readtime:11,
+            remark:"很棒",
+            createtime:1512123213123,
+            updatetime:1512123213123
+        }        
+    }
+}
+```
+
+### 获取标签下的文章标签
+``GET``
+``api/essay/essaytag``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|tag|是|string|标签|
+|attach|否|boolean|是否返回标签附带的其他信息|
+
+``attach == 0``
+``response``
+```
+成功
+{
+    code:1000,
+    msg:"",
+    data:{
+        essaytaglist:[
+            {id: 12, title: 'css学习笔记一'},
+            {id: 13, title: 'css学习笔记二'}
+        ]
+    }
+}
+```
+
+``attach == 1``
+``response``
+```
+成功
+{
+    code:1000,
+    msg:"",
+    data:{
+        essaytaglist:[
+            {id: 12, title: 'css学习笔记一'},
+            {id: 13, title: 'css学习笔记二'}
+        ],
+        firstessay:{
+            id:12,
+            title:"web响应式开发",
+            text:"内容靠脑补",      //只给一部分
+            size:5,
+            readtime:11,
+            remark:"很棒",
+            createtime:1512123213123,
+            updatetime:1512123213123
+        }        
+    }
+}
+```
+
+
 ### 获取草稿列表
 ``GET``
-``api/eassay/draft``
+``api/essay/draft``
 
 ``response``
 ```
@@ -270,8 +399,8 @@
                 size:23,         
                 readtime:3,           
                 remark:'',          
-                createtime:'2017.1.3 14:3:23',  
-                updatetime:'2017.3.3 14:3:23'
+                createtime:1512123213123,  
+                updatetime:1512123213123
             }
         ]
     }
@@ -285,6 +414,7 @@
 |字段|必选项|类型|描述|
 |---|------|----|----|
 |id|是|String|文章标识符|
+|tag|否|String|文章归类|
 |title|是|String|文章标题|
 |essay|是|String|文章|
 
@@ -382,8 +512,8 @@
                 size:5,
                 readtime:11,
                 remark:"很棒",
-                createtime:"2018-02-08 13:10:10.261294",
-                updatetime:"2018-02-09 13:10:10.261294"
+                createtime:1523242343232,
+                updatetime:1523242343232
             },
              {
                 id:13,
@@ -392,8 +522,8 @@
                 size:5,
                 readtime:22,
                 remark:"很棒",
-                createtime:"2018-02-07 13:10:10.261294",
-                updatetime:"2018-02-08 13:10:10.261294"
+                createtime:1523242343232,
+                updatetime:1523242343232
             }
         ]
     ]
@@ -419,8 +549,8 @@
                 size:5,
                 readtime:11,
                 remark:"很棒",
-                createtime:"2018-02-08 13:10:10.261294",
-                updatetime:"2018-02-09 13:10:10.261294"
+                createtime:1523242343232,
+                updatetime:1523242343232
             },
              {
                 id:13,
@@ -430,8 +560,8 @@
                 size:5,
                 readtime:22,
                 remark:"很棒",
-                createtime:"2018-02-07 13:10:10.261294",
-                updatetime:"2018-02-08 13:10:10.261294"
+                createtime:1523242343232,
+                updatetime:1523242343232
             }
         ]
     ]
@@ -458,8 +588,8 @@
                 status:1,
                 level:2,
                 remark:'放大时',
-                createtime:"2018-02-07 13:10:10.261294",
-                updatetime:"2018-02-08 13:10:10.261294"
+                createtime:1523242343232,
+                updatetime:1523242343232
             }
         ]
     ]

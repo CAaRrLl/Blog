@@ -43,11 +43,12 @@ export class SiderbarComponent{
 
     showSiderbar() {
         this.hidden = false;
-        requestAnimationFrame(() => {
+        // let raf = window.requestAnimationFrame || window.webkitRequestAnimationFrame;
+        setTimeout(() => {
             this.initElement();
             this.render.setStyle(this.background, 'opacity', '0.3');
             this.render.setStyle(this.target, 'transform', 'translateX(0)');
-        })
+        }, 1000/60);
     }
 
     doSomething(func: Function) {

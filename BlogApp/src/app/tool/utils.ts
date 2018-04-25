@@ -14,7 +14,7 @@ export let util={
                 for(let i of json[key]){
                     array.push(key+'='+i);
                 }
-            }else if(typeof json[key] == 'string') {
+            }else if(typeof json[key] == 'string' || 'number') {
                 array.push(key+'='+json[key]);
             }else{
                 console.log('error:工具类 jsonToUrlParams:接收参数无法解析');
@@ -22,5 +22,23 @@ export let util={
             }
         }
         return array.join('&');
+    },
+
+    //对json按某个字段排序并返回数组
+    //降序
+    desc(x, y, key) {
+        return y[key] - x[key];
+    },
+    //升序
+    asc(x, y, key) {
+        return x[key] - y[key];
+    },
+    sortJson(json, option) {
+        let res = json.sort(option)
+        let array = [];
+        for(const key in res) {
+            array.push(res[key]);
+        }
+        return array;
     }
 }

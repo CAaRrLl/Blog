@@ -4,7 +4,7 @@ var logger = require('../common/logger').logger;
 //添加用户
 var add_user=function(name,email,phone,password,callback){
     var sql=`insert into user(name,email,phone,password,createtime,updatetime) values(?,?,?,?,?,?)`;
-    var now=new Date();
+    var now=new Date().getTime();
     db.queryQarams(sql,[name,email,phone,password,now,now],function(err,result){
         if(err){
             callback(err);
@@ -19,7 +19,7 @@ exports.add_user=add_user;
 //删除用户(假删除) 用事务 todo
 var delete_user=function(id,callback){
     var sql=`update user set status = -1,updatetime = ? where id = ?`;
-    var now=new Date();
+    var now=new Date().getTime();
     db.queryQarams(sql,[now,id],function(err,result){
         if(err){
             callback(err);
@@ -35,7 +35,7 @@ exports.delete_user=delete_user;
 //冻结用户
 var lock_user=function(id,callback){
     var sql=`update user set status = 0,updatetime =? where id = ?`;
-    var now=new Date();
+    var now=new Date().getTime();
     db.queryQarams(sql,[now,id],function(err,result){
         if(err){
             callback(err);
@@ -51,7 +51,7 @@ exports.lock_user=lock_user;
 //设置昵称，头像和备注
 var set_portrait=function(id,name,portrait,mark,callback){
     var sql=`update user set name=?,portrait = ?,mark=?,updatetime=? where id = ?`;
-    var now=new Date();
+    var now=new Date().getTime();
     db.queryQarams(sql,[name,portrait,mark,now,id],function(err,result){
         if(err){
             callback(err);
@@ -102,7 +102,7 @@ create table if not exists user(
     status int default 1,            
     level int default 1,              
     remark varchar(30),               
-    createtime datetime, 
-    updatetime datetime 
+    createtime bigint, 
+    updatetime bigint 
 )`;
 exports.table=table;

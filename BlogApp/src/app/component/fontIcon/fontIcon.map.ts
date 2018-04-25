@@ -23,4 +23,8 @@ export const iconMap={
     bookmark: '&#xe800',
     logout: '&#xe801',
     indentright: '&#xe800',
+    cog: '&#xe801',
+    reply: '&#xf112',
+    plus: '&#xe800',
+    pluscircle: '&#xe801',
 }

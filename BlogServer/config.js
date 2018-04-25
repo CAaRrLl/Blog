@@ -24,6 +24,8 @@ var config = {
 
     sign_key: '2042201842',
 
+    file_key: '19960620',
+
     web_host: 'http://127.0.0.1:4200',
 
     log_path: path.join(__dirname, 'logs'),

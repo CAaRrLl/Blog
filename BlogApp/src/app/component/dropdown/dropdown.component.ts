@@ -12,9 +12,12 @@ export class DropdownComponent implements OnChanges{
 
     @Input() headStr: string;
     @Input() headSrc: string;
+    @Input() headIcon: string;
+    @Input() direction: string;
     @Input() content: DropdownList[] = [];
 
     isAppear: boolean = false;
+    isleft: boolean  = true;
 
     constructor() {
         document.addEventListener('click', () => {
@@ -22,15 +25,33 @@ export class DropdownComponent implements OnChanges{
         });
     }
 
-    ngOnChanges() {
-        //图片和文字都存在则使用图片
-        if(this.headStr && this.headSrc) {
+    ngOnChanges() {   
+        //优先级 图片>文字>字体图标  
+        switch (this.direction) {
+            case 'right':
+                this.isleft = false;
+                break;
+            case 'left':
+            default:
+                this.isleft = true;
+                break;          
+        }
+        if(this.headSrc) {
             this.headStr = null;
+            this.headIcon = null;
             return;
         }
-        if(!this.headStr && !this.headSrc) {
-            this.headSrc = '../../../assets/img/default-head.png';
+        if(this.headStr) {
+            this.headSrc = null;
+            this.headIcon = null;
+            return;
         }
+        if(this.headIcon) {
+            this.headStr = null;
+            this.headSrc = null;
+            return;
+        }
+        this.headSrc = '../../../assets/img/default-head.png';       
     }
 
     show(event: Event) {

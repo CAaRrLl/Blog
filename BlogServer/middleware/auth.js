@@ -19,7 +19,12 @@ var check_auth = function(req, res, next) {
         res.status(200).send({code: code.signForge, msg: '签名伪造', data: {}});
         return;
     }
-    logger.debug('session', req.session[result], req.session);
+    if(!req.session[result]) {
+        res.clearCookie(config.cookie_name);
+        res.status(200).send({code: code.sessionExpire, msg: '会话过期', data: {}});
+        return;
+    }
+    logger.debug('session', req.session[result]);
     var fresh_tag = req.cookies[config.cookie_refresh];
     //刷新cookie
     if(!fresh_tag) {
@@ -42,3 +47,9 @@ var gen_session = function(id, session, res, req) {
     res.cookie(config.cookie_refresh, 1, {maxAge: config.cookie.maxAge - 1000 * 60});
 }
 exports.gen_session = gen_session;
+
+var get_session = function(req) {
+    var id = req.cookies[config.cookie_name];
+    return req.session[tool.get_sessionid(id)];
+}
+exports.get_session = get_session;
