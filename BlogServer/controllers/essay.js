@@ -10,7 +10,11 @@ var fb = require('./feedback');
 var tool = require('../common/tool');
 var config = require('../config');
 var get_session = require('../middleware/auth').get_session;
-
+var modifyTag = require('../model/tag').modify_tag;
+var deleteTag = require('../model/tag').delete_tag;
+var deleteEssay = require('../model/essay').essay_drop;
+var update_essay = require('../model/essay').update_essay;
+var essay_publish = require('../model/essay').essay_publish;
 
 function get_tag_list(hostid) {
     if(!hostid) return;
@@ -28,7 +32,7 @@ function get_tag_list(hostid) {
 function get_essay_tag_list(data) {
     if(!data) return;
     return new Promise(function(resolve, reject) {
-        getEssayTag(data.hostid, data.tag, function(err, result) {
+        getEssayTag(data.hostid, data.tagid, function(err, result) {
             if(err) {
                 reject(err);
             }
@@ -43,6 +47,7 @@ function get_essay(id) {
         getEssay(id, function(err, result) {
             if(err) {
                 reject(err);
+                return;
             }
             resolve(result);
         });
@@ -69,13 +74,13 @@ var new_tag = function(req, res, next) {
         return;
     }
     logger.debug('当前用户id:' + hostid);
-    addTag(tag, hostid, function(err) {
+    addTag(tag, hostid, function(err, id) {
         if(err) {
             logger.error('添加标签失败', err);
             fb(res, code.dataBaseErr, '数据库出错', {});
             return;
         }
-        fb(res, code.success, '', {});
+        fb(res, code.success, '', {'id': id});
     });
 }
 exports.new_tag = new_tag;
@@ -105,12 +110,10 @@ var get_tag = function(req, res, next) {
         .then(function(res) {
             if(!res) return;
             if(res.length > 0) {
-                res.forEach(e => {
-                    feedback.taglist.push(e.tag);
-                });
+                feedback.taglist = res;
                 var params = {
                     'hostid': hostid,
-                    'tag': res[0].tag
+                    'tagid': res[0].id
                 }
                 return params;
             }
@@ -139,9 +142,7 @@ var get_tag = function(req, res, next) {
             logger.debug('获取标签为',result);
             feedback.taglist = [];
             if(result.length > 0) {
-                result.forEach(e => {
-                    feedback.taglist.push(e.tag);
-                });
+                feedback.taglist = result;
             }
             fb(res, code.success, '', feedback);
         }).catch(function(err) {
@@ -154,8 +155,8 @@ var get_tag = function(req, res, next) {
 exports.get_tag = get_tag;
 
 var get_essay_tag = function(req, res, next) {
-    var tag = req.query.tag;
-    if(!tag) {
+    var tagid = req.query.tagid;
+    if(!tagid) {
         logger.warn('获取文章标题信息参数错误');
         fb(res, code.paramsErr, '请求参数错误', {});
         return;
@@ -178,7 +179,7 @@ var get_essay_tag = function(req, res, next) {
         feedback.essaytaglist = [];
         feedback.firstessay = {};
         //todo
-        get_essay_tag_list({'hostid': hostid, 'tag': tag})
+        get_essay_tag_list({'hostid': hostid, 'tagid': tagid})
         .then(function(res) {
             if(!res) return;
             if(res.length > 0) {
@@ -213,8 +214,8 @@ exports.get_essay_tag = get_essay_tag;
 
 var new_essay = function(req, res, next) {
     var title = req.body.title;
-    var tag = req.body.tag;
-    if(!title || !tag) {
+    var tagid = req.body.tagid;
+    if(!title || !tagid) {
         logger.warn('新建文章参数错误');
         fb(res, code.paramsErr, '请求参数错误', {});
         return;
@@ -227,7 +228,7 @@ var new_essay = function(req, res, next) {
     }
     var time = new Date().getTime();
     var essayid = tool.get_essay_id(time, hostid, config.file_key);
-    newEssay(essayid, hostid, title, tag, function(err) {
+    newEssay(essayid, hostid, title, tagid, function(err) {
         if(err) {
             logger.error('新建文章失败', err);
             fb(res, code.dataBaseErr, '数据库出错', {});
@@ -237,3 +238,117 @@ var new_essay = function(req, res, next) {
     });
 }
 exports.new_essay = new_essay;
+
+var modify_tag = function(req, res, next) {
+    var tagid = req.query.tagid;
+    var tag = req.query.tag;
+    if(!tagid || !tag) {
+        logger.error('修改标签参数错误');
+        fb(res, code.paramsErr, '请求参数错误', {});
+        return;
+    }
+    modifyTag(tagid, tag, function(err) {
+        if(err) {
+            logger.error('修改标签错误', err);
+            fb(res, code.dataBaseErr, '数据库出错', {});
+            return;
+        }
+        fb(res, code.success, '', {});
+    });
+}
+exports.modify_tag = modify_tag;
+
+var delete_tag = function(req, res, next) {
+    var tagid = req.query.tagid;
+    if(!tagid) {
+        logger.error('删除标签参数错误');
+        fb(res, code.paramsErr, '请求参数错误', {});
+        return;
+    }
+    deleteTag(tagid, function(err) {
+        if(err) {
+            logger.error('删除标签错误', err);
+            fb(res, code.dataBaseErr, '数据库出错', {});
+            return;
+        }
+        fb(res, code.success, '', {});
+    });
+}
+exports.delete_tag = delete_tag;
+
+var delete_essay = function(req, res, next) {
+    var essayid = req.query.essayid;
+    if(!essayid) {
+        logger.error('删除文章参数错误');
+        fb(res, code.paramsErr, '请求参数错误', {});
+        return;
+    }
+    logger.debug('删除文章id', essayid);
+    deleteEssay(essayid, function(err) {
+        if(err) {
+            logger.error('删除文章错误', err);
+            fb(res, code.dataBaseErr, '数据库出错', {});
+            return;
+        }
+        fb(res, code.success, {});
+    });  
+}
+exports.delete_essay = delete_essay;
+
+var save_essay = function(req, res, next) {
+    var id = req.body.id;
+    var title = req.body.title;
+    var text = req.body.text;
+    if(!id) {
+        logger.error('保存文章参数错误');
+        fb(res, code.paramsErr, '请求参数错误', {});
+        return;
+    }
+    var size = text.length;
+    update_essay(id, title, text, size, function(err) {
+        if(err) {
+            logger.error('保存文章数据库出错', err);
+            fb(res, code.dataBaseErr, '数据库出错', {});
+            return;
+        }
+        fb(res, code.success, '', {});
+    });
+}
+exports.save_essay = save_essay;
+
+var publish = function(req, res, next) {
+    var id = req.query.id; 
+    if(!id) {
+        logger.error('发布文章参数错误');
+        fb(res, code.paramsErr, '请求参数错误', {});
+        return;
+    }
+    essay_publish(id, function(err) {
+        if(err) {
+            logger.error('发布文章数据库出错', err);
+            fb(res, code.dataBaseErr, '数据库出错', {});
+            return;
+        }
+        fb(res, code.success, '', {});
+    });
+}
+exports.publish = publish;
+
+var get_the_essay = function(req, res, next) {
+    var id = req.query.id;
+    get_essay(id).then(function(result) {
+        if(!result[0]) {
+            logger.error('文章不存在');
+            fb(res, code.essayNoExist, '文章不存在', {});
+            return;
+        }
+        fb(res, code.success, '', result[0]);
+    })
+    .catch(function(err) {
+        if(err) {
+            logger.error('获取文章数据库出错', err);
+            fb(res, code.dataBaseErr, '数据库出错', {});
+        }
+    });
+}
+exports.get_the_essay = get_the_essay;

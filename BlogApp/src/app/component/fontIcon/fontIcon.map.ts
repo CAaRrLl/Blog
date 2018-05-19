@@ -27,4 +27,12 @@ export const iconMap={
     reply: '&#xf112',
     plus: '&#xe800',
     pluscircle: '&#xe801',
+    trash: '&#xe802',
+    edit: '&#xe800',
+    folderopen: '&#xe800',
+    save: '&#xe803',
+    forward: '&#xe801',
+    img: '&#xe800',
+    arrows: '&#xe802',
+    columns: '&#xf0db',
 }

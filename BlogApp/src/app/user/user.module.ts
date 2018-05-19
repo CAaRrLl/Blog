@@ -9,14 +9,15 @@ import {SignInUpComponent} from './page/sign/sign.in.up.component';
 import { AppModule } from '../app.module';
 import { MarkdownWriter } from './page/markdown-writer/markdown.writer';
 import { TestComponent } from './page/test/test';
-import { WriterListNavComponent } from './component/list-nav/writer.list.nav';
+import { HtmlRender } from './component/html-render/html.render';
+import { InsertImgComponent } from './component/insert-img/insert.img';
 
 @NgModule({
     declarations:[
         UserComponent,
         SignInUpComponent,
         MarkdownWriter,
-        WriterListNavComponent,
+        HtmlRender,
         TestComponent
     ],
     imports:[

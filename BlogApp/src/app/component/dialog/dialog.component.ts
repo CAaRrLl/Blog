@@ -17,7 +17,6 @@ export class DialogComponent{
 
     private time: number = 300;
 
-    private cfr: ComponentFactoryResolver;
 
     model: DialogModel = {hidden:true, content: ''};
     isSimpleText: boolean;
@@ -26,7 +25,8 @@ export class DialogComponent{
     hiddenConfirm: boolean;
     confirmName: string;
 
-    constructor(private dialog: DialogService, private render: Renderer2, private el: ElementRef) {
+    constructor(private dialog: DialogService, private render: Renderer2, private el: ElementRef,
+        private cfr: ComponentFactoryResolver) {
         this.dialog.getObservable().subscribe((model: DialogModel) => {
             if(model.hidden&&!this.model.hidden) {
                 this.fadeOut();
@@ -38,7 +38,9 @@ export class DialogComponent{
                 this.isSimpleText = true;
             }else {
                 this.isSimpleText = false;
-                this.createComponent(this.model.content, this.model.params);
+                setTimeout(() => {
+                    this.createComponent(this.model.content, this.model.params);
+                }, 0);
             }
             let cancelBtn = this.model.cancelBtn, confirmBtn = this.model.confirmBtn;
             if(cancelBtn) {
@@ -87,13 +89,13 @@ export class DialogComponent{
 
     confirm() {
         if(this.model.confirmBtn && this.model.confirmBtn.func) {
-            this.model.cancelBtn.func();
+            this.model.confirmBtn.func();
         } else {
             this.cancel();
         }
     }
     
-    createComponent(type: Type<any>, params?: any) {
+    createComponent(type: any, params?: any) {
         let factory = this.cfr.resolveComponentFactory(type);
         let newComponentRef = this.container.createComponent(factory);
         if(!_.isPlainObject(params)){   //如果不是Object类型

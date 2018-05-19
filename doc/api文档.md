@@ -143,7 +143,7 @@
                 id:12,
                 hostid:3123,
                 title:"web响应式开发",
-                text:"内容靠脑补",      //只给一部分
+                text:"内容靠脑补",    
                 size:5,
                 readtime:11,
                 remark:"很棒",
@@ -154,7 +154,7 @@
                 id:13,
                 hostid:331232,
                 title:"web自适应开发",
-                text:"内容靠脑补",     //只给一部分
+                text:"内容靠脑补",   
                 size:5,
                 readtime:22,
                 remark:"很棒",
@@ -188,7 +188,14 @@
     code:1000,
     msg:"",
     data:{
-        text:'3fdfdsfdsfdsfdsfdsfdsfdsfdsfsdfsdf'
+        id:12,
+        title:"web响应式开发",
+        text:"内容靠脑补",    
+        size:5,
+        readtime:11,
+        remark:"很棒",
+        createtime:1512123213123,
+        updatetime:1512123213123
     }    
 }
 失败
@@ -231,7 +238,7 @@
 |字段|必选项|类型|描述|
 |---|------|----|----|
 |title|是|String|文章标题|
-|tag|是|String|文章分类|
+|tagid|是|String|文章分类|
 
 ``response``
 ```
@@ -251,6 +258,30 @@
 }
 ```
 
+### 删除文章
+``GET``
+``api/essay/delete``
+``params``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|essayid|是|String|文章分类|
+
+``response``
+```
+成功
+{
+    code:1000,
+    msg:"",
+    data:{}
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
 ### 新建标签
 ``GET``
 ``api/essay/newtag``
@@ -258,6 +289,57 @@
 |字段|必选项|类型|描述|
 |---|------|----|----|
 |tag|是|String|文章分类|
+
+``response``
+```
+成功
+{
+    code:1000,
+    msg:"",
+    data:{
+        id: 12
+    }
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
+### 修改标签
+``GET``
+``api/essay/modifytag``
+``params``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|tagid|是|String|文章分类|
+|tag|是|String|文章分类|
+
+``response``
+```
+成功
+{
+    code:1000,
+    msg:"",
+    data:{}
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
+### 删除标签
+``GET``
+``api/essay/deletetag``
+``params``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|tagid|是|String|文章分类|
 
 ``response``
 ```
@@ -292,8 +374,8 @@
     msg:"",
     data:{
         taglist:[
-            '随笔',
-            'css学习笔记'
+            {id:1,tag:'随笔'},
+            {id:2,tag:'css学习笔记'}
         ]
     }
 }
@@ -308,8 +390,8 @@
     msg:"",
     data:{
         taglist:[
-            '随笔',
-            'css学习笔记'
+            {id:1,tag:'随笔'},
+            {id:2,tag:'css学习笔记'}
         ],
         essaytaglist:[
             {id: 12, title: 'css学习笔记一'},
@@ -318,7 +400,7 @@
         firstessay:{
             id:12,
             title:"web响应式开发",
-            text:"内容靠脑补",      //只给一部分
+            text:"内容靠脑补",    
             size:5,
             readtime:11,
             remark:"很棒",
@@ -334,7 +416,7 @@
 ``api/essay/essaytag``
 |字段|必选项|类型|描述|
 |---|------|----|----|
-|tag|是|string|标签|
+|tagid|是|string|标签id|
 |attach|否|boolean|是否返回标签附带的其他信息|
 
 ``attach == 0``
@@ -368,7 +450,7 @@
         firstessay:{
             id:12,
             title:"web响应式开发",
-            text:"内容靠脑补",      //只给一部分
+            text:"内容靠脑补",    
             size:5,
             readtime:11,
             remark:"很棒",
@@ -414,9 +496,8 @@
 |字段|必选项|类型|描述|
 |---|------|----|----|
 |id|是|String|文章标识符|
-|tag|否|String|文章归类|
 |title|是|String|文章标题|
-|essay|是|String|文章|
+|text|是|String|文章|
 
 ``response``
 ```
@@ -508,7 +589,7 @@
             {
                 id:12,
                 title:"web响应式开发",
-                text:"内容靠脑补",      //只给一部分
+                text:"内容靠脑补",    
                 size:5,
                 readtime:11,
                 remark:"很棒",
@@ -518,7 +599,7 @@
              {
                 id:13,
                 title:"web自适应开发",
-                text:"内容靠脑补",     //只给一部分
+                text:"内容靠脑补",   
                 size:5,
                 readtime:22,
                 remark:"很棒",
@@ -545,7 +626,7 @@
                 id:12,
                 hostid:12123123,
                 title:"web响应式开发",
-                text:"内容靠脑补",      //只给一部分
+                text:"内容靠脑补",    
                 size:5,
                 readtime:11,
                 remark:"很棒",
@@ -556,7 +637,7 @@
                 id:13,
                 hostid:12312321,
                 title:"web自适应开发",
-                text:"内容靠脑补",     //只给一部分
+                text:"内容靠脑补",   
                 size:5,
                 readtime:22,
                 remark:"很棒",
@@ -567,6 +648,46 @@
     ]
 }
 ```
+
+### 提交文件
+``POST``
+``api/file/upload``
+```参数：FormData{name, value}```
+
+``response``
+```
+成功
+{
+    code:1000,
+    msg:'',
+    data:{
+        files:[
+            {
+                id:21,
+                name:急急急
+            },
+            {
+                id:22,
+                name:急急急
+            }
+        ]
+    }
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
+### 获取静态文件
+``GET``
+``api/file/get``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|id|是|String|文件标识符|
+
 ### 获取用户列表
 ``GET``
 ``api/get/userlist``

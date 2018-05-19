@@ -152,7 +152,9 @@ export class NavigationComponent implements OnInit{
     //用户功能列表事件委托
     delegateList(target) {
         let val = target.innerHTML;
-        this.naviListFunc[val]();
+        if(this.naviListFunc[val]) {
+            this.naviListFunc[val]();
+        }
     }
 
     //获取json的key

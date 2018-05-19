@@ -26,6 +26,8 @@ var config = {
 
     file_key: '19960620',
 
+    file_size_limit: 5 * 1024 * 1024, //10MB
+
     web_host: 'http://127.0.0.1:4200',
 
     log_path: path.join(__dirname, 'logs'),

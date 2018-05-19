@@ -117,6 +117,14 @@ $block:#880b0b;
             width: 12rem;
             opacity: 0;
             visibility: hidden;
+            list-style: none;
+            margin: 0;
+            position: absolute;
+            padding: 0;
+            right: 0.5rem;
+            background-color: white;
+            border-radius: 2px;
+            border: 1px solid #e1e1e1;
             $target: opacity 0.3s;
             @include transition($target);
             &:before {
@@ -143,6 +151,9 @@ $block:#880b0b;
                 height: 1.8rem;
                 line-height: 1.7;
                 color: #767676;
+                cursor: pointer;
+                margin-bottom: 0.5rem;
+                margin-top: 0.5rem;
                 &:active {
                     background-color: #efedeb;
                 }

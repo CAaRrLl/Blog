@@ -1,10 +1,17 @@
-import {Component, ViewChild, ElementRef, Renderer2, OnInit} from '@angular/core';
+import {Component, ViewChild, ElementRef, Renderer2, OnInit, OnDestroy} from '@angular/core';
 import { Router } from '@angular/router';
 import { route } from '../../../constant/router';
 import { Logger } from '../../../service/logger.service';
 import { HttpService } from '../../../service/http.service';
 import { EssayService } from './markdown.writer.service';
 import { AlertService, AlertType } from '../../../component/alert/alert.service';
+import { DropdownList } from '../../../component/dropdown/dropdown.component';
+import { constant } from '../../../constant/constant';
+import { DialogService } from '../../../component/dialog/dialog.service';
+import { Observable, Subscription } from 'rxjs/Rx'; 
+import { AbstractExtendedWebDriver } from 'protractor/built/browser';
+import { InsertImgComponent } from '../../component/insert-img/insert.img';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
     selector:'app-markdown-writer',
@@ -13,22 +20,34 @@ import { AlertService, AlertType } from '../../../component/alert/alert.service'
     providers: [EssayService]
 })
 
-export class MarkdownWriter implements OnInit{
+export class MarkdownWriter implements OnInit, OnDestroy{
 
-    @ViewChild('newTagOper') newTagOper:ElementRef;
+    @ViewChild('newTagOper') newTagOper: ElementRef;
+    @ViewChild('essayTitleRef') essayTitleRef: ElementRef;
+    @ViewChild('essayContentRef') essayContentRef: ElementRef;
 
-    constructor(private router: Router, private render: Renderer2, 
+    constructor(private router: Router, private render: Renderer2,private dialog: DialogService, 
     private log:Logger, private service: EssayService, private alert: AlertService) {}
 
     noteImgSrc: string = '../../../../assets//img/note.png';
 
-    // tags: string[] = ['随笔', '日记', 'css'];
-    // newTag: string;
-    // activeTag: string = '随笔';
+    // tags: string[] = [{id:'1',tag:'随笔'}, {id:'2',tag:'日记'}, {id:'3',tag:'css'}];
 
-    tags: string[] = [];
+    tags: any[] = [];
     newTag: string;
     activeTag: string = '';
+    tagFunc: DropdownList[] = [
+        {
+            iconTag: 'edit',
+            content: '修改标签',
+            func: () => {}
+        },
+        {
+            iconTag: 'trash',
+            content: '删除标签',
+            func: () => {this.deleteTag()}
+        }
+    ];
     
     // essayTags: any = {
     //     '随笔': {
@@ -39,9 +58,38 @@ export class MarkdownWriter implements OnInit{
     // };
     essayTags: any = {};
     activeEssayKey: string = '';
-    newEssayTag: string;
+
+    //编辑器数据
+    essayData: {title: string, text: string} = {title: '', text: ''};
+
+    isPreview: boolean = false;
+
+    titleSubscription: Subscription;
+    essaySubscription: Subscription;
 
     ngOnInit() {
+        this.titleSubscription = Observable.fromEvent(this.essayTitleRef.nativeElement, 'input').debounceTime(2000)
+        .subscribe(e => {
+            let title  = ((e as Event).target as HTMLInputElement).value;
+            this.updateToActiveEssay({'title': title});
+            this.saveEssay();
+        });
+        this.essaySubscription = Observable.fromEvent(this.essayContentRef.nativeElement, 'input').debounceTime(5000)
+        .subscribe(e => {
+            let text = ((e as Event).target as HTMLTextAreaElement).value;
+            this.updateToActiveEssay({'text': text, 'size': text.length});
+            this.saveEssay();
+        });
+        this.init();
+    }
+
+    ngOnDestroy() {
+        this.titleSubscription.unsubscribe();
+        this.essaySubscription.unsubscribe();
+    }
+
+    //初始化页面
+    init() {
         this.service.initWriter((res, err) => {
             if(!err) { 
                 this.tags = res['taglist'];
@@ -50,10 +98,11 @@ export class MarkdownWriter implements OnInit{
                     return;
                 } 
                 if(this.tags.length <= 0) {
-                    this.submitNewTag('随笔');
+                    this.activeTag = undefined;
+                    this.activeEssayKey = undefined;
                     return;
                 }
-                this.activeTag = this.tags[0];
+                this.activeTag = this.tags[0].id;
                 this.essayTags = {};
                 this.essayTags[this.activeTag] = {};
                 if(!(res.essaytaglist instanceof Array)) {
@@ -72,8 +121,26 @@ export class MarkdownWriter implements OnInit{
                 if(!essay.id) return;
                 this.activeEssayKey = String(essay.id);
                 this.saveEssayMsg(this.activeTag, this.activeEssayKey, essay);
+                this.initEditor();
             }
-        })
+        });
+    }
+
+    
+    //初始化编辑器
+    initEditor() {
+        this.updateToEditor({
+            'title': this.essayTags[this.activeTag][this.activeEssayKey].title,
+            'text': this.essayTags[this.activeTag][this.activeEssayKey].text
+        });       
+    }
+
+    //更新编辑器
+    refreshEditor() {
+        this.updateToEditor({
+            'title': this.essayTags[this.activeTag][this.activeEssayKey].title,
+            'text': this.essayTags[this.activeTag][this.activeEssayKey].text
+        });
     }
 
     //存入文章信息
@@ -84,15 +151,33 @@ export class MarkdownWriter implements OnInit{
         this.essayTags[tag][essayTag] = model;
     }
 
+    //更新某项内容到文章模型
+    updateToActiveEssay(obj: any) {
+        if(this.activeTag && this.activeEssayKey) {
+            for(const key in obj) {
+                this.essayTags[this.activeTag][this.activeEssayKey][key] = obj[key];
+            }
+        }
+    }
+
+    //更新某项内容到编辑器
+    updateToEditor(obj: any) {
+        if(this.activeTag && this.activeEssayKey) {
+            for(const key in obj) {
+                this.essayData[key] = obj[key];
+            }
+        }
+    }
+
     //进入博客首页
     toHome = () => {
         this.router.navigate([route.blog]);
     }
 
     //判断某个tag是否激活
-    isTagActive(name: string) {
+    isTagActive(id: string) {
         return this.tags.some((val) => {
-            return (val === name && this.activeTag === name);
+            return (val.id == id && this.activeTag == id);
         });
     }
 
@@ -104,26 +189,40 @@ export class MarkdownWriter implements OnInit{
     //激活当前标签的某个文章标签
     essayActive(id: string) {
         this.activeEssayKey = id;
+        this.service.getEssay(this.activeEssayKey, (err, res) => {
+            if(!err) {
+                if(this.activeTag) {
+                    this.saveEssayMsg(this.activeTag, this.activeEssayKey, res.data);
+                }
+                this.refreshEditor();
+            }
+        });
     }
 
     //激活某标签
-    tagActive(name: string) {
-        this.activeTag = name;
-        this.service.getEssay(this.activeTag, (data, err) => {
+    tagActive(id: string) {
+        this.activeTag = id;
+        this.service.getEssayTag(this.activeTag, (data, err) => {
             if(!err) {
                 if(!data) {
                     this.log.warn('MarkdownWriterComponent', 'tagActive', 'data not exist');
                     return; 
                 }
+                let tag = data.tag;
+                data = data.data;         
                 let arr = this.jsonToArray(data.essaytaglist);
-                if(arr.length <= 0) return;
+                if(arr.length <= 0) {
+                    this.activeEssayKey = undefined;
+                    return;
+                }
                 this.activeEssayKey = arr[0].id;
                 arr.forEach(e => {
-                    this.saveEssayMsg(this.activeTag, e.id, e);
+                    this.saveEssayMsg(tag, e.id, e);
                 })
                 if(data.firstessay && data.firstessay.id) {
-                    this.essayTags[this.activeTag][this.activeEssayKey] = data.firstessay;
+                    this.essayTags[tag][this.activeEssayKey] = data.firstessay;
                 }
+                this.refreshEditor();
             }
         });
     }
@@ -132,6 +231,7 @@ export class MarkdownWriter implements OnInit{
     addEssay() {
         if(!this.activeTag) {
             this.log.warn('MarkdownWriterComponent', 'addEssay', '当前无选中标签');
+            this.alert.show({type: AlertType.Warn, msg: '请选择标签', time: 1000});
             return;
         }
         let title = new Date().toLocaleDateString();
@@ -147,6 +247,7 @@ export class MarkdownWriter implements OnInit{
                 }
                 this.essayTags[this.activeTag][this.activeEssayKey] = {'id': id, title: title};
                 this.log.debug('MarkdownWriterComponent', 'addEssay', {'新建文章id': id});
+                this.refreshEditor();
             }
         });
     }
@@ -169,15 +270,11 @@ export class MarkdownWriter implements OnInit{
             return;
         }
         this.log.debug('MarkDownWriter', 'submitCreateTag', '新建标签:' + newTag);
-        if(this.tags.indexOf(newTag) !== -1) {
-            this.alert.show({type: AlertType.Warn, msg: '标签已存在', time: 2000});
-            return;
-        }
-        this.service.newTag(newTag, (err) => {
+        this.service.newTag(newTag, (err, id) => {
             if(!err) {
-                this.tags.unshift(newTag);
+                this.tags.unshift({'id':id, 'tag': newTag});
                 this.cancelNewTag();
-                this.activeTag = newTag;
+                this.activeTag = id;
             }
         });
     }
@@ -223,9 +320,155 @@ export class MarkdownWriter implements OnInit{
         return res;
     }
 
+    //根据文章的状态获取不同的操作
+    getEssayTagFunc(status: number) {
+        let func: DropdownList[] = [];
+        switch(status) {
+            case constant.isPublish:
+                func.push({
+                    iconTag: 'success',
+                    content: '已发布'
+                });
+                break;
+            case constant.isNotPublish:
+            default:
+                func.push({
+                    iconTag: 'reply',
+                    content: '发布更新',
+                    func: () => {}
+                });
+                break;
+        }
+        func.push({
+            iconTag: 'folderopen',
+            content: '移动文章',
+            func: () => {}
+        });
+        func.push({
+            iconTag: 'trash',
+            content: '删除文章',
+            func: () => {this.deleteEssay()}
+        });
+        return func;
+    }
+
+    getPartial() {
+        if(typeof this.essayData.text === 'string') {
+            return this.essayData.text.substr(0, 10);
+        }
+    }
+
+    //删除标签
+    deleteTag() {
+        this.dialog.show({
+            confirmBtn: {func: () => {
+                this.service.deleteTag(this.activeTag, (err) => {
+                    if(err) {
+                        this.alert.show({type: AlertType.Error, msg: '删除标签失败', time: 2000});
+                        return;
+                    }
+                    this.alert.show({type: AlertType.Success, msg: '删除标签成功', time: 2000});
+                    this.dialog.close();
+                    if(this.activeTag in this.essayTags){
+                        delete this.essayTags[this.activeTag];
+                        this.activeTag = undefined;
+                        this.activeEssayKey = undefined;
+                    }
+                    this.init();
+                })
+            }},
+            content: '确定要删除该标签吗？删除后标签下的文章也会随之删除'
+        });
+    }
+
+    //删除文章
+    deleteEssay() {
+        this.dialog.show({
+            confirmBtn: {func: () => {
+                this.service.deleteEssay(this.activeEssayKey, (err) => {
+                    if(err) {
+                        this.alert.show({type: AlertType.Error, msg: '删除文章失败', time: 2000});
+                        return;
+                    }
+                    this.alert.show({type: AlertType.Success, msg: '删除文章成功', time: 2000});
+                    this.dialog.close();
+                    if(!this.activeTag) return;
+                    if(this.activeEssayKey in this.essayTags[this.activeTag]){
+                        delete this.essayTags[this.activeTag][this.activeEssayKey];
+                        this.activeEssayKey = undefined;
+                    }
+                    this.init();
+                })
+            }},
+            content: '确定要删除该文章吗？'
+        });
+    }
+
+    //撤消
+    undo() {
+
+    }
+
+    //恢复
+    redo() {
+
+    }
+
+    //插入图片
+    insertImg() {
+        let feedback: {text: string} = {text: ''};
+        this.dialog.show({
+            content: InsertImgComponent,
+            confirmBtn: {hidden: true},
+            cancelBtn: {hidden: true},
+            params: {'essay': this.essayData}
+        })
+    }
+
+    //预览
+    preview() {
+        this.isPreview = !this.isPreview;
+    }
+
+    //发布更新
+    publish() {
+        if(!this.activeEssayKey) {
+            this.log.warn('MarkdownWriter', 'saveEssay', '要保存的文章id不存在');
+            return;
+        }
+        this.saveEssay();
+        this.service.publishEssay(this.activeEssayKey, (err) => {
+            if(err) {
+                this.alert.show({type: AlertType.Error, msg: '发布文章失败', time: 1000});
+                return;
+            }
+            this.alert.show({type: AlertType.Success, msg: '发布文章成功', time: 1000});
+            this.essayTags[this.activeTag][this.activeEssayKey]['status'] = 1;
+        });
+    }
+
+    //保存
+    saveEssay() {
+        if(!this.activeEssayKey) {
+            this.log.warn('MarkdownWriter', 'saveEssay', '要保存的文章id不存在');
+            return;
+        }
+        this.service.saveEssay({
+            id: this.activeEssayKey,
+            title: this.essayData.title || '',
+            text: this.essayData.text || ''
+        }, (err) => {
+            if(err) {
+                this.alert.show({type: AlertType.Error, msg: '文章保存失败', time: 1000});
+                return;
+            }
+            this.alert.show({type: AlertType.Success, msg: '文章保存成功', time: 1000});
+        });
+    } 
 }
 
-interface EssayModel {
+export interface EssayModel {
+    id: string,
     title: string,
     text: string,
     size: number,

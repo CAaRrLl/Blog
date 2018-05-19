@@ -1,0 +1,75 @@
+$confirmColor: #c5583d;
+$hovercolor: #ec6c4c;
+
+.insert-local {
+    display: block;
+    text-align: center;
+    .insert-input {
+        width: 12rem;
+        height: 2rem;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        opacity: 0;
+    }
+    .insert-text {
+        cursor: pointer;
+        width: 10rem;
+        height: 2.2rem;
+        background-color: #404040;
+        color: white;
+        display: inline-block;
+        line-height: 2rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        vertical-align: middle;
+    }
+    .insert-input-url {
+        height: 1.6rem;
+        border: 1px solid #e7e7e7;
+        padding-left: 0.5rem;
+        &:focus {
+            outline: none;
+        }
+    }
+}
+.insert {
+    margin-top: 1rem;
+    cursor: pointer;
+    color: #707070;
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+}
+.func {
+    height: 4rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    a {
+        border-radius: 0.2rem;
+        padding-right: 1rem;
+        padding-top: 0.3rem;
+        padding-bottom: 0.3rem;
+        padding-left: 1rem;
+        display: inline-block;
+        cursor: pointer;
+        margin-top: 0.75rem;
+        margin-left: 0.5rem;
+        box-shadow: 0px 0px 1px 1px #9d9d9d;
+        margin-right: 0.5rem;
+        &:hover {
+            color: $confirmColor;
+        }
+        &:last-child {
+            background-color: $confirmColor;
+            color: white;
+            box-shadow: 0px 0px 1px 1px $confirmColor;
+            &:hover {
+                background-color: $hovercolor;
+            }
+        }
+    }
+}

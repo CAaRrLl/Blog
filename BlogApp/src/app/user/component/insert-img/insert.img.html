@@ -1,0 +1,11 @@
+<h3 style="text-align: center">插入图片</h3>
+<span class="insert-local">
+    <span class="insert-text" *ngIf="insertMethod==0">点击上传(可多张)</span>
+    <input class="insert-input" *ngIf="insertMethod==0" type="file" (change)="getImgFromLocal($event.target)" multiple/>
+    <input class="insert-input-url" *ngIf="insertMethod==1" placeholder="请输入图片链接" type="text" (input)="getImgUrl($event.target)">
+</span>
+<span class="insert" (click)="changeInsertMethod()">{{getTip()}}</span>
+<div class="func">
+    <a (click)="cancel()">取消</a>
+    <a (click)="confirm()" *ngIf="insertMethod==1">确定</a>
+</div>

@@ -42,7 +42,15 @@ var get_essay_id = function(time, hostid, key) {
     return crypto
     .createHmac('sha256', key)
     .update(id)
-    .digest('base64');
+    .digest('hex');
+}
+
+//生成文件签名
+var get_file_sha256 = function(buf) {
+    return crypto
+    .createHmac('sha256', buf)
+    .update('file')
+    .digest('hex');
 }
 
 tool.check_email = check(/(^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$)/);
@@ -54,5 +62,6 @@ tool.unsign = unsign;
 tool.session_code = session_code;
 tool.get_sessionid = get_sessionid;
 tool.get_essay_id = get_essay_id;
+tool.get_file_sha256 = get_file_sha256;
 
 module.exports = tool;

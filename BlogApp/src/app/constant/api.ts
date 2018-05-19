@@ -9,4 +9,12 @@ export const api={
     newEssay: `${prefix}/essay/new`,        //新建文章
     getTag: `${prefix}/essay/tag`,          //获取标签   
     getEssayTag: `${prefix}/essay/essaytag`, //获取文章标签
+    modifyTag: `${prefix}/essay/modifytag`, //修改标签
+    deleteTag: `${prefix}/essay/deletetag`, //删除标签
+    deleteEssay: `${prefix}/essay/delete`,   //删除文章
+    uploadFile: `${prefix}/file/upload`,    //提交文件
+    getFile: `${prefix}/file/get`,    //获取静态文件
+    saveEssay: `${prefix}/essay/save`,   //保存文章
+    publish: `${prefix}/essay/publish`,   //发布文章
+    getEssay: `${prefix}/essay/getmarkdown`, //获取文章
 }

@@ -1,5 +1,5 @@
 <div class="writer">
-    <div class="writer-container writer-left">
+    <div class="writer-container writer-left" [style.display]="isPreview?'none':'inline-block'">
         <a class="btn-blog-simple writer-btn" (click)="toHome()"><app-icon class="reply" tag="reply"></app-icon>首页</a>
         <div class="new-tag" (click)="addTag()"><app-icon class="plus" tag="plus"></app-icon>新建标签</div>
         <div class="new-tag-oper" #newTagOper>
@@ -7,23 +7,43 @@
             <a class="cancel" (click)="cancelNewTag()">取消</a>
             <a class="submit" (click)="submitNewTag(newTag)">提交</a>
         </div>
-        <app-writer-nav night="true" *ngFor="let tag of tags" [active]="isTagActive(tag)" (click)="tagActive(tag)">
-            <span class="writer-nav-span-tag">{{tag}}</span>
-        </app-writer-nav>
+        <div *ngFor="let tag of tags" class="list-nav-container dark"
+            [class.active]="isTagActive(tag.id)" [class.night]="isTagActive(tag.id)"
+            (click)="tagActive(tag.id)">
+            <span class="writer-nav-span-tag">{{tag.tag}}</span>
+            <app-dropdown [style.visibility]="isTagActive(tag.id)? 'visible':'hidden'" 
+                headIcon="cog" [content]="tagFunc" direction="right"></app-dropdown>
+        </div>
     </div>
-    <div class="writer-container writer-middle">
+    <div class="writer-container writer-middle" [style.display]="isPreview?'none':'inline-block'">
         <div class="new-essay" (click)="addEssay()"><app-icon class="plus" tag="pluscircle"></app-icon>新建文章</div>
-        <app-writer-nav class="essay-header" *ngFor="let essay of jsonToArray(essayTags[activeTag])" [active]="isEssayActive(essay.id)"
+        <div *ngFor="let essay of jsonToArray(essayTags[activeTag])" class="essay-header list-nav-container light"
+            [class.active]="isEssayActive(essay.id)" [class.day]="isEssayActive(essay.id)"
             (click)="essayActive(essay.id)">
             <span class="writer-nav-span-essay">
                 <img [src]="noteImgSrc">
-                <div class="word-num" *ngIf="essay.id===activeEssayKey">字数:{{essay.size}}</div>
+                <div class="word-num" *ngIf="essay.id===activeEssayKey">字数:{{essay.size?essay.size:0}}</div>
                 <div class="title">{{essay.title}}</div>
-                <div class="partial" *ngIf="essay.id===activeEssayKey">{{essay.text}}</div>
+                <div class="partial" *ngIf="essay.id===activeEssayKey">{{getPartial()}}</div>
             </span>
-        </app-writer-nav>
+            <app-dropdown [style.visibility]="isEssayActive(essay.id)? 'visible':'hidden'" 
+                headIcon="cog" [content]="getEssayTagFunc(essay.status)" direction="right"></app-dropdown>
+        </div>
     </div>
-    <div class="writer-container writer-right">
-    
+    <div class="writer-container writer-right" [style.width]="isPreview?'50%':'60%'"
+        [style.visibility]="activeTag&&activeEssayKey?'visible':'hidden'">
+        <input class="editor-title" [(ngModel)]="essayData.title" #essayTitleRef>
+        <div class="editor-tool">
+            <app-icon class="tool-icon" style="float: left" tag="img" (click)="insertImg()"></app-icon>
+            <app-icon class="tool-icon" style="float: left" tag="reply" (click)="undo()"></app-icon>
+            <app-icon class="tool-icon" style="float: left" tag="forward" (click)="redo()"></app-icon>
+            <app-icon class="tool-icon" style="float: right" tag="arrows" (click)="publish()"></app-icon>
+            <app-icon class="tool-icon" style="float: right" tag="columns" (click)="preview()"></app-icon>
+            <app-icon class="tool-icon" style="float: right" tag="save" (click)="saveEssay()"></app-icon>
+        </div>
+        <textarea class="editor" [(ngModel)]="essayData.text" #essayContentRef></textarea>
+    </div>
+    <div class="writer-container writer-end" [style.display]="isPreview?'inline-block':'none'">
+        <app-html-render [html]="essayData.text" [title]="essayData.title"></app-html-render>
     </div>
 </div>

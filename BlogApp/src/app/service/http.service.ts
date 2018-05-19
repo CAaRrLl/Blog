@@ -35,4 +35,12 @@ export class HttpService {
       withCredentials: true
     });
   }
+
+  postFormData(url: string, formData: FormData) {
+    const header = new HttpHeaders();
+    return this.http.post(url, formData, {
+      headers: header,
+      withCredentials: true
+    })
+  }
 }

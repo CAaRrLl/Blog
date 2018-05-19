@@ -76,8 +76,12 @@ $confirmColor: #c5583d;
 
     }
     p {
-      text-align: center;
       padding-bottom: 2rem;
+      max-width: 20rem;
+      margin: 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #444;
     }
     .close {
       display: block;

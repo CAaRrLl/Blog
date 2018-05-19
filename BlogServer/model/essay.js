@@ -17,30 +17,30 @@ var new_essay=function(id,hostid,title,tag,callback){
 exports.new_essay=new_essay;
 
 //更新文章
-var update_essay=function(id,title,tag,essay,size,remark,callback){
-    var sql=`update essay set title=?,tag=?,text=?,size=?,remark=? where id=?`;
+var update_essay=function(id,title,essay,size,callback){
+    var sql=`update essay set title=?,text=?,size=? where id=?`;
     var now=new Date().getTime();
-    db.queryQarams(sql,[title,tag,essay,size,remark,id],function(err,result){
+    db.queryQarams(sql,[title,essay,size,id],function(err,result){
         if(err){
-            callback(err);
+            callback(err, null);
             return;
         }
         logger.debug(result);
-        callback(null);
+        callback(null, result);
     })
 }
 exports.update_essay=update_essay;
 
 //发布文章
 var essay_publish=function(id,callback){
-    var sql=`update essay set status=1 where id =id`;
+    var sql=`update essay set status=1 where id =?`;
     var now=new Date().getTime();
     db.queryQarams(sql,[id],function(err,result,fields){
         if(err){
             callback(err);
             return;
         }
-        logger.debug(result);        
+        logger.debug('发布文章', result);        
         callback(null);
     })
 }
@@ -48,7 +48,7 @@ exports.essay_publish=essay_publish;
 
 //删除文章 todo 事务
 var essay_drop=function(id,callback){
-    var sql=`update essay set status=-1 where id =id`;
+    var sql=`update essay set status=-1 where id=?`;
     var now=new Date().getTime();
     db.queryQarams(sql,[id],function(err,result,fields){
         if(err){
@@ -59,7 +59,7 @@ var essay_drop=function(id,callback){
         callback(null);
     })
 }
-exports.essay_publish=essay_publish;
+exports.essay_drop=essay_drop;
 
 //获取已发布文章
 var get_publish=function(size,pos,search,callback){
@@ -111,7 +111,7 @@ exports.get_essay=get_essay;
 
 //获取用户某个标签下的文章
 var get_essay_tag=function(hostid,tag,callback){
-    var sql=`select id, title from essay where hostid=? and tag=? order by updatetime desc`;
+    var sql=`select id, title from essay where hostid=? and tag=? and status!=-1 order by updatetime desc`;
     db.queryQarams(sql,[hostid, tag],function(err,result,fields){
         if(err){
             callback(err,null);
@@ -159,14 +159,14 @@ exports.get_myessay=get_myessay;
 
 var table=`
 create table if not exists essay(
-    id varchar(50) primary key,     
+    id varchar(100) primary key,     
     hostid int not null,
     title varchar(50) not null,  
     text text,       
     size int,       
     readtime int default 0,         
     status int default 0,    
-    tag varchar(100),        
+    tag int,        
     remark varchar(100),    
     createtime bigint,          
     updatetime bigint             

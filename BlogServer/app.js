@@ -11,17 +11,15 @@ var db = require('./common/db');
 var config = require('./config');
 var logger = require('./common/logger').logger;
 
-var check_auth = require('./middleware/auth').check_auth;
-
 var app=express();
 
 //注册日志中间件
 app.use(require('./common/logger').connectLogger);
 
-//前端模板
-app.use(express.static(config.template_dir));
 //供用户下载的静态文件
-app.use('/api/file', express.static(config.file_dir));
+app.use('/api/file/get', express.static(config.file_dir));
+//前端模板
+app.use('/', express.static(config.template_dir));
 
 // 解析 application/json
 app.use(bodyParser.json({limit:'1mb'}));	
