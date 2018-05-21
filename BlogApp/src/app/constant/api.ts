@@ -17,4 +17,5 @@ export const api={
     saveEssay: `${prefix}/essay/save`,   //保存文章
     publish: `${prefix}/essay/publish`,   //发布文章
     getEssay: `${prefix}/essay/getmarkdown`, //获取文章
+    setEssayTag: `${prefix}/essay/settag`,  //修改文章标签
 }

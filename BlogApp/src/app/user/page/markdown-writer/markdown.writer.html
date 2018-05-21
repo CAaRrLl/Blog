@@ -21,7 +21,7 @@
             [class.active]="isEssayActive(essay.id)" [class.day]="isEssayActive(essay.id)"
             (click)="essayActive(essay.id)">
             <span class="writer-nav-span-essay">
-                <img [src]="noteImgSrc">
+                <img [src]="essay.status === 1?noteImgSrc: draftImgSrc">
                 <div class="word-num" *ngIf="essay.id===activeEssayKey">字数:{{essay.size?essay.size:0}}</div>
                 <div class="title">{{essay.title}}</div>
                 <div class="partial" *ngIf="essay.id===activeEssayKey">{{getPartial()}}</div>

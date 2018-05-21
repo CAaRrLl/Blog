@@ -12,6 +12,8 @@ import { Observable, Subscription } from 'rxjs/Rx';
 import { AbstractExtendedWebDriver } from 'protractor/built/browser';
 import { InsertImgComponent } from '../../component/insert-img/insert.img';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { ModifyComponent } from '../../component/modify.component/modify.component';
+import { SelectComponent, SelectModel, Option } from '../../../component/select.component/select.component';
 
 @Component({
     selector:'app-markdown-writer',
@@ -30,6 +32,7 @@ export class MarkdownWriter implements OnInit, OnDestroy{
     private log:Logger, private service: EssayService, private alert: AlertService) {}
 
     noteImgSrc: string = '../../../../assets//img/note.png';
+    draftImgSrc: string = '../../../../assets//img/draft.png';
 
     // tags: string[] = [{id:'1',tag:'随笔'}, {id:'2',tag:'日记'}, {id:'3',tag:'css'}];
 
@@ -40,7 +43,7 @@ export class MarkdownWriter implements OnInit, OnDestroy{
         {
             iconTag: 'edit',
             content: '修改标签',
-            func: () => {}
+            func: () => {this.modifyTag()}
         },
         {
             iconTag: 'trash',
@@ -140,6 +143,16 @@ export class MarkdownWriter implements OnInit, OnDestroy{
         this.updateToEditor({
             'title': this.essayTags[this.activeTag][this.activeEssayKey].title,
             'text': this.essayTags[this.activeTag][this.activeEssayKey].text
+        });
+    }
+
+    //设置某个标签的名称
+    setTag(id: string, val: string) {
+        this.tags.forEach((tag) => {
+            if(tag.id === id) {
+                tag.tag = val;
+                return;
+            }
         });
     }
 
@@ -245,7 +258,8 @@ export class MarkdownWriter implements OnInit, OnDestroy{
                 if(!this.essayTags[this.activeTag]) {
                     this.essayTags[this.activeTag] = {};
                 }
-                this.essayTags[this.activeTag][this.activeEssayKey] = {'id': id, title: title};
+                this.essayTags[this.activeTag] = this.jsonUnshift(this.essayTags[this.activeTag], this.activeEssayKey, {'id': id, title: title});
+                console.log(this.essayTags[this.activeTag]);
                 this.log.debug('MarkdownWriterComponent', 'addEssay', {'新建文章id': id});
                 this.refreshEditor();
             }
@@ -311,6 +325,38 @@ export class MarkdownWriter implements OnInit, OnDestroy{
         
     }
 
+    //获取当前标签名
+    getCurrentTagName(): string {
+        let res: string = '';
+        this.tags.forEach((tag) => {
+            if(tag.id === this.activeTag) {
+                res = tag.tag;
+            }
+            return;
+        });
+        return res;
+    }
+
+    //删除某篇文章的目录
+    removeEssayTag(tagid, id) {
+        let essayTaglist = this.essayTags[tagid];
+        if(!essayTaglist || !(id in essayTaglist)) {
+            this.log.warn('MarkdownWriterComponent', 'removeEssayTag', '要删除的文章不存在');
+            return;
+        }
+        delete this.essayTags[tagid][id];
+        let activeOne = '', i = 0;
+        for(const id in essayTaglist) {
+            if(i === 0) {
+                activeOne = id;
+            }else break;
+            i++;
+        }
+        if(activeOne) {
+            this.essayActive(activeOne);
+        }
+    }
+
     //获取文章信息数组用于渲染dom
     jsonToArray(json:any) {
         let res = [];
@@ -320,8 +366,19 @@ export class MarkdownWriter implements OnInit, OnDestroy{
         return res;
     }
 
+    //添加属性到对象头
+    jsonUnshift(json: any, key, val) {
+        let temp = json;
+        json = {};
+        json[key] = val;  
+        Object.keys(temp).forEach((k) => {
+            json[k] = temp[k];
+        });
+        return json;
+    }
+
     //根据文章的状态获取不同的操作
-    getEssayTagFunc(status: number) {
+    getEssayTagFunc(status: number) { 
         let func: DropdownList[] = [];
         switch(status) {
             case constant.isPublish:
@@ -335,14 +392,14 @@ export class MarkdownWriter implements OnInit, OnDestroy{
                 func.push({
                     iconTag: 'reply',
                     content: '发布更新',
-                    func: () => {}
+                    func: () => {this.publish()}
                 });
                 break;
         }
         func.push({
             iconTag: 'folderopen',
             content: '移动文章',
-            func: () => {}
+            func: () => {this.moveEssay()}
         });
         func.push({
             iconTag: 'trash',
@@ -397,7 +454,7 @@ export class MarkdownWriter implements OnInit, OnDestroy{
                         delete this.essayTags[this.activeTag][this.activeEssayKey];
                         this.activeEssayKey = undefined;
                     }
-                    this.init();
+                    this.tagActive(this.activeTag);
                 })
             }},
             content: '确定要删除该文章吗？'
@@ -465,6 +522,70 @@ export class MarkdownWriter implements OnInit, OnDestroy{
             this.alert.show({type: AlertType.Success, msg: '文章保存成功', time: 1000});
         });
     } 
+
+    //移动文章
+    moveEssay() {
+        let options: Option[] = [];
+        this.tags.forEach((item) => {
+            let option: Option = {id: '', name: ''};
+            option.id = item.id;
+            option.name = item.tag;
+            options.push(option);
+        });
+        let model = {options: options, value: this.activeTag};
+        this.dialog.show({
+            confirmBtn: {func: () => {
+                let activeTag = this.activeTag;
+                let activeEssayKey = this.activeEssayKey;
+                if(!activeTag || !activeEssayKey) {
+                    this.log.error('MarkdownWriter', 'moveEssay', '未选择标签及文章');
+                    return;
+                }
+                if(model.value == activeTag) {
+                    this.dialog.close();
+                    return;
+                }
+                this.service.setEssayTag(activeEssayKey, model.value, (err) => {
+                    if(err) {
+                        this.alert.show({type: AlertType.Error, msg: '移动文章失败', time: 1000});
+                        return;
+                    }
+                    this.removeEssayTag(activeTag, activeEssayKey);
+                    this.alert.show({type: AlertType.Success, msg: '移动文章成功', time: 1000});
+                });
+                this.dialog.close();
+            }},
+            content: SelectComponent,
+            params: {model: model}
+        });
+    }
+
+    //修改标签
+    modifyTag() {
+        let currentTag = this.getCurrentTagName();
+        let model = {text: currentTag, tip: '请输入新标签名'};
+        this.dialog.show({
+            confirmBtn: {func: () => {
+                let activeTag = this.activeTag;
+                if(!activeTag) {
+                    this.log.error('MarkdownWriter', 'modifyTag', '未选择标签');
+                    return;
+                }
+                this.service.modifyTag(activeTag, model.text, (err) => {
+                    if(err) {
+                        this.alert.show({type: AlertType.Error, msg: '修改标签失败', time: 1000});
+                        return;
+                    }
+                    this.setTag(activeTag, model.text);
+                    this.alert.show({type: AlertType.Success, msg: '标签更新', time: 1000});
+                });
+                this.dialog.close();
+            }},
+            title: '修改标签',
+            content: ModifyComponent,
+            params: {model: model}
+        });
+    }
 }
 
 export interface EssayModel {

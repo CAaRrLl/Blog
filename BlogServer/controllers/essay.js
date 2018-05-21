@@ -15,6 +15,7 @@ var deleteTag = require('../model/tag').delete_tag;
 var deleteEssay = require('../model/essay').essay_drop;
 var update_essay = require('../model/essay').update_essay;
 var essay_publish = require('../model/essay').essay_publish;
+var update_essay_tag = require('../model/essay').update_essay_tag;
 
 function get_tag_list(hostid) {
     if(!hostid) return;
@@ -345,10 +346,27 @@ var get_the_essay = function(req, res, next) {
         fb(res, code.success, '', result[0]);
     })
     .catch(function(err) {
-        if(err) {
-            logger.error('获取文章数据库出错', err);
-            fb(res, code.dataBaseErr, '数据库出错', {});
-        }
+        logger.error('获取文章数据库出错', err);
+        fb(res, code.dataBaseErr, '数据库出错', {});
     });
 }
 exports.get_the_essay = get_the_essay;
+
+var set_essay_tag = function(req, res, next) {
+    var id = req.query.id;
+    var tagid = req.query.tagid;
+    if(!id || !tagid) {
+        logger.error('设置文章标签参数错误');
+        fb(res, code.paramsErr, '请求参数错误', {});
+        return;
+    }
+    update_essay_tag(id, tagid, function(err, result) {
+        if(err) {
+            logger.error('设置文章标签数据库出错', err);
+            fb(res, code.dataBaseErr, '数据库出错', {});
+            return;
+        }
+        fb(res, code.success, '', {});
+    })
+}
+exports.set_essay_tag = set_essay_tag;

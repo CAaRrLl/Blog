@@ -135,4 +135,16 @@ export class EssayService {
             }
         )
     }
+
+    setEssayTag(essayid: string, tagid: string, feedback: Function) {
+        this.http.getJson(api.setEssayTag, {id: essayid, tagid: tagid}).subscribe(
+            res => {
+                this.log.debug('EssayService', 'setEssayTag', res)
+                feedback(null);
+            },err => {
+                this.log.error('EssayService', 'setEssayTag', err);
+                feedback(err);                
+            }
+        )
+    }
 }

@@ -10,6 +10,8 @@ import { SearchComponent } from "./search/search.component";
 import { DialogComponent } from "./dialog/dialog.component";
 import { SiderbarComponent } from "./sidebar.component/siderbar.component";
 import { InsertImgComponent } from "../user/component/insert-img/insert.img";
+import { ModifyComponent } from "../user/component/modify.component/modify.component";
+import { SelectComponent } from "./select.component/select.component";
 
 @NgModule({
     declarations:[
@@ -20,7 +22,9 @@ import { InsertImgComponent } from "../user/component/insert-img/insert.img";
         SearchComponent,
         DialogComponent,
         SiderbarComponent,
-        InsertImgComponent
+        InsertImgComponent,
+        ModifyComponent,
+        SelectComponent
     ],
     imports:[
         FormsModule,
@@ -37,7 +41,9 @@ import { InsertImgComponent } from "../user/component/insert-img/insert.img";
         SiderbarComponent
     ],
     entryComponents: [
-        InsertImgComponent
+        InsertImgComponent,
+        ModifyComponent,
+        SelectComponent
     ]
 })
 

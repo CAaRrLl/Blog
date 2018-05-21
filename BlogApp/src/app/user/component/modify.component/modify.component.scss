@@ -1,0 +1,23 @@
+.container {
+    text-align: center;
+    position: relative;
+    .tip {
+        width: 2rem;
+        height: 100%;
+        background-color: #adadad;
+        color: #828282;
+        display: inline-flex;
+        position: absolute;
+        justify-content: center;
+        align-items: center;
+    }
+    .modify {
+        width: 12rem;
+        height: 2rem;
+        padding-left: 2rem;
+        &:focus {
+            outline: none;
+        }
+    }
+}
+

@@ -25,6 +25,7 @@ export interface DialogModel {
     cancelBtn?: button;
     content: string|Type<any>;
     params?: any;               //键值对
+    title?: string
 }
 
 interface button{

@@ -394,8 +394,8 @@
             {id:2,tag:'css学习笔记'}
         ],
         essaytaglist:[
-            {id: 12, title: 'css学习笔记一'},
-            {id: 13, title: 'css学习笔记二'}
+            {id: 12, title: 'css学习笔记一',status: 1},
+            {id: 13, title: 'css学习笔记二',status: 1}
         ],
         firstessay:{
             id:12,
@@ -498,6 +498,36 @@
 |id|是|String|文章标识符|
 |title|是|String|文章标题|
 |text|是|String|文章|
+
+``response``
+```
+成功
+{
+    code:1000,
+    msg:"",
+    data:{}
+}
+失败
+{
+    code:2006,
+    msg:"文章不存在",
+    data:{}
+}
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
+### 设置文章标签
+``GET``
+``api/essay/settag``
+``params``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|id|是|String|文章标识符|
+|tagid|是|String|标签标识符|
 
 ``response``
 ```

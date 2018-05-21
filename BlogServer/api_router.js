@@ -1,4 +1,3 @@
-
 var express = require('express');
 var check_auth = require('./middleware/auth').check_auth;
 var signUp = require('./controllers/sign').signUp;
@@ -15,6 +14,7 @@ var deleteEssay = require('./controllers/essay').delete_essay;
 var uploadFile = require('./controllers/file').upload_file;
 var save_essay = require('./controllers/essay').save_essay;
 var get_the_essay = require('./controllers/essay').get_the_essay;
+var set_essay_tag = require('./controllers/essay').set_essay_tag;
 var publish = require('./controllers/essay').publish;
 
 var multipart = require('connect-multiparty');
@@ -54,5 +54,6 @@ router.get('/essay/draft');
 router.post('/essay/save', check_auth, save_essay);
 router.get('/essay/publish', check_auth, publish);
 router.get('/essay/getcollection');
+router.get('/essay/settag', check_auth, set_essay_tag);
 
 module.exports=router;

@@ -31,6 +31,20 @@ var update_essay=function(id,title,essay,size,callback){
 }
 exports.update_essay=update_essay;
 
+//设置文章标签
+var update_essay_tag=function(id, tagid, callback){
+    var sql=`update essay set tag=? where id=?`;
+    db.queryQarams(sql,[tagid, id],function(err,result){
+        if(err){
+            callback(err, null);
+            return;
+        }
+        logger.debug(result);
+        callback(null, result);
+    })
+}
+exports.update_essay_tag=update_essay_tag;
+
 //发布文章
 var essay_publish=function(id,callback){
     var sql=`update essay set status=1 where id =?`;
@@ -111,7 +125,7 @@ exports.get_essay=get_essay;
 
 //获取用户某个标签下的文章
 var get_essay_tag=function(hostid,tag,callback){
-    var sql=`select id, title from essay where hostid=? and tag=? and status!=-1 order by updatetime desc`;
+    var sql=`select id, title, status from essay where hostid=? and tag=? and status!=-1 order by updatetime desc`;
     db.queryQarams(sql,[hostid, tag],function(err,result,fields){
         if(err){
             callback(err,null);
