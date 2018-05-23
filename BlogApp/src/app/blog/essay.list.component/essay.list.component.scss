@@ -1,0 +1,113 @@
+$deepgrey: #555555;;
+$grey: #6d6d6d;
+$lightgrey: #acacac;
+.container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 1rem;
+    box-sizing: border-box;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    .content {
+        display: inline-flex;
+        flex-direction: column;
+        text-align: left;
+        .head-line {
+            font-size: 0.8rem;
+            color: $deepgrey;
+            .head-img {
+                height: 3vh;
+                border-radius: 1rem;
+                border: 1px solid #dedede;
+                vertical-align: middle;
+                cursor: pointer;
+            }
+            .tip {
+                display: inline-block;
+                vertical-align: middle;
+                margin-left: 0.2rem;
+                margin-right: 0.2rem;
+                &:nth-child(2) {
+                    cursor: pointer;
+                }
+                &:last-child {
+                    color: $grey;
+                    @media screen and (max-width: 768px){
+                        display: none;
+                    }
+                }
+            }
+        }
+        .title {
+            margin-top: 0.4rem;
+            margin-bottom: 0.4rem;
+            font-size: 1.2rem;
+            text-decoration: none;
+            @media screen and (min-width: 769px){
+                font-weight: bold;
+            }
+            &:hover {
+                text-decoration: underline;
+            }
+            &:link {
+                color: $deepgrey;
+                @media screen and (max-width: 768px){
+                    color: black;
+                }
+            }
+            &:visited {
+                color: $lightgrey;
+                @media screen and (max-width: 768px){
+                    color: $deepgrey;
+                }
+            }
+        }
+        .text {
+            font-size: 0.85rem;
+            color: $deepgrey;
+            margin-top: 0.1rem;
+            margin-bottom: 0.1rem;
+            margin-right: 0.5rem;
+            @media screen and (max-width: 768px){
+                color: $grey;
+            }
+        }
+        .icon {
+            margin-top: 0.4rem;
+            font-size: 0.8rem;
+            color: $lightgrey;
+            .item {
+                cursor: pointer;
+                padding-right: 0.4rem;
+                &:first-child {
+                    padding-left: 0;
+                }
+                &:last-child {
+                    cursor: default;
+                    &:hover {
+                        color: $lightgrey;
+                    }
+                }
+                &:hover{
+                    color: $grey
+                }
+                .pos {
+                    padding-right: 0.2rem;
+                }
+            }
+        }
+    }
+    .img-container {
+        height: 13vh;
+        min-width: 25%;
+        border: 1px solid #ececec;
+        border-radius: 2px;
+        overflow: hidden;
+        cursor: pointer;
+        .img {
+            height: 100%;
+        }
+    }
+}

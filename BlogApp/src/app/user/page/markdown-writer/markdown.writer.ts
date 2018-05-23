@@ -70,6 +70,9 @@ export class MarkdownWriter implements OnInit, OnDestroy{
     titleSubscription: Subscription;
     essaySubscription: Subscription;
 
+    showSavingTip: boolean = false;
+    isSaving: boolean = false;
+
     ngOnInit() {
         this.titleSubscription = Observable.fromEvent(this.essayTitleRef.nativeElement, 'input').debounceTime(2000)
         .subscribe(e => {
@@ -77,7 +80,7 @@ export class MarkdownWriter implements OnInit, OnDestroy{
             this.updateToActiveEssay({'title': title});
             this.saveEssay();
         });
-        this.essaySubscription = Observable.fromEvent(this.essayContentRef.nativeElement, 'input').debounceTime(5000)
+        this.essaySubscription = Observable.fromEvent(this.essayContentRef.nativeElement, 'input').debounceTime(4000)
         .subscribe(e => {
             let text = ((e as Event).target as HTMLTextAreaElement).value;
             this.updateToActiveEssay({'text': text, 'size': text.length});
@@ -510,6 +513,8 @@ export class MarkdownWriter implements OnInit, OnDestroy{
             this.log.warn('MarkdownWriter', 'saveEssay', '要保存的文章id不存在');
             return;
         }
+        this.showSavingTip = true;
+        this.isSaving = true;
         this.service.saveEssay({
             id: this.activeEssayKey,
             title: this.essayData.title || '',
@@ -519,7 +524,10 @@ export class MarkdownWriter implements OnInit, OnDestroy{
                 this.alert.show({type: AlertType.Error, msg: '文章保存失败', time: 1000});
                 return;
             }
-            this.alert.show({type: AlertType.Success, msg: '文章保存成功', time: 1000});
+            this.isSaving = false;
+            setTimeout(() => {
+                this.showSavingTip = false;
+            }, 2000);
         });
     } 
 
@@ -585,6 +593,15 @@ export class MarkdownWriter implements OnInit, OnDestroy{
             content: ModifyComponent,
             params: {model: model}
         });
+    }
+
+    //ctrl + save 保存文章
+    CtrlAndS(event) {
+        let e = event || window.event;
+        if(e.keyCode == 83 && e.ctrlKey) {
+            e.preventDefault();
+            this.saveEssay();
+        }
     }
 }
 

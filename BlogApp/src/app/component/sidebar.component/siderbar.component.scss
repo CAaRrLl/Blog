@@ -8,6 +8,7 @@ $time: 0.5s;
 .siderbar-background {
   position: fixed;
   opacity: 0;
+  z-index: 1;
   background-color: black;
   top: 0;
   bottom: 0;
@@ -19,11 +20,11 @@ $time: 0.5s;
 }
 
 .siderbar {
+  position: fixed;
   top: 0;
   height: 100%;
   width: 60vw;
   transform: translateX(-60vw);
-  position: absolute;
   color: white;
   background-color: #001529;   
   font-size: 4.5vw;

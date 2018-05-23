@@ -1,0 +1,33 @@
+.nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+.container {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    margin-top: 6rem;
+    background-color: #f6f6f6;
+    .left {
+        position: relative;
+        display: inline-block;
+        width: 35rem;
+        height: 80rem;
+        @media screen and (max-width: 768px){
+            width: 100%;
+        }
+    }
+    .right {
+        position: relative;
+        display: inline-block;
+        width: 20rem;
+        height: 50rem;
+        vertical-align: top;
+        @media screen and (max-width: 768px){
+            display: none;
+        }
+    }
+}
+

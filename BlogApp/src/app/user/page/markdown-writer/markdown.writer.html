@@ -33,6 +33,7 @@
     <div class="writer-container writer-right" [style.width]="isPreview?'50%':'60%'"
         [style.visibility]="activeTag&&activeEssayKey?'visible':'hidden'">
         <input class="editor-title" [(ngModel)]="essayData.title" #essayTitleRef>
+        <div class="saving-tip" *ngIf="showSavingTip">{{isSaving ? '正在保存...': '已保存'}}</div>
         <div class="editor-tool">
             <app-icon class="tool-icon" style="float: left" tag="img" (click)="insertImg()"></app-icon>
             <app-icon class="tool-icon" style="float: left" tag="reply" (click)="undo()"></app-icon>
@@ -41,7 +42,7 @@
             <app-icon class="tool-icon" style="float: right" tag="columns" (click)="preview()"></app-icon>
             <app-icon class="tool-icon" style="float: right" tag="save" (click)="saveEssay()"></app-icon>
         </div>
-        <textarea class="editor" [(ngModel)]="essayData.text" #essayContentRef></textarea>
+        <textarea class="editor" [(ngModel)]="essayData.text" (keydown)="CtrlAndS($event)" #essayContentRef></textarea>
     </div>
     <div class="writer-container writer-end" [style.display]="isPreview?'inline-block':'none'">
         <app-html-render [html]="essayData.text" [title]="essayData.title"></app-html-render>
