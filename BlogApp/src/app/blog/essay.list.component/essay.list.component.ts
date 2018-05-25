@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
     selector: 'app-essay-list',
@@ -7,11 +7,19 @@ import {Component} from '@angular/core';
 })
 
 export class EssayListComponent {
-    getArray(n) {
-        let arr = [];
-        for(let i=0;i<n;i++) {
-            arr.push(i);
-        }
-        return arr;
-    }
+
+    @Input() model: EssayListModel[] = [];
+}
+
+export interface EssayListModel {
+    headUrl: string,
+    author: string,
+    day: string,
+    time: string,
+    title: string,
+    text: string,
+    visited: number,
+    msg: number,
+    collected: number,
+    imgUrl?: string
 }

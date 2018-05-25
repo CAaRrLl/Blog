@@ -122,7 +122,7 @@
 ```
 ### 获取已发布文章列表
 ``GET``
-``api/essay/getpublish``
+````
 
 ``params``
 |字段|必选项|类型|描述|
@@ -142,22 +142,32 @@
             {
                 id:12,
                 hostid:3123,
+                hostname:"得到",
+                hosthead: ''
                 title:"web响应式开发",
                 text:"内容靠脑补",    
                 size:5,
                 readtime:11,
+                collected: 2,
                 remark:"很棒",
+                msg: 10,
+                imgUrl: '',
                 createtime:1512123213123,
                 updatetime:1512123213123
             },
              {
-                id:13,
-                hostid:331232,
-                title:"web自适应开发",
-                text:"内容靠脑补",   
+                id:12,
+                hostid:3123,
+                hostname:"得到",
+                hosthead:""
+                title:"web响应式开发",
+                text:"内容靠脑补",    
                 size:5,
-                readtime:22,
+                readtime:11,
+                collected: 2,
                 remark:"很棒",
+                msg: 10,
+                imgUrl: '',
                 createtime:1512123213123,
                 updatetime:1512123213123
             }

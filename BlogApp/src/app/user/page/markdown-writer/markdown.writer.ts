@@ -11,7 +11,6 @@ import { DialogService } from '../../../component/dialog/dialog.service';
 import { Observable, Subscription } from 'rxjs/Rx'; 
 import { AbstractExtendedWebDriver } from 'protractor/built/browser';
 import { InsertImgComponent } from '../../component/insert-img/insert.img';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { ModifyComponent } from '../../component/modify.component/modify.component';
 import { SelectComponent, SelectModel, Option } from '../../../component/select.component/select.component';
 
@@ -116,7 +115,7 @@ export class MarkdownWriter implements OnInit, OnDestroy{
                     return;
                 }
                 res.essaytaglist.forEach(val => {
-                    let essayTag = {id: val.id, title: val.title};
+                    let essayTag = {id: val.id, title: val.title, status: val.status};
                     this.essayTags[this.activeTag][val.id] = essayTag;
                 });
                 if(!res.firstessay) {

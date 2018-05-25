@@ -9,12 +9,11 @@
     width: 100%;
     text-align: center;
     margin-top: 6rem;
-    background-color: #f6f6f6;
+    background-color: #f0f2f5;
     .left {
         position: relative;
         display: inline-block;
         width: 35rem;
-        height: 80rem;
         @media screen and (max-width: 768px){
             width: 100%;
         }
@@ -23,11 +22,20 @@
         position: relative;
         display: inline-block;
         width: 20rem;
-        height: 50rem;
         vertical-align: top;
         @media screen and (max-width: 768px){
             display: none;
         }
     }
 }
-
+.load-next {
+    width: 2rem;
+    height: 2rem;
+    background-color: white;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-radius: 2rem;
+    box-shadow: 0px 1px 5px 1px #999999;
+}

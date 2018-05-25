@@ -77,11 +77,12 @@ exports.essay_drop=essay_drop;
 
 //获取已发布文章
 var get_publish=function(size,pos,search,callback){
-    var get_essay_sql=`select * from essay where text like '%?%' or title like '%?%' and status=1 order by updatetime limit ?,?`;
-    var get_count_sql=`select count(*) from essay where text like '%?%' or title like '%?%' and status=1`;
+    var get_essay_sql=`select * from essay where ${search?'text like %?% or title like %?% and':''} status=1 order by updatetime desc limit ?,?`;
+    var get_count_sql=`select count(*) as count from essay where ${search?'text like %?% or title like %?% and':''} status=1`;
     var get_essay=function(){
         return new Promise(function(resolve,reject){
-            db.queryQarams(get_essay_sql,[search,search,pos-1,size],
+            var params = search? [search,search,size*(pos-1), +size]: [size*(pos-1), +size]
+            db.queryQarams(get_essay_sql, params,
                 function(err,result,fields){
                     if(err){
                         reject(err);
@@ -92,7 +93,8 @@ var get_publish=function(size,pos,search,callback){
     }
     var get_count=function(){
         return new Promise(function(resolve,reject){
-            db.queryQarams(get_count_sql,[search,search],
+            var params = search? [search, search]: []
+            db.queryQarams(get_count_sql, params,
                 function(err,result,fields){
                     if(err){
                         reject(err);
@@ -139,10 +141,10 @@ exports.get_essay_tag=get_essay_tag;
 //获取我的文章列表,type=1已发布|type=0草稿
 var get_myessay=function(hostid,pos,size,type,callback){
     var get_myessay_sql=`select * from essay where hostid=? and status=? order by updatetime limit ?,?`;
-    var get_count_sql=`select count(*) from essay where hostid=? and status=?`;
+    var get_count_sql=`select count(*) as count from essay where hostid=? and status=?`;
     var get_myessay=function(){
         return new Promise(function(resolve,reject){
-            db.queryQarams(get_myessay_sql,[hostid,type,pos-1,size],
+            db.queryQarams(get_myessay_sql,[hostid,type,pos-1,Number(size)],
                 function(err,result,fields){
                     if(err){
                         reject(err);

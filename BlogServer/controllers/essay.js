@@ -1,6 +1,5 @@
 var logger = require('../common/logger').logger;
 var code = require('../common/const').code;
-var auth = require('../middleware/auth').get_session;
 var addTag = require('../model/tag').add_tag;
 var getTag = require('../model/tag').get_tag;
 var getEssayTag = require('../model/essay').get_essay_tag;
@@ -16,6 +15,8 @@ var deleteEssay = require('../model/essay').essay_drop;
 var update_essay = require('../model/essay').update_essay;
 var essay_publish = require('../model/essay').essay_publish;
 var update_essay_tag = require('../model/essay').update_essay_tag;
+var get_publish = require('../model/essay').get_publish;
+var get_user = require('../model/user').get_user;
 
 function get_tag_list(hostid) {
     if(!hostid) return;
@@ -370,3 +371,72 @@ var set_essay_tag = function(req, res, next) {
     })
 }
 exports.set_essay_tag = set_essay_tag;
+
+function get_publish_merge(essayData) {
+    var p = new Promise(function(resolve, reject) {
+        get_user(essayData.hostid, function(err, result) {
+            if(err) {
+                reject({feedback:[code.dataBaseErr, '数据库出错', {}], err: err});
+                return;
+            }
+            var name = result[0].name || '';
+            var portrait = result[0].portrait || '';
+            if(!name) {
+                logger.warn('用户名未知');
+            }
+            essayData.hostname = name;
+            essayData.hosthead = portrait;
+            var reg = /!\[[\u4e00-\u9fa5a-z0-9.]+\]\(([^()]+)\)/i;
+            var match = reg.exec(essayData.text);
+            if(match && match.length == 2) {
+                essayData.imgUrl = match[1];
+            }else {
+                essayData.imgUrl = '';
+            }
+            essayData.text = essayData.text.length > 90? essayData.text.substr(0, 90) + '...': essayData.text;
+            resolve(essayData);
+        })
+    });
+    return p;
+}
+
+var get_publish_essay = function(req, res, next) {
+    var size = req.query.size;
+    var pos = req.query.pos;
+    var search = req.query.search;
+    search = search || '';
+    if(!size || !pos) {
+        logger.error('获取发布文章列表参数错误');
+        fb(res, code.paramsErr, '请求参数错误', {});
+        return;
+    }
+    get_publish(size, pos, search, function(err, result) {
+        if(err) {
+            logger.error('获取发布文章列表数据库出错', err);
+            return;
+        }
+        if(result.length !== 2) {
+            logger.error('获取发布文章列表数据不完整');
+            fb(res, code.dataBaseErr, '数据库错误', {});
+            return;
+        }
+        var count = result[1][0].count;
+        var essayDataList = result[0];
+        if(essayDataList.length <= 0) {
+            fb(res, code.success, '', {essays: [], count: count});
+            return;
+        }
+        var promiseAll = [];
+        essayDataList.forEach(function(essayData) {
+            promiseAll.push(get_publish_merge(essayData));
+        });
+        Promise.all(promiseAll).then(function(data) {
+            logger.debug('获取发布文章最终数据', data);
+            fb(res, code.success, '', {essays: data, count: count});
+        }).catch(function(err){
+            logger.error('获取发布文章最终数据出错', err.err);
+            fb(res, ...err[feedback]);
+        });
+    });
+}
+exports.get_publish_essay = get_publish_essay;

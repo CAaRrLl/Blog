@@ -16,6 +16,7 @@ var save_essay = require('./controllers/essay').save_essay;
 var get_the_essay = require('./controllers/essay').get_the_essay;
 var set_essay_tag = require('./controllers/essay').set_essay_tag;
 var publish = require('./controllers/essay').publish;
+var get_publish_essay = require('./controllers/essay').get_publish_essay;
 
 var multipart = require('connect-multiparty');
 
@@ -46,7 +47,7 @@ router.get('/essay/essaytag', check_auth, getEssayTag);
 router.get('/essay/modifytag', check_auth, modifyTag);
 router.get('/essay/deletetag', check_auth, deleteTag);
 router.get('/essay/delete', check_auth, deleteEssay);
-router.get('/essay/getpublish');
+router.get('/essay/getpublish', get_publish_essay);
 router.get('/essay/getmarkdown', check_auth, get_the_essay);
 router.post('/essay/gethtml');
 router.post('/essay/new', check_auth, newEssay);

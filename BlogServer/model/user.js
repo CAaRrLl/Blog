@@ -91,6 +91,18 @@ var check_user=function(account, password, callback) {
 }
 exports.check_user=check_user;
 
+var get_user = function(id, callback) {
+    var sql = `select * from user where id = ?`;
+    db.queryQarams(sql, [id], function(err, result) {
+        if(err) {
+            callback(err, null);
+            return;
+        }
+        callback(err, result);
+    });
+}
+exports.get_user = get_user;
+
 var table=`
 create table if not exists user(
     id int auto_increment primary key,
@@ -98,7 +110,7 @@ create table if not exists user(
     email varchar(20) not null unique,    
     phone varchar(20) not null unique,   
     password varchar(20) not null,      
-    portrait varchar(50),    
+    portrait varchar(100),    
     status int default 1,            
     level int default 1,              
     remark varchar(30),               

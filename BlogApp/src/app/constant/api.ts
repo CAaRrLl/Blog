@@ -18,4 +18,5 @@ export const api={
     publish: `${prefix}/essay/publish`,   //发布文章
     getEssay: `${prefix}/essay/getmarkdown`, //获取文章
     setEssayTag: `${prefix}/essay/settag`,  //修改文章标签
+    getpublish: `${prefix}/essay/getpublish`, //获取已发布文章列表
 }
