@@ -9,7 +9,8 @@ var code = {
     paramsErr: 2005,
     dataBaseErr: 2008,
     sessionExpire: 2009,
-    signForge: 2010
+    signForge: 2010,
+    noAuth: 2011
 }
 
 exports.code = code;

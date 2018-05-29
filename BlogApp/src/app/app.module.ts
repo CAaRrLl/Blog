@@ -13,6 +13,7 @@ import { DialogService } from './component/dialog/dialog.service';
 import { LocalStorageService } from './service/localstorage.service';
 import { AuthGuard } from './service/auth.guard.service';
 import { SiderbarService } from './component/sidebar.component/siderbar.service';
+import { SessionStorage } from './service/sessionStorage.service';
 
 @NgModule({
     declarations:[
@@ -32,6 +33,7 @@ import { SiderbarService } from './component/sidebar.component/siderbar.service'
         LocalStorageService,
         AuthGuard,
         SiderbarService,
+        SessionStorage,
         {provide:HTTP_INTERCEPTORS,useClass:MyInterceptor,multi:true}
     ],
     bootstrap:[AppComponent]

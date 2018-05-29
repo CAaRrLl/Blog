@@ -280,19 +280,31 @@ exports.delete_tag = delete_tag;
 
 var delete_essay = function(req, res, next) {
     var essayid = req.query.essayid;
+    var session = get_session(req);
+    var hostid = session && session.id;
     if(!essayid) {
         logger.error('删除文章参数错误');
         fb(res, code.paramsErr, '请求参数错误', {});
         return;
     }
     logger.debug('删除文章id', essayid);
-    deleteEssay(essayid, function(err) {
+    if(!hostid) {
+        logger.error('用户不存在');
+        fb(res, code.noAuth, '没有权限', {});
+        return;
+    }   
+    deleteEssay(essayid, hostid, function(err, result) {
         if(err) {
             logger.error('删除文章错误', err);
             fb(res, code.dataBaseErr, '数据库出错', {});
             return;
         }
-        fb(res, code.success, {});
+        if(result['affectedRows'] == 0) {
+            logger.warn('无权限删除文章', err);
+            fb(res, code.noAuth, '没有权限', {});
+        }else {
+            fb(res, code.success, {});
+        }
     });  
 }
 exports.delete_essay = delete_essay;
@@ -386,13 +398,14 @@ function get_publish_merge(essayData) {
             }
             essayData.hostname = name;
             essayData.hosthead = portrait;
-            var reg = /!\[[\u4e00-\u9fa5a-z0-9.]+\]\(([^()]+)\)/i;
+            var reg = /!\[[\u4e00-\u9fa5\d\w\(\)._]+\]\(([^()]+)\)/i;
             var match = reg.exec(essayData.text);
             if(match && match.length == 2) {
                 essayData.imgUrl = match[1];
             }else {
                 essayData.imgUrl = '';
             }
+            essayData.text = essayData.text.replace(/!\[([\u4e00-\u9fa5\d\w\(\)._]+)\]\([^()]+\)/gi, '$1');
             essayData.text = essayData.text.length > 90? essayData.text.substr(0, 90) + '...': essayData.text;
             resolve(essayData);
         })

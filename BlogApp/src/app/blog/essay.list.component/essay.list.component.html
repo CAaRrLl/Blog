@@ -5,7 +5,7 @@
             <span class="tip">{{item.author}}</span>
             <span class="tip">{{item.day}} {{item.time}}</span>
         </div>
-        <a href="javascript:void(0)" class="title">{{item.title}}</a>
+        <a href="javascript:void(0)" class="title" (click)="toReader()">{{item.title}}</a>
         <p class="text">{{item.text}}</p>
         <div class="icon">
             <span class="item"><app-icon tag="edit" class="pos"></app-icon>{{item.visited}}</span>

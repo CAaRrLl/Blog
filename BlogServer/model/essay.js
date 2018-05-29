@@ -61,16 +61,16 @@ var essay_publish=function(id,callback){
 exports.essay_publish=essay_publish;
 
 //删除文章 todo 事务
-var essay_drop=function(id,callback){
-    var sql=`update essay set status=-1 where id=?`;
+var essay_drop=function(id, hostid, callback){
+    var sql=`update essay set status=-1 where id=? and hostid=?`;
     var now=new Date().getTime();
-    db.queryQarams(sql,[id],function(err,result,fields){
+    db.queryQarams(sql,[id, hostid],function(err,result,fields){
         if(err){
-            callback(err);
+            callback(err, null);
             return;
         }
         logger.debug(result);        
-        callback(null);
+        callback(null, result);
     })
 }
 exports.essay_drop=essay_drop;

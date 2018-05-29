@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import { route } from '../../constant/router';
 
 @Component({
     selector: 'app-essay-list',
@@ -9,6 +10,10 @@ import {Component, Input} from '@angular/core';
 export class EssayListComponent {
 
     @Input() model: EssayListModel[] = [];
+
+    toReader() {
+        
+    }
 }
 
 export interface EssayListModel {

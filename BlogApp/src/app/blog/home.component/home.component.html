@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="left">
+        <app-essay-list [model]="essaylistModel"></app-essay-list>
+        <div class="load-next" [style.visibility]="isloadNext? 'visible': 'hidden'" #loadNextMark>
+            <app-icon tag="spin4" style="display: inline-flex"></app-icon>
+        </div>
+    </div>
+    <div class="right"></div>
+</div>

@@ -12,6 +12,7 @@ import { SiderbarComponent } from "./sidebar.component/siderbar.component";
 import { InsertImgComponent } from "../user/component/insert-img/insert.img";
 import { ModifyComponent } from "../user/component/modify.component/modify.component";
 import { SelectComponent } from "./select.component/select.component";
+import { HtmlRender } from "./html-render/html.render";
 
 @NgModule({
     declarations:[
@@ -24,7 +25,8 @@ import { SelectComponent } from "./select.component/select.component";
         SiderbarComponent,
         InsertImgComponent,
         ModifyComponent,
-        SelectComponent
+        SelectComponent,
+        HtmlRender
     ],
     imports:[
         FormsModule,
@@ -38,7 +40,8 @@ import { SelectComponent } from "./select.component/select.component";
         AlertComponent,
         SearchComponent,
         DialogComponent,
-        SiderbarComponent
+        SiderbarComponent,
+        HtmlRender
     ],
     entryComponents: [
         InsertImgComponent,
