@@ -8,6 +8,9 @@ import { CommonModule } from '@angular/common';
 import { EssayListComponent } from './essay.list.component/essay.list.component';
 import { EssayReaderComponent } from './essay.reader.component/essay.reader.component';
 import { HomeComponent } from './home.component/home.component';
+import { MyInfoComponent } from './my-home/my-info/my.info.component';
+import { MyEssayComponent } from './my-home/my-essay/my.essay.component';
+import { MyHomeComponent } from './my-home/my.home.component';
 
 @NgModule({
     declarations:[
@@ -15,7 +18,10 @@ import { HomeComponent } from './home.component/home.component';
         EssayListComponent,
         BlogComponent,
         EssayReaderComponent,
-        HomeComponent
+        HomeComponent,
+        MyHomeComponent,
+        MyInfoComponent,
+        MyEssayComponent
     ],
     imports:[
         CommonModule,

@@ -1,0 +1,28 @@
+.tag {
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    background-color: white;
+    margin-top: 0.3rem;
+    padding: 1rem;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    padding-bottom: 0;
+    li {
+        float: left;
+        padding: 0.5rem;
+        border: 1px solid #dedede;
+        color: #9e9e9e;
+        margin-right: 1rem;
+        border-radius: 5px;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        &:hover {
+            color: black;
+            border-color: #9e9e9e;
+        }
+    }
+}
+.essay {
+    padding-bottom: 5rem;
+}

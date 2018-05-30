@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="left">
+        <div class="top">
+            <img class="head" src="../../../../assets/img/note.png">
+            <div class="data-sum">
+                <h3>CAaRrLl</h3>
+                <p>附件是打开了JFK解开了士大夫可是到了六十反抗类毒素立刻弗兰克塑料袋封口老师的课放到</p>
+                <ul>
+                    <li>关注 ><div>321312</div></li>
+                    <li>粉丝 ><div>321312</div></li>
+                    <li>文章<div>321312</div></li>
+                    <li>字数<div>321312</div></li>
+                    <li>收获喜欢<div>321312</div></li>
+                </ul>
+            </div>
+        </div>
+        <ul class="nav">
+            <li routerLink="./essay" [class.nav-active]="isNavActive(NavEnum.Essay)" (click)="changeNav(NavEnum.Essay)">文章</li>
+            <li routerLink="./info" [class.nav-active]="isNavActive(NavEnum.Info)" (click)="changeNav(NavEnum.Info)">个人资料</li>
+        </ul>
+        <router-outlet></router-outlet>
+    </div>
+    <div class="right"></div>
+</div>

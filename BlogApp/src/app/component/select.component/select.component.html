@@ -1,5 +1,7 @@
-<select class="select" (change)="doSelect($event.target)">
-    <option *ngFor="let op of model.options" [id]="op.id" [selected]="isSelected(op.id)">
-        {{op.name}}
-    </option>
-</select>
+<div class="container">
+    <select class="select" (change)="doSelect($event.target)">
+        <option *ngFor="let op of model.options" [id]="op.id" [selected]="isSelected(op.id)">
+            {{op.name}}
+        </option>
+    </select>
+</div>

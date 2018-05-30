@@ -563,6 +563,7 @@ export class MarkdownWriter implements OnInit, OnDestroy{
                 });
                 this.dialog.close();
             }},
+            title: '选择目标标签',
             content: SelectComponent,
             params: {model: model}
         });

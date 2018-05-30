@@ -74,6 +74,7 @@ export class DropdownComponent implements OnChanges{
         for(let i = 0; i< this.content.length; i++) {
             if(this.content[i].content === event.target.id) {
                 this.doSomething(this.content[i].func);
+                this.isAppear = false;
                 break;
             }
         }
