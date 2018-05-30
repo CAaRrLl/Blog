@@ -61,10 +61,10 @@ export class DialogComponent{
             setTimeout(() => {
                 let dialogContainer = this.el.nativeElement.querySelector('.dialog-container') as HTMLDivElement;
                 let dialog = this.el.nativeElement.querySelector('.dialog') as HTMLDivElement;
-                dialogContainer.addEventListener('click', () => {
+                dialogContainer && dialogContainer.addEventListener('click', () => {
                     this.cancel();
                 });
-                dialog.addEventListener('click', (event) => {
+                dialog && dialog.addEventListener('click', (event) => {
                     let e = event ? event : window.event;
                     e.stopPropagation();
                 });

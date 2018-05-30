@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Renderer2, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, Renderer2, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { route } from '../../constant/router';
 import { Logger } from '../../service/logger.service';
@@ -17,7 +17,7 @@ import { DialogService } from '../../component/dialog/dialog.service';
     styleUrls: ['./navigation.component.scss']
 })
 
-export class NavigationComponent implements OnInit{
+export class NavigationComponent implements OnInit, OnDestroy{
     isUser: boolean = false;
 
     iconSrc: string = '../../../assets/img/Book.png';
@@ -41,6 +41,11 @@ export class NavigationComponent implements OnInit{
     //进入博客首页
     toHome = () => {
         this.router.navigate([route.blog]);
+    }
+
+    //进入我的主页
+    toMyHome = () => {
+        this.router.navigateByUrl(route.myhome);
     }
 
     //写文章
@@ -111,7 +116,7 @@ export class NavigationComponent implements OnInit{
     //初始化用户导航
     initUserNavi() {
         this.userNavi = [
-            {iconTag: 'home', content: '我的主页'},
+            {iconTag: 'home', content: '我的主页', func: this.toMyHome},
             {iconTag: 'bookmark', content: '收藏的文章'},
             {iconTag: 'logout', content: '注销', func: this.layout}
         ];
@@ -128,7 +133,7 @@ export class NavigationComponent implements OnInit{
             headSrc: '../../../assets/img/default-head.png',
             name: '大哥',
             list: [
-                {iconTag: 'home', content: '我的主页'},
+                {iconTag: 'home', content: '我的主页', func: this.toMyHome},
                 {iconTag: 'bookmark', content: '收藏的文章'},
                 {iconTag: 'logout', content: '注销', func: () => {
                     this.layout();
@@ -166,5 +171,10 @@ export class NavigationComponent implements OnInit{
             }
             i++;
         }
+    }
+
+    ngOnDestroy() {
+        this.siderbar.close();
+        this.dialog.close();
     }
 }

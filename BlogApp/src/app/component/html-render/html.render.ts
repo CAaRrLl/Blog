@@ -12,13 +12,13 @@ export class HtmlRender implements OnChanges{
     @Input() title: string;
 
     ngOnChanges() {
-        this.htmlContainerRef.nativeElement.innerHTML = this.makkdownTohtml();
+        this.htmlContainerRef.nativeElement.innerHTML = this.makedownTohtml();
         if(window['Prism']) {
             window['Prism'].highlightAll();
         }
     }
 
-    makkdownTohtml() {
+    makedownTohtml() {
         if(!this.html) return '';
         let marked = require('marked');
         let html = marked(this.html);

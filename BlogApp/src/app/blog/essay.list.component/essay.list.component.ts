@@ -1,5 +1,7 @@
 import {Component, Input} from '@angular/core';
 import { route } from '../../constant/router';
+import { Router } from '@angular/router';
+import { SessionStorage, KEY } from '../../service/sessionStorage.service';
 
 @Component({
     selector: 'app-essay-list',
@@ -11,12 +13,17 @@ export class EssayListComponent {
 
     @Input() model: EssayListModel[] = [];
 
-    toReader() {
-        
+    constructor(private router: Router, private storage: SessionStorage) {}
+
+    toReader(essayid: string) {
+        if(!essayid) return;
+        this.storage.set(KEY.EssayID, essayid);
+        this.router.navigateByUrl(route.reader);
     }
 }
 
 export interface EssayListModel {
+    id: string,
     headUrl: string,
     author: string,
     day: string,

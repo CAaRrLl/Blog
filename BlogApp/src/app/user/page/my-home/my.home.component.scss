@@ -1,0 +1,63 @@
+.container {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
+    .top {
+        background-color: white;
+        overflow: hidden;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        .head {
+            border-radius: 5rem;
+            border: 1px solid#d5d5d5;
+            width: 5rem;
+            float: left;
+            margin-right: 1.2rem;
+        }
+        .data-sum {
+            float: left;
+            ul {
+                overflow: hidden;
+                list-style: none;
+                padding: 0;
+                li {
+                    float: left;
+                    padding-left: 8px;
+                    padding-right: 8px;
+                    font-size: 13px;
+                    color: #5d5d5d;
+                    border-left: 1px solid #ebebeb;
+                    &:first-child {
+                        border-left: 0;
+                        padding-left: 0;
+                    }
+                    &:nth-child(1) {
+                        cursor: pointer;
+                    }
+                    &:nth-child(2) {
+                        cursor: pointer;
+                    }
+                    div {
+                        color: black;
+                        font-size: 1rem;
+                        margin-top: 5px;
+                    }
+                }
+            }
+        }
+    }
+    .nav {
+        background-color: white;
+        overflow: hidden;
+        list-style: none;
+        padding-left: 0;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+        li {
+            float: left;
+        }
+    }
+}

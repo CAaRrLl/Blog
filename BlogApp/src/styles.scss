@@ -2,6 +2,9 @@
 body {
     -webkit-tap-highlight-color: transparent;
     background-color: #f0f2f5;
+    @media screen and (max-width: 768px){
+      background-color: white;
+    }
 }
 
 /*全局样式*/

@@ -48,7 +48,7 @@ router.get('/essay/modifytag', check_auth, modifyTag);
 router.get('/essay/deletetag', check_auth, deleteTag);
 router.get('/essay/delete', check_auth, deleteEssay);
 router.get('/essay/getpublish', get_publish_essay);
-router.get('/essay/getmarkdown', check_auth, get_the_essay);
+router.get('/essay/getmarkdown', get_the_essay);
 router.post('/essay/gethtml');
 router.post('/essay/new', check_auth, newEssay);
 router.get('/essay/draft');

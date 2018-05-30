@@ -12,8 +12,9 @@ import { SessionStorage, KEY } from '../../service/sessionStorage.service';
 
 export class EssayReaderComponent implements OnInit{
     
-    essayid: string = 'ds';
+    essayid: string;
     essayText: string;
+    essayTitle: string;
 
     constructor(private log: Logger, private http: HttpService, private storage: SessionStorage) {}
 
@@ -25,7 +26,9 @@ export class EssayReaderComponent implements OnInit{
         }
         this.http.getJson(api.getEssay, {id: this.essayid}).subscribe(
             res => {
-                this.essayText = res['text'];
+                let data = res['data'];
+                this.essayText = data.text;
+                this.essayTitle = data.title;
             }, err => {
                 this.log.error('EssayReader', 'ngOnInit', err);
             }

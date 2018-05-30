@@ -34,6 +34,7 @@ export class SiderbarComponent{
     }
 
     closeSiderbar() {
+        if(!this.render || !this.background) return;
         this.render.setStyle(this.background, 'opacity', '0');
         this.render.setStyle(this.target, 'transform', 'translateX(-60vw)');
         this.background.addEventListener('transitionend', () => {

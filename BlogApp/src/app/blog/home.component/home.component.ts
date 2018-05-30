@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit{
             let temp: EssayListModel;
             let time = new Date(item.updatetime);
             temp = {
+                id: item.id,
                 author: item.hostname,
                 collected: item.collected || 0,
                 day: (time.getMonth() + 1) + ':' + time.getDate(),

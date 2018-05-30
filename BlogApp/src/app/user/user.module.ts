@@ -10,12 +10,14 @@ import { AppModule } from '../app.module';
 import { MarkdownWriter } from './page/markdown-writer/markdown.writer';
 import { TestComponent } from './page/test/test';
 import { InsertImgComponent } from './component/insert-img/insert.img';
+import { MyHomeComponent } from './page/my-home/my.home.component';
 
 @NgModule({
     declarations:[
         UserComponent,
         SignInUpComponent,
         MarkdownWriter,
+        MyHomeComponent,
         TestComponent
     ],
     imports:[

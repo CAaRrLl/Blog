@@ -18,7 +18,7 @@ var config = {
     cookie_refresh: 'fresh',
 
     cookie: {
-        maxAge: 1000 * 60 * 10,
+        maxAge: 1000 * 60 * 60 * 1,
         httpOnly: true,
     },
 

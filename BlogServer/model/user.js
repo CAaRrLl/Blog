@@ -113,7 +113,7 @@ create table if not exists user(
     portrait varchar(100),    
     status int default 1,            
     level int default 1,              
-    remark varchar(30),               
+    remark varchar(100),               
     createtime bigint, 
     updatetime bigint 
 )`;

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import { DialogService } from '../../../component/dialog/dialog.service';
 import { Logger } from '../../../service/logger.service';
 import { HttpService } from '../../../service/http.service';
@@ -11,7 +11,7 @@ import { AlertService, AlertType } from '../../../component/alert/alert.service'
     styleUrls:['./insert.img.scss']
 })
 
-export class InsertImgComponent {
+export class InsertImgComponent implements OnDestroy{
     
     constructor(private dialog: DialogService, private log: Logger, 
         private alert: AlertService, private http: HttpService) {}
@@ -96,6 +96,10 @@ export class InsertImgComponent {
 
     getImgMd(name, url) {
         return `![${name}](${url})`;
+    }
+
+    ngOnDestroy() {
+        this.dialog.close();
     }
 };
 

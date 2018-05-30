@@ -91,6 +91,7 @@ export class MarkdownWriter implements OnInit, OnDestroy{
     ngOnDestroy() {
         this.titleSubscription.unsubscribe();
         this.essaySubscription.unsubscribe();
+        this.dialog.close();
     }
 
     //初始化页面

@@ -5,7 +5,7 @@ import { HomeComponent } from './home.component/home.component';
 
 export const BlogRoutes:Routes = [
     {
-        path: 'home',
+        path: '',
         component: BlogComponent,
         children: [
             {
