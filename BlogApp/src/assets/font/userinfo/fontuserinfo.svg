@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2018 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="contacts" unicode="&#xe800;" d="M834 819q65 0 110-46t46-110l0-625q0-65-46-111t-110-46l-574 0q-65 0-111 46t-45 111l0 52-51 0q-22 0-37 15t-16 37 16 36 37 16l51 0 0 104-51 0q-22 0-37 15t-16 37 16 37 37 16l51 0 0 104-51 0q-22 0-37 15t-16 37 16 36 37 15l51 0 0 53q0 65 45 110t111 46l574 0z m-625-156l0-53 51 0 0 105q-21 0-36-15t-15-37z m0-156l0-104 51 0 0 104-51 0z m0-209l0-104 51 0 0 104-51 0z m0-260q0-21 15-37t36-16l0 105-51 0 0-52z m676 0l0 625q0 21-15 37t-36 15l-521 0 0-730 521 0q21 0 36 16t15 37z m-416 390q0 105 104 105 105 0 105-105 0-104-105-104-104 0-104 104z m104-148q56 0 93-22t37-53q0-15-38-26t-92-11q-59 0-95 11t-35 26q0 30 35 53t95 22z" horiz-adv-x="990" />
+</font>
+</defs>
+</svg>

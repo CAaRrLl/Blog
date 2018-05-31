@@ -19,4 +19,6 @@ export const api={
     getEssay: `${prefix}/essay/getmarkdown`, //获取文章
     setEssayTag: `${prefix}/essay/settag`,  //修改文章标签
     getpublish: `${prefix}/essay/getpublish`, //获取已发布文章列表
+    getInfo: `${prefix}/user/info`,      //获取用户信息
+    getDataSum: `${prefix}/user/datasum`,   //数据统计（粉丝、关注、文章、字数、喜欢数）
 }

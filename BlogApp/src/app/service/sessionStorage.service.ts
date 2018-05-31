@@ -31,6 +31,9 @@ export class SessionStorage{
     }
     
 }
-export enum KEY{
-    EssayID
+export enum KEY {
+    READER_ESSAYID,
+    MYHOMECP_USERINFO,
+    MYHOMECP_USERDATASUM,
+    MYESSAYCP_ACTIVETAG
 }

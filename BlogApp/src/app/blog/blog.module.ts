@@ -11,6 +11,7 @@ import { HomeComponent } from './home.component/home.component';
 import { MyInfoComponent } from './my-home/my-info/my.info.component';
 import { MyEssayComponent } from './my-home/my-essay/my.essay.component';
 import { MyHomeComponent } from './my-home/my.home.component';
+import { EssayPublishComponent } from './component/essay.publish/essay.publish.component';
 
 @NgModule({
     declarations:[
@@ -21,7 +22,8 @@ import { MyHomeComponent } from './my-home/my.home.component';
         HomeComponent,
         MyHomeComponent,
         MyInfoComponent,
-        MyEssayComponent
+        MyEssayComponent,
+        EssayPublishComponent
     ],
     imports:[
         CommonModule,

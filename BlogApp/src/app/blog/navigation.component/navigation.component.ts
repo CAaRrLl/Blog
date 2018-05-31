@@ -46,6 +46,7 @@ export class NavigationComponent implements OnInit, OnDestroy{
     //进入我的主页
     toMyHome = () => {
         this.router.navigateByUrl(route.myhome);
+        this.siderbar.close();
     }
 
     //写文章

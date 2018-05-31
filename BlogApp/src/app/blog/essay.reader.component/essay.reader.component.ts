@@ -19,7 +19,7 @@ export class EssayReaderComponent implements OnInit{
     constructor(private log: Logger, private http: HttpService, private storage: SessionStorage) {}
 
     ngOnInit() {
-        this.essayid = this.storage.get(KEY.EssayID);
+        this.essayid = this.storage.get(KEY.READER_ESSAYID);
         if(!this.essayid)  {
             history.go(-1);
             return;

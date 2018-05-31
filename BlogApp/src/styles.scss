@@ -921,3 +921,23 @@ body {
 /*img e800*/
 @include font-face(img);
 .img-icon {font-family: "fontimg"}
+
+/*msg e800*/
+@include font-face(msg);
+.msg-icon {font-family: "fontmsg"}
+
+/*heart e800*/
+@include font-face(heart);
+.heart-icon {font-family: "fontheart"}
+
+/*eye e800*/
+@include font-face(eye);
+.eye-icon {font-family: "fonteye"}
+
+/*userinfo e800*/
+@include font-face(userinfo);
+.userinfo-icon {font-family: "fontuserinfo"}
+
+/*essay e800*/
+@include font-face(essay);
+.essay-icon {font-family: "fontessay"}

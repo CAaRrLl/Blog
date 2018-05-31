@@ -15,7 +15,7 @@ $phone-maxwidth: 768px;
     .left {
         position: relative;
         display: inline-block;
-        width: 50rem;
+        width: 45rem;
         text-align: left;
         @media screen and (max-width: 768px){
             width: 100%;
@@ -128,7 +128,7 @@ $phone-maxwidth: 768px;
                     transform: scaleX(0);
                     opacity: 0;
                     height: 3px;
-                    background-color: #999;
+                    background-color: #595959;
                     bottom: -1rem;
                     left: 0;
                     $transition: transform ease 0.3s, opacity ease 0.2s;

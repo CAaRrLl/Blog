@@ -417,13 +417,25 @@ var get_publish_essay = function(req, res, next) {
     var size = req.query.size;
     var pos = req.query.pos;
     var search = req.query.search;
+    var self =  req.query.self;
+    var tag = req.query.tag;
     search = search || '';
+    tag = tag || '';
+    if(self) {
+        var session = get_session(req);
+        self = session && session.id;
+        if(!self) {
+            logger.warn('会话不存在');
+            fb(res, code.sessionNoExist, '会话不存在', {});
+            return;
+        }
+    }
     if(!size || !pos) {
         logger.error('获取发布文章列表参数错误');
         fb(res, code.paramsErr, '请求参数错误', {});
         return;
     }
-    get_publish(size, pos, search, function(err, result) {
+    get_publish(size, pos, search, self, tag, function(err, result) {
         if(err) {
             logger.error('获取发布文章列表数据库出错', err);
             return;

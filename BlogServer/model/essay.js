@@ -76,12 +76,29 @@ var essay_drop=function(id, hostid, callback){
 exports.essay_drop=essay_drop;
 
 //获取已发布文章
-var get_publish=function(size,pos,search,callback){
-    var get_essay_sql=`select * from essay where ${search?'text like %?% or title like %?% and':''} status=1 order by updatetime desc limit ?,?`;
-    var get_count_sql=`select count(*) as count from essay where ${search?'text like %?% or title like %?% and':''} status=1`;
+var get_publish=function(size, pos, search, hostid, tag, callback){
+    
+    var get_essay_sql=
+    `select * from essay where ${search?'text like %?% or title like %?% and':''} 
+    ${hostid?'hostid=? and': ''} ${tag?'tag=? and': ''} status=1 order by updatetime desc limit ?,?`;
+
+    var get_count_sql=
+    `select count(*) as count from essay where ${search?'text like %?% or title like %?% and':''}
+    ${hostid?'hostid=? and': ''} ${tag?'tag=? and': ''} status=1`;
+
     var get_essay=function(){
         return new Promise(function(resolve,reject){
-            var params = search? [search,search,size*(pos-1), +size]: [size*(pos-1), +size]
+            var params = [];
+            if(search) {
+                params.push(search, search);
+            }
+            if(hostid) {
+                params.push(hostid);
+            }
+            if(tag) {
+                params.push(tag);
+            }
+            params.push(size*(pos-1), +size);
             db.queryQarams(get_essay_sql, params,
                 function(err,result,fields){
                     if(err){
@@ -93,7 +110,16 @@ var get_publish=function(size,pos,search,callback){
     }
     var get_count=function(){
         return new Promise(function(resolve,reject){
-            var params = search? [search, search]: []
+            var params = [];
+            if(search) {
+                params.push(search, search);
+            }
+            if(hostid) {
+                params.push(hostid);
+            }
+            if(tag) {
+                params.push(tag);
+            }
             db.queryQarams(get_count_sql, params,
                 function(err,result,fields){
                     if(err){

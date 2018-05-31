@@ -33,6 +33,11 @@ export const iconMap={
     save: '&#xe803',
     forward: '&#xe801',
     img: '&#xe800',
+    msg: '&#xe800',
+    heart: '&#xe800',
+    eye: '&#xe800',
+    userinfo: '&#xe800',
+    essay: '&#xe800',
     arrows: '&#xe802',
     columns: '&#xf0db',
 }

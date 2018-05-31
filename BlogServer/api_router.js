@@ -16,7 +16,9 @@ var save_essay = require('./controllers/essay').save_essay;
 var get_the_essay = require('./controllers/essay').get_the_essay;
 var set_essay_tag = require('./controllers/essay').set_essay_tag;
 var publish = require('./controllers/essay').publish;
-var get_publish_essay = require('./controllers/essay').get_publish_essay;
+var getPublishEssay = require('./controllers/essay').get_publish_essay;
+var getInfo = require('./controllers/user').get_info;
+var getDataSum = require('./controllers/user').get_data_sum;
 
 var multipart = require('connect-multiparty');
 
@@ -36,6 +38,8 @@ router.get('/lock/user');
 router.post('/user/login', signIn);
 router.post('/user/register', signUp);
 router.post('/file/upload', check_auth, multipartMiddleware, uploadFile);
+router.get('/user/info', check_auth, getInfo);
+router.get('/user/datasum', check_auth, getDataSum);
 
 //注销
 router.get('/layout', check_auth, layout);
@@ -47,7 +51,7 @@ router.get('/essay/essaytag', check_auth, getEssayTag);
 router.get('/essay/modifytag', check_auth, modifyTag);
 router.get('/essay/deletetag', check_auth, deleteTag);
 router.get('/essay/delete', check_auth, deleteEssay);
-router.get('/essay/getpublish', get_publish_essay);
+router.get('/essay/getpublish', getPublishEssay);
 router.get('/essay/getmarkdown', get_the_essay);
 router.post('/essay/gethtml');
 router.post('/essay/new', check_auth, newEssay);

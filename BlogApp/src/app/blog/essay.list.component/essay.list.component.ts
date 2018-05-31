@@ -17,7 +17,7 @@ export class EssayListComponent {
 
     toReader(essayid: string) {
         if(!essayid) return;
-        this.storage.set(KEY.EssayID, essayid);
+        this.storage.set(KEY.READER_ESSAYID, essayid);
         this.router.navigateByUrl(route.reader);
     }
 }
