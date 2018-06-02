@@ -4,6 +4,7 @@ import { HttpService } from '../../../service/http.service';
 import { EssayListModel } from '../../essay.list.component/essay.list.component';
 import { Observable } from 'rxjs/Observable';
 import { api } from '../../../constant/api';
+import { EventService, EventList } from '../../../service/event.service';
 
 @Component({
     selector: 'app-essay-publish',
@@ -14,9 +15,9 @@ import { api } from '../../../constant/api';
 export class EssayPublishComponent implements OnInit, OnChanges{
     @ViewChild('loadNextMark') loadNextMarkRef: ElementRef;
     
-    constructor(private http: HttpService, private log:Logger) {}
+    constructor(private http: HttpService, private log: Logger, private event: EventService) {}
 
-    @Input() self: boolean = false;
+    @Input() self: number = 0;
     @Input() tag: string = '';
     @Input() search: string = '';
     size: number;
@@ -35,8 +36,23 @@ export class EssayPublishComponent implements OnInit, OnChanges{
         Observable.fromEvent(window, 'scroll').debounceTime(400).subscribe(
             () => {
                 let loadNextMarkDom = this.loadNextMarkRef.nativeElement as HTMLElement;
-                if(loadNextMarkDom.offsetTop < document.body.scrollTop + window.screen.availHeight) {
+                let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                if(loadNextMarkDom.offsetTop < scrollTop + window.screen.availHeight) {
                     this.loadNextData();
+                }
+                if(scrollTop > window.screen.availHeight) {
+                    this.event.emit(EventList.SIDETOOL, [
+                        {
+                            iconTag: 'up',
+                            tip: '回到顶部',
+                            func: () => {
+                                this.gotoTop();
+                            }
+                        }
+                    ]);
+                }
+                if(scrollTop <= window.screen.availHeight) {
+                    this.event.emit(EventList.SIDETOOL, []);
                 }
             }
         );
@@ -94,13 +110,13 @@ export class EssayPublishComponent implements OnInit, OnChanges{
         };
         this.http.getJson(api.getpublish, query).subscribe(
             res => {
-                this.log.debug('BlogComponent','ngOnInit',{'获取发布文章列表数据': res}, );
+                this.log.debug('EssayPublishComponent','ngOnInit',{'获取发布文章列表数据': res}, );
                 this.pos === 1 ? this.essaylistData = res['data'].essays : this.essaylistData.push(...res['data'].essays);
                 this.count = res['data'].count;
                 this.pos === 1 ? this.essaylistModel = this.dataToModel(res['data'].essays) : this.essaylistModel.push(...this.dataToModel(res['data'].essays));
                 this.isloadNext = false;
             }, err => {
-                this.log.error('BlogComponent', 'ngOnInit', {'获取发布文章数据失败': err});
+                this.log.error('EssayPublishComponent', 'ngOnInit', {'获取发布文章数据失败': err});
                 this.isloadNext = false;
             }
         ) 
@@ -116,6 +132,14 @@ export class EssayPublishComponent implements OnInit, OnChanges{
         this.essaylistData = [];
         this.size = 6;
         this.pos = 1;
+    }
+
+    gotoTop() {
+        setTimeout(() => {
+            if(document.body.scrollTop <= 0) return;
+            window.scrollBy(0, -100);
+            this.gotoTop();
+        }, 1000/60);
     }
 }
 
@@ -138,7 +162,7 @@ interface EssayListData {
 
 interface Query {
     search: string;
-    self: boolean;
+    self: number;
     tag: string;
     size: number;
     pos: number;

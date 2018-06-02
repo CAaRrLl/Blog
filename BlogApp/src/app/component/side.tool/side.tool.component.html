@@ -1,0 +1,5 @@
+<ul class="container" *ngIf="model.length>0">
+    <li *ngFor="let item of model" (click)="item.func()">
+        <app-icon [tag]="item.iconTag"></app-icon>
+    </li>
+</ul>

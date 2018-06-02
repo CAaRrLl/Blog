@@ -3,6 +3,9 @@ import { HttpService } from '../../service/http.service';
 import { SessionStorage, KEY } from '../../service/sessionStorage.service';
 import { api } from '../../constant/api';
 import { Logger } from '../../service/logger.service';
+import { route } from '../../constant/router';
+import { EventService, EventList } from '../../service/event.service';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
     selector: 'app-my-home',
@@ -29,9 +32,38 @@ export class MyHomeComponent implements OnInit{
         collected: 0
     }
 
-    constructor(private http: HttpService, private storage: SessionStorage, private log: Logger) {}
+    constructor(private http: HttpService, private storage: SessionStorage, private log: Logger, 
+        private router: Router, private event: EventService) {}
 
     ngOnInit() {
+        this.router.events.subscribe(e => {
+            if(e.constructor === NavigationEnd) {
+                if((e as NavigationEnd).url === route.myinfo) {
+                    this.activeNav = Nav.Info;
+                } else {
+                    this.activeNav = Nav.Essay;
+                }
+            }
+        })
+        
+        this.getUserInfo();
+        this.http.getJson(api.getDataSum).subscribe(
+            res => {
+                let datasum = res['data'];
+                this.storage.set(KEY.MYHOMECP_USERDATASUM, datasum);
+                this.setDataSum(datasum);
+            }, err => {
+                this.log.error('MyHomeComponent', 'ngOnInit', err);
+            }
+        );
+        this.event.on(EventList.USERINFO).subscribe(
+            data => {
+                this.getUserInfo();
+            }
+        )
+    }
+
+    getUserInfo() {
         if(this.storage.has(KEY.MYHOMECP_USERINFO)) {
             let info = this.storage.get(KEY.MYHOMECP_USERINFO);
             this.setUserInfo(info);
@@ -45,20 +77,6 @@ export class MyHomeComponent implements OnInit{
                     this.log.error('MyHomeComponent', 'ngOnInit', err);
                 }
             )
-        };
-        if(this.storage.has(KEY.MYHOMECP_USERDATASUM)) {
-            let datasum = this.storage.get(KEY.MYHOMECP_USERDATASUM);
-            this.setDataSum(datasum);
-        } else {
-            this.http.getJson(api.getDataSum).subscribe(
-                res => {
-                    let datasum = res['data'];
-                    this.storage.set(KEY.MYHOMECP_USERDATASUM, datasum);
-                    this.setDataSum(datasum);
-                }, err => {
-                    this.log.error('MyHomeComponent', 'ngOnInit', err);
-                }
-            );
         }
     }
 

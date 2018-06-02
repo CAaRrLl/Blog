@@ -27,6 +27,12 @@ export class MyEssayComponent implements OnInit{
         this.essayService.getTag((res, err) => {
             if(!err) {
                 this.tags.push(...res);
+                let hastag = this.tags.some((val) => {
+                    return val.id == this.activeTag;
+                });
+                if(!hastag) {
+                    this.activeTag = '';
+                }
             }
         })
     }

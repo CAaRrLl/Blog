@@ -421,7 +421,7 @@ var get_publish_essay = function(req, res, next) {
     var tag = req.query.tag;
     search = search || '';
     tag = tag || '';
-    if(self) {
+    if(self == 1) {
         var session = get_session(req);
         self = session && session.id;
         if(!self) {
@@ -429,6 +429,8 @@ var get_publish_essay = function(req, res, next) {
             fb(res, code.sessionNoExist, '会话不存在', {});
             return;
         }
+    } else {
+        self = undefined;
     }
     if(!size || !pos) {
         logger.error('获取发布文章列表参数错误');

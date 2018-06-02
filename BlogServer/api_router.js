@@ -19,6 +19,9 @@ var publish = require('./controllers/essay').publish;
 var getPublishEssay = require('./controllers/essay').get_publish_essay;
 var getInfo = require('./controllers/user').get_info;
 var getDataSum = require('./controllers/user').get_data_sum;
+var saveInfo = require('./controllers/user').save_info;
+var essay_publish_auth = require('./middleware/auth').essay_publish_auth;
+
 
 var multipart = require('connect-multiparty');
 
@@ -38,6 +41,7 @@ router.get('/lock/user');
 router.post('/user/login', signIn);
 router.post('/user/register', signUp);
 router.post('/file/upload', check_auth, multipartMiddleware, uploadFile);
+router.post('/user/info/save', check_auth, saveInfo)
 router.get('/user/info', check_auth, getInfo);
 router.get('/user/datasum', check_auth, getDataSum);
 
@@ -51,7 +55,7 @@ router.get('/essay/essaytag', check_auth, getEssayTag);
 router.get('/essay/modifytag', check_auth, modifyTag);
 router.get('/essay/deletetag', check_auth, deleteTag);
 router.get('/essay/delete', check_auth, deleteEssay);
-router.get('/essay/getpublish', getPublishEssay);
+router.get('/essay/getpublish', essay_publish_auth, getPublishEssay);
 router.get('/essay/getmarkdown', get_the_essay);
 router.post('/essay/gethtml');
 router.post('/essay/new', check_auth, newEssay);

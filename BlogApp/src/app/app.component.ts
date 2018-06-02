@@ -8,6 +8,7 @@ import { Logger } from './service/logger.service';
         <app-siderbar></app-siderbar>
         <app-alert></app-alert>
         <app-dialog></app-dialog>
+        <app-side-tool></app-side-tool>
     `
 })
 export class AppComponent implements OnInit{

@@ -136,16 +136,16 @@ export class MarkdownWriter implements OnInit, OnDestroy{
     //初始化编辑器
     initEditor() {
         this.updateToEditor({
-            'title': this.essayTags[this.activeTag][this.activeEssayKey].title,
-            'text': this.essayTags[this.activeTag][this.activeEssayKey].text
+            'title': this.activeTag && this.activeEssayKey && this.essayTags[this.activeTag][this.activeEssayKey].title,
+            'text': this.activeTag && this.activeEssayKey && this.essayTags[this.activeTag][this.activeEssayKey].text
         });       
     }
 
     //更新编辑器
     refreshEditor() {
         this.updateToEditor({
-            'title': this.essayTags[this.activeTag][this.activeEssayKey].title,
-            'text': this.essayTags[this.activeTag][this.activeEssayKey].text
+            'title': this.activeTag && this.activeEssayKey && this.essayTags[this.activeTag][this.activeEssayKey].title,
+            'text': this.activeTag && this.activeEssayKey && this.essayTags[this.activeTag][this.activeEssayKey].text
         });
     }
 

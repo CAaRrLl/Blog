@@ -15,7 +15,7 @@ log4js.configure({
     categories:{
         default:{
             appenders:['console','file'],
-            level:log4js.levels.DEBUG
+            level:log4js.levels.WARN
         }
     }
 });

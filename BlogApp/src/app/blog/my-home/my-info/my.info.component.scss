@@ -1,0 +1,102 @@
+$grey: #999999;
+$deepgrey: rgb(39, 39, 39);
+$itemheight: 4rem;
+.container {
+    background-color: white;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    padding: 1rem;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    .item {
+        height: $itemheight;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+        margin-left: 1.5rem;
+        margin-right: 1.5rem;
+        border-bottom: 1px solid #e0e0e0;
+        &:hover {
+            .left > .edit {
+                visibility: visible;
+                cursor: pointer;
+                &:hover {
+                    color: $deepgrey;
+                }
+            }
+        }
+        img {
+            height: $itemheight;
+            width: $itemheight;
+            border-radius: $itemheight;
+            border: 1px solid $grey;
+        }
+        .left {
+            width: 8rem;
+            float: left;
+            color: $grey;
+            line-height: 4rem;
+            @media screen and (max-width: 768px) {
+                width: 40%;
+            }
+            .edit {
+                color: $grey;
+                margin-left: 0.5rem;
+                visibility: hidden;
+            }
+        }
+        .right {
+            color: $deepgrey;
+            line-height: 4rem;
+            margin-left: 8rem;
+            @media screen and (max-width: 768px) {
+                margin-left: 40%;
+            }
+            input {
+                border: none;
+                background-color: white;
+                width: 80%;
+                &:focus {
+                    outline: none;
+                }
+            }
+            .input-edit {
+                border-bottom: 1px solid $grey;
+            }
+           
+            .ok {
+                color: $grey;
+                margin-left: 0.5rem;
+                cursor: pointer;
+                &:hover {
+                    color: $deepgrey;
+                }
+            }
+        }
+    }
+    button {
+        float: right;
+        margin-right: 1.5rem;
+        margin-top: 1rem;
+        border-radius: 1rem;
+        border: none;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        color: white;
+        background-color: #6597cf;
+        cursor: pointer;
+        &:hover {
+            background-color: #3372bb;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+    .sleep {
+        cursor: default;
+        &:hover {
+            background-color: #6597cf;
+        }
+    }
+}

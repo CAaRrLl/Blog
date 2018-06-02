@@ -49,20 +49,31 @@ var lock_user=function(id,callback){
 exports.lock_user=lock_user;
 
 //设置昵称，头像和备注
-var set_portrait=function(id,name,portrait,mark,callback){
-    var sql=`update user set name=?,portrait = ?,mark=?,updatetime=? where id = ?`;
-    var now=new Date().getTime();
-    db.queryQarams(sql,[name,portrait,mark,now,id],function(err,result){
-        if(err){
+var set_info = function(id, name, portrait, remark, callback){
+    var sql = `update user set ${name?'name=?,':''}${portrait?'portrait=?,':''}${remark?'remark=?,':''}updatetime=? where id = ?`;
+    var now = new Date().getTime();
+    var params = [];
+    if(name) {
+        params.push(name);
+    }
+    if(portrait) {
+        params.push(portrait);
+    }
+    if(remark) {
+        params.push(remark);
+    } 
+    params.push(now, id);
+    db.queryQarams(sql, params,function(err, result){
+        if(err) {
             callback(err);
             return;
         }
         //todo
-        logger.debug('设置昵称、头像和备注成功',result);
+        logger.debug('设置昵称、头像和备注成功', result);
         callback(null);
     })
 }
-exports.set_portrait=set_portrait;
+exports.set_info = set_info;
 
 //获取用户列表
 var get_users=function(callback) {
@@ -110,7 +121,7 @@ create table if not exists user(
     email varchar(20) not null unique,    
     phone varchar(20) not null unique,   
     password varchar(20) not null,      
-    portrait varchar(100),    
+    portrait varchar(200),    
     status int default 1,            
     level int default 1,              
     remark varchar(100),               

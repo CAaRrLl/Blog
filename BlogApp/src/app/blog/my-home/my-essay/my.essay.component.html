@@ -2,5 +2,5 @@
     <li *ngFor="let tag of tags" [class.tag-active]="isTagActive(tag.id)" (click)="setActiveTag(tag.id)">{{tag.tag}}</li>
 </ul>
 <div class="essay">
-    <app-essay-publish [tag]="activeTag" self="true"></app-essay-publish>
+    <app-essay-publish [tag]="activeTag" self="1"></app-essay-publish>
 </div>

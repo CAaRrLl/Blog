@@ -1,0 +1,28 @@
+.container {
+    position: fixed;
+    bottom: 2rem;
+    right: 0;
+    list-style: none;
+    padding: 0;
+    margin: 2rem;
+    background-color: white;
+    border-radius: 1rem;
+    text-align: center;
+    cursor: pointer;
+    li {
+        padding: 0.8rem;
+        border-bottom: 2px solid #f0f2f5;
+        &:first-child {
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+        &:last-child {
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+        }
+        &:hover {
+            background-color: #d2d2d2;
+            color: white;
+        }
+    }
+}

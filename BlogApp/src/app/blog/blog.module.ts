@@ -12,6 +12,7 @@ import { MyInfoComponent } from './my-home/my-info/my.info.component';
 import { MyEssayComponent } from './my-home/my-essay/my.essay.component';
 import { MyHomeComponent } from './my-home/my.home.component';
 import { EssayPublishComponent } from './component/essay.publish/essay.publish.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations:[
@@ -28,6 +29,7 @@ import { EssayPublishComponent } from './component/essay.publish/essay.publish.c
     imports:[
         CommonModule,
         ComponentModule,
+        FormsModule,
         RouterModule.forChild(BlogRoutes),
     ]
 })

@@ -122,7 +122,6 @@
 ```
 ### 获取已发布文章列表
 ``GET``
-````
 
 ``params``
 |字段|必选项|类型|描述|
@@ -130,7 +129,7 @@
 |size|是|number|请求条数|
 |pos|是|number|请求的位置|
 |search|否|String|搜索用关键字，出现在标题或文本内容中|
-|self|否|String|是否获取用户自己的文章|
+|self|否|boolean|是否获取用户自己的文章|
 |tag|否|String|标签id|
 
 ``response``
@@ -787,12 +786,38 @@
 }
 ```
 
+### 保存个人信息
+``POST``
+``api/user/info/save``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|portrait|否|String|头像|
+|name|否|String|文件标识符|
+|remark|否|String|文件标识符|
+至少要有一个参数
+
+``response``
+```
+成功
+{
+    code:1000,
+    msg:'',
+    data:{}
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
 
 ### 获取用户统计信息
 ``GET``
 ``api/user/dataSum``
 
 ``response``
+
 ```
 成功
 {

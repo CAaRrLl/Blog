@@ -12,11 +12,14 @@ $phone-maxwidth: 768px;
     text-align: center;
     padding-top: 6rem;
     background-color: #f0f2f5;
+    height: 100vh;
+    box-sizing: border-box;
     .left {
         position: relative;
         display: inline-block;
         width: 45rem;
         text-align: left;
+        background-color: #f0f2f5;
         @media screen and (max-width: 768px){
             width: 100%;
         }

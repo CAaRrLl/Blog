@@ -10,6 +10,8 @@ import { HttpService } from '../../service/http.service';
 import { api } from '../../constant/api';
 import { SiderbarService, SiderbarModel } from '../../component/sidebar.component/siderbar.service';
 import { DialogService } from '../../component/dialog/dialog.service';
+import { SessionStorage, KEY } from '../../service/sessionStorage.service';
+import { EventService, EventList } from '../../service/event.service';
 
 @Component({
     selector: 'app-navigation',
@@ -18,6 +20,9 @@ import { DialogService } from '../../component/dialog/dialog.service';
 })
 
 export class NavigationComponent implements OnInit, OnDestroy{
+
+    userInfo: {name: string, portrait: string} = {name: '', portrait: ''};
+
     isUser: boolean = false;
 
     iconSrc: string = '../../../assets/img/Book.png';
@@ -78,10 +83,12 @@ export class NavigationComponent implements OnInit, OnDestroy{
     key: string;
 
     constructor(private router:Router, private log:Logger,private alert: AlertService, private siderbar: SiderbarService, 
-        private localStorageService: LocalStorageService,private http: HttpService, private dialog: DialogService) {
+        private localStorageService: LocalStorageService,private http: HttpService, private dialog: DialogService,
+        private storage: SessionStorage, private event: EventService) {
         }
 
     ngOnInit() {
+        this.getUserInfo();
         let identity = this.localStorageService.get(LKEY.loginStatus);
         if(identity == constant.isUser) {
             this.isUser = true;
@@ -98,7 +105,18 @@ export class NavigationComponent implements OnInit, OnDestroy{
         menu.addEventListener("click", (event) => {
             let e = event ? event : window.event;
             e.stopPropagation();
-        })
+        });
+        this.event.on(EventList.USERINFO).subscribe(
+            data => {
+                this.getUserInfo();
+            }
+        )
+    }
+
+    getUserInfo() {
+        let info = this.storage.get(KEY.MYHOMECP_USERINFO);
+        this.userInfo.name = info.name;
+        this.userInfo.portrait = info.portrait;
     }
 
     //注销
@@ -131,8 +149,8 @@ export class NavigationComponent implements OnInit, OnDestroy{
     //打开侧边栏
     siderbarShow() {
         let model: SiderbarModel = {
-            headSrc: '../../../assets/img/default-head.png',
-            name: '大哥',
+            headSrc: this.userInfo.portrait || '../../../assets/img/default-head.png',
+            name: this.userInfo.name || '无名氏',
             list: [
                 {iconTag: 'home', content: '我的主页', func: this.toMyHome},
                 {iconTag: 'bookmark', content: '收藏的文章'},

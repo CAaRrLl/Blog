@@ -13,6 +13,7 @@ import { InsertImgComponent } from "../user/component/insert-img/insert.img";
 import { ModifyComponent } from "../user/component/modify.component/modify.component";
 import { SelectComponent } from "./select.component/select.component";
 import { HtmlRender } from "./html-render/html.render";
+import { SideToolComponent } from "./side.tool/side.tool.component";
 
 @NgModule({
     declarations:[
@@ -26,7 +27,8 @@ import { HtmlRender } from "./html-render/html.render";
         InsertImgComponent,
         ModifyComponent,
         SelectComponent,
-        HtmlRender
+        HtmlRender,
+        SideToolComponent
     ],
     imports:[
         FormsModule,
@@ -41,7 +43,8 @@ import { HtmlRender } from "./html-render/html.render";
         SearchComponent,
         DialogComponent,
         SiderbarComponent,
-        HtmlRender
+        HtmlRender,
+        SideToolComponent
     ],
     entryComponents: [
         InsertImgComponent,
