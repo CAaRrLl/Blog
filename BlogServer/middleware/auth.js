@@ -3,6 +3,17 @@ var config = require('../config');
 var tool = require('../common/tool');
 var code = require('../common/const').code;
 
+var essay_publish_auth = function(req, res, next) {
+    var tag = req.query.tag;
+    var self = req.query.self;
+    if(tag || self == 1) {
+        check_auth(req, res, next);
+    } else {
+        next();
+    }
+}
+exports.essay_publish_auth = essay_publish_auth;
+
 var check_auth = function(req, res, next) {
     if(!req.cookies) {
         res.status(200).send({code: code.sessionNoExist, msg: '会话不存在', data: {}});

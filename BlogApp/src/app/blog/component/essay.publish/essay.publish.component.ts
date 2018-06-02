@@ -16,7 +16,7 @@ export class EssayPublishComponent implements OnInit, OnChanges{
     
     constructor(private http: HttpService, private log:Logger) {}
 
-    @Input() self: boolean = false;
+    @Input() self: number = 0;
     @Input() tag: string = '';
     @Input() search: string = '';
     size: number;
@@ -94,13 +94,13 @@ export class EssayPublishComponent implements OnInit, OnChanges{
         };
         this.http.getJson(api.getpublish, query).subscribe(
             res => {
-                this.log.debug('BlogComponent','ngOnInit',{'获取发布文章列表数据': res}, );
+                this.log.debug('EssayPublishComponent','ngOnInit',{'获取发布文章列表数据': res}, );
                 this.pos === 1 ? this.essaylistData = res['data'].essays : this.essaylistData.push(...res['data'].essays);
                 this.count = res['data'].count;
                 this.pos === 1 ? this.essaylistModel = this.dataToModel(res['data'].essays) : this.essaylistModel.push(...this.dataToModel(res['data'].essays));
                 this.isloadNext = false;
             }, err => {
-                this.log.error('BlogComponent', 'ngOnInit', {'获取发布文章数据失败': err});
+                this.log.error('EssayPublishComponent', 'ngOnInit', {'获取发布文章数据失败': err});
                 this.isloadNext = false;
             }
         ) 
@@ -138,7 +138,7 @@ interface EssayListData {
 
 interface Query {
     search: string;
-    self: boolean;
+    self: number;
     tag: string;
     size: number;
     pos: number;

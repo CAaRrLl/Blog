@@ -7,7 +7,7 @@
         <a *ngIf="!isUser">{{getObjectKey(naviListFunc, 2)}}</a>
         <a>{{getObjectKey(naviListFunc, 3)}}</a>
     </div>
-    <app-dropdown *ngIf="isUser" class="user-navi-pc" [content]="userNavi"></app-dropdown>
+    <app-dropdown *ngIf="isUser" class="user-navi-pc" [headSrc]="userInfo.portrait" [content]="userNavi"></app-dropdown>
     <app-icon *ngIf="isUser" class="user-navi-phone" tag="indentright" (click)="siderbarShow()"></app-icon>
     <app-search class="search" (valChange)="search($event)"></app-search>
     <div id="menu" class="content-phone">

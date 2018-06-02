@@ -28,6 +28,7 @@ var unsign = function(val, key) {
 
 //从cookie中提取sessionid
 var get_sessionid = function(val) {
+    val = val || '';
     return val.slice(0, val.lastIndexOf('.'));
 }
 

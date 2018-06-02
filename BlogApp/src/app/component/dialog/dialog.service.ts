@@ -4,6 +4,7 @@ import { Subject } from "rxjs/Subject";
 @Injectable()
 export class DialogService{
     private subject: Subject<DialogModel> = new Subject<DialogModel>();
+    active: boolean = false;
     
     getObservable() {
         return this.subject.asObservable();
@@ -11,11 +12,19 @@ export class DialogService{
 
     show(model: DialogModel) {
         this.subject.next(model);
+        this.active = true;
     }
 
-    close() {
+    close(...params) {
+        if(this.onclose) {
+            this.onclose(...params);
+        }
+        this.onclose = undefined;
         this.subject.next({hidden: true, content: ''});
+        this.active = false;
     }
+
+    onclose: Function;
 }
 
 export interface DialogModel {

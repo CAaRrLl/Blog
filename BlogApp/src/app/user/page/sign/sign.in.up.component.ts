@@ -81,12 +81,6 @@ export class SignInUpComponent implements OnInit{
                     break;
             }
         });
-
-        // this.alert.show({type:AlertType.Loading, msg: '粉红色的尽快发货即可收到回复可见', time: 1000});
-        // this.alert.show({type:AlertType.Success, msg: '粉红见', time: 3000});
-        // this.alert.show({type:AlertType.Warn, msg: '粉红色的回复可见', time: 3000});
-        // this.alert.show({type:AlertType.Error, msg: '粉红色的尽快发货即可收到回复可见', time: 1000});
-        // this.alert.show({type:AlertType.Loading, msg: '粉红色的尽快回复可见', time: 2000});
     }
 
     setTab(tab:boolean) {

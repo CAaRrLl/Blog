@@ -941,3 +941,7 @@ body {
 /*essay e800*/
 @include font-face(essay);
 .essay-icon {font-family: "fontessay"}
+
+/*pen e801*/
+@include font-face(pen);
+.pen-icon {font-family: "fontpen"}

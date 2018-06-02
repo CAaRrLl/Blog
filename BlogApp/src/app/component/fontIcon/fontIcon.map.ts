@@ -40,4 +40,5 @@ export const iconMap={
     essay: '&#xe800',
     arrows: '&#xe802',
     columns: '&#xf0db',
+    pen: '&#xe801'
 }

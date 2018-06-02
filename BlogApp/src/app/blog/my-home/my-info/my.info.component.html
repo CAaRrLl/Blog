@@ -1,1 +1,41 @@
-<h1>my info</h1>
+<div class="container">
+    <div class="item">
+        <span class="left">头像
+            <app-icon class="edit" tag="pen" style="display: inline-block; vertical-align: top" (click)="setEditItem(EditList.Portrait)"></app-icon>
+        </span>
+        <div class="right">
+            <img [src]="portrait">
+        </div>
+    </div>
+    <div class="item">
+        <span class="left">昵称
+            <app-icon class="edit" tag="pen" (click)="setEditItem(EditList.Name)"></app-icon>
+        </span>
+        <div class="right">
+            <input [(ngModel)]="name" [readonly]="!isEditing(EditList.Name)" [class.input-edit]="isEditing(EditList.Name)">
+            <app-icon class="ok" tag="success" [style.visibility]="isEditing(EditList.Name)?'visible':'hidden'" (click)="editOk()"></app-icon>
+        </div>
+    </div>
+    <div class="item">
+        <span class="left">个人简介
+            <app-icon class="edit" tag="pen" (click)="setEditItem(EditList.Remark)"></app-icon>
+        </span>
+        <div class="right">
+            <input [(ngModel)]="remark" [readonly]="!isEditing(EditList.Remark)" [class.input-edit]="isEditing(EditList.Remark)">
+            <app-icon class="ok" tag="success" [style.visibility]="isEditing(EditList.Remark)?'visible':'hidden'" (click)="editOk()"></app-icon>
+        </div>
+    </div>
+    <div class="item">
+        <span class="left">电子邮件</span>
+        <div class="right">
+            <input [(ngModel)]="email" [readonly]="!isEditing(EditList.Email)">
+        </div>
+    </div>
+    <div class="item">
+        <span class="left">手机</span>
+        <div class="right">
+            <input [(ngModel)]="phone" [readonly]="!isEditing(EditList.Phone)">
+        </div>
+    </div>
+    <button (click)="saveInfo()" [class.sleep]="editItem!==undefined&&editItem!==EditList.Portrait">保存</button>
+</div>

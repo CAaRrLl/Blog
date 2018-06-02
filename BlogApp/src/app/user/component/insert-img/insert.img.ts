@@ -34,7 +34,7 @@ export class InsertImgComponent implements OnDestroy{
     }
 
     cancel() {
-        this.dialog.close();
+        this.dialog.close(this.essay);
     }
 
     confirm() {
@@ -81,11 +81,12 @@ export class InsertImgComponent implements OnDestroy{
                     this.text += '\n' + this.getImgMd(file.name, `${api.getFile}/${file.id}.${suffix}`) +'\n';
                 });
                 this.essay.text += this.text;
+                this.cancel();
             },err => {
                 this.log.error('InsertImg', 'getImgFromLocal', err);
+                this.cancel();
             }
         );
-        this.cancel();
     }
 
     getImgUrl(target) {
@@ -99,7 +100,9 @@ export class InsertImgComponent implements OnDestroy{
     }
 
     ngOnDestroy() {
-        this.dialog.close();
+        if(this.dialog.active) {
+            this.dialog.close(this.essay);
+        }
     }
 };
 
