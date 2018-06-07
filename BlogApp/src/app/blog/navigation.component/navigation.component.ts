@@ -115,8 +115,8 @@ export class NavigationComponent implements OnInit, OnDestroy{
 
     getUserInfo() {
         let info = this.storage.get(KEY.MYHOMECP_USERINFO);
-        this.userInfo.name = info.name;
-        this.userInfo.portrait = info.portrait;
+        this.userInfo.name = info && info.name;
+        this.userInfo.portrait = info && info.portrait;
     }
 
     //注销
