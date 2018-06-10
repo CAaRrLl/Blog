@@ -1,0 +1,55 @@
+[2018-06-10T16:12:59.477] [ERROR] default - ::ffff:127.0.0.1 - - "GET /api/essay/commnts?siz=6&page=1&id=32 HTTP/1.1" 404 - "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T16:13:17.277] [WARN] default - 获取评论参数错误
+[2018-06-10T20:41:52.342] [ERROR] default - 获取评论数据库出错 Error: comments count is undefined
+    at F:\JetBrains\web project\BlogNew\BlogServer\model\comment.js:52:26
+    at Query._callback (F:\JetBrains\web project\BlogNew\BlogServer\common\db.js:34:9)
+    at Query.Sequence.end (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Sequence.js:88:24)
+    at Query._handleFinalResultPacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Query.js:139:8)
+    at Query.EofPacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Query.js:123:8)
+    at Protocol._parsePacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+[2018-06-10T20:43:19.381] [ERROR] default - 获取评论数据库出错 Error: comments count is undefined
+    at F:\JetBrains\web project\BlogNew\BlogServer\model\comment.js:52:26
+    at Query._callback (F:\JetBrains\web project\BlogNew\BlogServer\common\db.js:34:9)
+    at Query.Sequence.end (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Sequence.js:88:24)
+    at Query._handleFinalResultPacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Query.js:139:8)
+    at Query.EofPacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Query.js:123:8)
+    at Protocol._parsePacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+[2018-06-10T23:02:26.440] [WARN] default - 请求参数错误
+[2018-06-10T23:04:27.604] [ERROR] default - ::ffff:127.0.0.1 - - "POST /api/user/comment HTTP/1.1" 404 - "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:04:49.414] [ERROR] default - 添加留言出错 { Error: ER_BAD_FIELD_ERROR: Unknown column 'essayid' in 'field list'
+    at Query.Sequence._packetToError (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Sequence.js:52:14)
+    at Query.ErrorPacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Query.js:77:18)
+    at Protocol._parsePacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    --------------------
+    at Pool.query (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\Pool.js:199:23)
+    at Object.db.queryQarams (F:\JetBrains\web project\BlogNew\BlogServer\common\db.js:29:10)
+    at add_comment (F:\JetBrains\web project\BlogNew\BlogServer\model\comment.js:7:8)
+    at add_comment (F:\JetBrains\web project\BlogNew\BlogServer\controllers\comment.js:72:5)
+    at Layer.handle [as handle_request] (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\express\lib\router\layer.js:95:5)
+    at next (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\express\lib\router\route.js:137:13)
+    at check_auth (F:\JetBrains\web project\BlogNew\BlogServer\middleware\auth.js:45:5)
+    at Layer.handle [as handle_request] (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\express\lib\router\layer.js:95:5)
+    at next (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\express\lib\router\route.js:112:3)
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: 'Unknown column \'essayid\' in \'field list\'',
+  sqlState: '42S22',
+  index: 0,
+  sql: 'insert into reply(essayid, sendid, text, createtime) values(\'888\', 1, \'顶顶顶顶顶顶顶顶顶顶顶顶\', 1528643089392)' }
+[2018-06-10T23:19:23.423] [ERROR] default - ::ffff:127.0.0.1 - - "POST /api/user/reply HTTP/1.1" 500 - "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"

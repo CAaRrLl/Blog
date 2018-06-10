@@ -72,7 +72,7 @@ export class EssayPublishComponent implements OnInit, OnChanges{
                 id: item.id,
                 author: item.hostname,
                 collected: item.collected || 0,
-                day: (time.getMonth() + 1) + ':' + time.getDate(),
+                day: (time.getMonth() + 1) + '.' + time.getDate(),
                 time: time.getHours() + ':' + time.getMinutes(),
                 headUrl: item.hosthead,
                 imgUrl: item.imgUrl,

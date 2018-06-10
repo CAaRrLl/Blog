@@ -22,4 +22,9 @@ export const api={
     getInfo: `${prefix}/user/info`,      //获取用户信息
     getDataSum: `${prefix}/user/datasum`,   //数据统计（粉丝、关注、文章、字数、喜欢数）
     saveInfo: `${prefix}/user/info/save`,   //保存个人信息
+    addComment: `${prefix}/user/comment`,   //添加留言
+    addReply: `${prefix}/user/reply`,        //添加回复
+    delComment: `${prefix}/user/comment/del`,   //删除留言
+    delReply: `${prefix}/user/reply/del`,   //删除回复
+    getComments: `${prefix}/essay/comments`, //获取文章下的评论
 }

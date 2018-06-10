@@ -14,6 +14,7 @@ import { ModifyComponent } from "../user/component/modify.component/modify.compo
 import { SelectComponent } from "./select.component/select.component";
 import { HtmlRender } from "./html-render/html.render";
 import { SideToolComponent } from "./side.tool/side.tool.component";
+import { SyncLoadingComponent } from './sync.loading/sync.loading.component';
 
 @NgModule({
     declarations:[
@@ -28,7 +29,8 @@ import { SideToolComponent } from "./side.tool/side.tool.component";
         ModifyComponent,
         SelectComponent,
         HtmlRender,
-        SideToolComponent
+        SideToolComponent,
+        SyncLoadingComponent
     ],
     imports:[
         FormsModule,
@@ -44,7 +46,8 @@ import { SideToolComponent } from "./side.tool/side.tool.component";
         DialogComponent,
         SiderbarComponent,
         HtmlRender,
-        SideToolComponent
+        SideToolComponent,
+        SyncLoadingComponent
     ],
     entryComponents: [
         InsertImgComponent,

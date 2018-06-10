@@ -7,19 +7,29 @@ log4js.configure({
         console:{
             type:'console'
         },
-        file:{
+        warn:{
             type:'file',
-            filename:path.join(config.log_path,'blog.log'), 
+            filename:path.join(config.log_path,'blogwarn.log'), 
+        },
+        debug:{
+            type:'file',
+            filename:path.join(config.log_path,'blogdebug.log'), 
+        },
+        warnFilter: {
+            type: "logLevelFilter",
+            appender: "warn",
+            level: "warn",
+            maxLevel: "fatal"
         }
     },
     categories:{
         default:{
-            appenders:['console','file'],
-            level:log4js.levels.WARN
+            appenders:['console', 'debug', 'warnFilter'],
+            level: 'debug'
         }
     }
 });
 var logger = log4js.getLogger();
 
-exports.logger=logger;
+exports.logger=logger;  
 exports.connectLogger=log4js.connectLogger(logger,{level:'auto'});

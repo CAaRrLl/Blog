@@ -1,0 +1,65 @@
+$loadRadius: 2rem;
+$loadColor: #585858;
+@mixin keyframes($name) {
+    @keyframes #{$name} {
+      @content;
+    }
+    @-webkit-keyframes #{$name} {
+      @content;
+    }
+    @-moz-keyframes #{$name} {
+      @content;
+    }
+    @-moz-keyframes #{$name} {
+      @content;
+    }
+  }
+@mixin animation($content) {
+    animation: $content;
+    -webkit-animation: $content;
+    -o-animation: $content;
+    -moz-animation: $content;
+}
+.holder {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(174, 174, 174, 0.23);
+    z-index: 4;
+    .container {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -ms-transform: translateX(-50%) translateY(-50%);
+        -o-transform: translateX(-50%) translateY(-50%);
+        border-radius: 0.6rem;
+        background-color: white;
+        box-shadow: 0px 1px 1px 1px #e2e2e2;
+        .load {
+            border-radius: $loadRadius;
+            height: $loadRadius;
+            width: $loadRadius;
+            border: 0.4rem solid #585858;
+            float: left;
+            margin: 0.6rem;
+            border-left: 0.4rem solid #bbbbbb;
+            $spin: spin 1s linear 0s infinite;
+            @include animation($spin);
+        }
+        .tip {
+            line-height: 4rem;
+            float: left;
+            margin-right: 0.6rem;
+        }
+    }
+}
+
+
+@include keyframes(spin) {
+    0% {transform: rotate(0deg)}
+    100% {transform: rotate(360deg)}
+}

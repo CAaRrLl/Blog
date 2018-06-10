@@ -72,6 +72,7 @@ export class MyInfoComponent implements OnInit{
             } else {
                 this.portrait = this.portrait || this.defaultHead;
             }
+            
         }
     }
 

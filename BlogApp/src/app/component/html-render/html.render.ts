@@ -7,6 +7,7 @@ import {Component, Input, OnChanges, ViewChild, ElementRef} from '@angular/core'
 })
 
 export class HtmlRender implements OnChanges{
+    
     @ViewChild('htmlContainerRef') htmlContainerRef: ElementRef;
     @Input() html: string;
     @Input() title: string;
@@ -27,4 +28,4 @@ export class HtmlRender implements OnChanges{
                     ${html}
                 </div>`;
     }
-};
+}

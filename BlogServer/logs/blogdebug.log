@@ -1,0 +1,562 @@
+[2018-06-10T15:38:07.735] [INFO] default - server is listening on port 6600
+[2018-06-10T15:38:07.740] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T15:38:07.741] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T15:38:15.957] [WARN] default - 获取评论参数错误
+[2018-06-10T15:38:15.968] [INFO] default - ::ffff:127.0.0.1 - - "GET /api/essay/comments?size=6&page=1&id=32 HTTP/1.1" 200 50 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T15:40:58.286] [WARN] default - 获取评论参数错误
+[2018-06-10T15:40:58.290] [INFO] default - ::ffff:127.0.0.1 - - "GET /api/essay/comments?siz=6&page=1&id=32 HTTP/1.1" 200 50 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T15:41:08.710] [ERROR] default - ::ffff:127.0.0.1 - - "GET /api/essay/commnts?siz=6&page=1&id=32 HTTP/1.1" 404 - "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T16:11:05.314] [INFO] default - server is listening on port 6600
+[2018-06-10T16:11:05.320] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T16:11:05.321] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T16:11:20.581] [ERROR] default - ::ffff:127.0.0.1 - - "GET /api/essay/commnts?siz=6&page=1&id=32 HTTP/1.1" 404 - "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T16:12:54.296] [INFO] default - server is listening on port 6600
+[2018-06-10T16:12:54.302] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T16:12:54.303] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T16:12:59.477] [ERROR] default - ::ffff:127.0.0.1 - - "GET /api/essay/commnts?siz=6&page=1&id=32 HTTP/1.1" 404 - "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T16:13:17.277] [WARN] default - 获取评论参数错误
+[2018-06-10T16:13:17.287] [INFO] default - ::ffff:127.0.0.1 - - "GET /api/essay/comments?size=6&page=1&id=32 HTTP/1.1" 200 50 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T16:16:44.515] [INFO] default - server is listening on port 6600
+[2018-06-10T16:16:44.525] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T16:16:44.526] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T16:19:54.180] [INFO] default - server is listening on port 6600
+[2018-06-10T16:19:54.184] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T16:19:54.185] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T16:20:53.903] [INFO] default - server is listening on port 6600
+[2018-06-10T16:20:53.912] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T16:20:53.913] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T16:21:25.812] [INFO] default - server is listening on port 6600
+[2018-06-10T16:21:25.816] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T16:21:25.817] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T16:21:39.452] [INFO] default - server is listening on port 6600
+[2018-06-10T16:21:39.458] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T16:21:39.459] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T20:41:48.332] [INFO] default - server is listening on port 6600
+[2018-06-10T20:41:48.337] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T20:41:48.338] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T20:41:52.342] [ERROR] default - 获取评论数据库出错 Error: comments count is undefined
+    at F:\JetBrains\web project\BlogNew\BlogServer\model\comment.js:52:26
+    at Query._callback (F:\JetBrains\web project\BlogNew\BlogServer\common\db.js:34:9)
+    at Query.Sequence.end (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Sequence.js:88:24)
+    at Query._handleFinalResultPacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Query.js:139:8)
+    at Query.EofPacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Query.js:123:8)
+    at Protocol._parsePacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+[2018-06-10T20:41:52.369] [INFO] default - ::ffff:127.0.0.1 - - "GET /api/essay/comments?size=6&page=1&id=34 HTTP/1.1" 200 47 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T20:43:19.381] [ERROR] default - 获取评论数据库出错 Error: comments count is undefined
+    at F:\JetBrains\web project\BlogNew\BlogServer\model\comment.js:52:26
+    at Query._callback (F:\JetBrains\web project\BlogNew\BlogServer\common\db.js:34:9)
+    at Query.Sequence.end (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Sequence.js:88:24)
+    at Query._handleFinalResultPacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Query.js:139:8)
+    at Query.EofPacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Query.js:123:8)
+    at Protocol._parsePacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+[2018-06-10T20:43:23.189] [INFO] default - ::ffff:127.0.0.1 - - "GET /api/essay/comments?size=6&page=1&id=0805fbeba282aa3799e3f148201d40f5b2bc9a80a340e2420f5d73bfba9b1229 HTTP/1.1" 200 47 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T20:45:35.050] [INFO] default - server is listening on port 6600
+[2018-06-10T20:45:35.054] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T20:45:35.055] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T20:45:50.401] [DEBUG] default - 反馈的评论数据 { comments: 
+   [ RowDataPacket {
+       id: 1,
+       text: 'ddfkljfsdf',
+       support: 1,
+       time: 15654654456,
+       portrait: 'http://127.0.0.1:6600/api/file/get/e9f64f7b85039d7c3115a2e1f4cba44263c3ca8d04a1e9472b340ba9096f25f1.png',
+       name: '武大郎',
+       replys: [] },
+     RowDataPacket {
+       id: 2,
+       text: 'fdsfdsf',
+       support: 0,
+       time: 3123231213,
+       portrait: 'http://127.0.0.1:6600/api/file/get/e9f64f7b85039d7c3115a2e1f4cba44263c3ca8d04a1e9472b340ba9096f25f1.png',
+       name: '武大郎',
+       replys: [] } ],
+  count: 2 }
+[2018-06-10T20:45:50.414] [INFO] default - ::ffff:127.0.0.1 - - "GET /api/essay/comments?size=6&page=1&id=32 HTTP/1.1" 200 466 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T20:46:04.006] [DEBUG] default - 反馈的评论数据 { comments: 
+   [ RowDataPacket {
+       id: 3,
+       text: 'ddsfsdf',
+       support: 0,
+       time: 31233213213,
+       portrait: 'http://127.0.0.1:6600/api/file/get/e9f64f7b85039d7c3115a2e1f4cba44263c3ca8d04a1e9472b340ba9096f25f1.png',
+       name: '武大郎',
+       replys: [Array] } ],
+  count: 1 }
+[2018-06-10T20:46:04.018] [INFO] default - ::ffff:127.0.0.1 - - "GET /api/essay/comments?size=6&page=1&id=33 HTTP/1.1" 200 429 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T20:46:10.822] [DEBUG] default - 反馈的评论数据 { comments: 
+   [ RowDataPacket {
+       id: 1,
+       text: 'ddfkljfsdf',
+       support: 1,
+       time: 15654654456,
+       portrait: 'http://127.0.0.1:6600/api/file/get/e9f64f7b85039d7c3115a2e1f4cba44263c3ca8d04a1e9472b340ba9096f25f1.png',
+       name: '武大郎',
+       replys: [] },
+     RowDataPacket {
+       id: 2,
+       text: 'fdsfdsf',
+       support: 0,
+       time: 3123231213,
+       portrait: 'http://127.0.0.1:6600/api/file/get/e9f64f7b85039d7c3115a2e1f4cba44263c3ca8d04a1e9472b340ba9096f25f1.png',
+       name: '武大郎',
+       replys: [] } ],
+  count: 2 }
+[2018-06-10T20:46:10.829] [INFO] default - ::ffff:127.0.0.1 - - "GET /api/essay/comments?size=6&page=1&id=32 HTTP/1.1" 200 466 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T20:46:18.063] [DEBUG] default - 反馈的评论数据 { comments: 
+   [ RowDataPacket {
+       id: 3,
+       text: 'ddsfsdf',
+       support: 0,
+       time: 31233213213,
+       portrait: 'http://127.0.0.1:6600/api/file/get/e9f64f7b85039d7c3115a2e1f4cba44263c3ca8d04a1e9472b340ba9096f25f1.png',
+       name: '武大郎',
+       replys: [Array] } ],
+  count: 1 }
+[2018-06-10T20:46:18.067] [INFO] default - ::ffff:127.0.0.1 - - "GET /api/essay/comments?size=6&page=1&id=33 HTTP/1.1" 200 429 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T21:30:29.414] [DEBUG] default - 反馈的评论数据 { comments: 
+   [ RowDataPacket {
+       id: 3,
+       text: 'ddsfsdf',
+       support: 0,
+       time: 31233213213,
+       portrait: 'http://127.0.0.1:6600/api/file/get/e9f64f7b85039d7c3115a2e1f4cba44263c3ca8d04a1e9472b340ba9096f25f1.png',
+       name: '武大郎',
+       replys: [Array] } ],
+  count: 1 }
+[2018-06-10T21:30:29.419] [INFO] default - ::ffff:127.0.0.1 - - "GET /api/essay/comments?size=6&page=1&id=33 HTTP/1.1" 200 429 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T21:30:36.555] [INFO] default - ::ffff:127.0.0.1 - - "GET /api/essay/comments?size=6&page=1&id=13 HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T21:30:39.844] [INFO] default - ::ffff:127.0.0.1 - - "GET /api/essay/comments?size=6&page=1&id=31 HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T21:30:41.820] [DEBUG] default - 反馈的评论数据 { comments: 
+   [ RowDataPacket {
+       id: 1,
+       text: 'ddfkljfsdf',
+       support: 1,
+       time: 15654654456,
+       portrait: 'http://127.0.0.1:6600/api/file/get/e9f64f7b85039d7c3115a2e1f4cba44263c3ca8d04a1e9472b340ba9096f25f1.png',
+       name: '武大郎',
+       replys: [] },
+     RowDataPacket {
+       id: 2,
+       text: 'fdsfdsf',
+       support: 0,
+       time: 3123231213,
+       portrait: 'http://127.0.0.1:6600/api/file/get/e9f64f7b85039d7c3115a2e1f4cba44263c3ca8d04a1e9472b340ba9096f25f1.png',
+       name: '武大郎',
+       replys: [] } ],
+  count: 2 }
+[2018-06-10T21:30:41.825] [INFO] default - ::ffff:127.0.0.1 - - "GET /api/essay/comments?size=6&page=1&id=32 HTTP/1.1" 200 466 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:02:26.440] [WARN] default - 请求参数错误
+[2018-06-10T23:02:26.447] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/login HTTP/1.1" 200 50 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:03:26.729] [DEBUG] default - 登陆用户为 { '账号': '11111111111', '密码': '1111111' }
+[2018-06-10T23:03:26.806] [DEBUG] default - 检查结果 []
+[2018-06-10T23:03:26.808] [DEBUG] default - 账号密码不匹配
+[2018-06-10T23:03:26.810] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/login HTTP/1.1" 200 53 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:03:32.136] [DEBUG] default - 登陆用户为 { '账号': '11111111111', '密码': '111111' }
+[2018-06-10T23:03:32.157] [DEBUG] default - 检查结果 [ RowDataPacket {
+    id: 1,
+    name: '咩咩咩',
+    email: '111@qq.com',
+    phone: '11111111111',
+    password: '111111',
+    portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+    status: 1,
+    level: 1,
+    remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+    createtime: 1524647597643,
+    updatetime: 1527928524265 } ]
+[2018-06-10T23:03:32.184] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/login HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:04:27.604] [ERROR] default - ::ffff:127.0.0.1 - - "POST /api/user/comment HTTP/1.1" 404 - "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:04:42.951] [INFO] default - server is listening on port 6600
+[2018-06-10T23:04:42.955] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T23:04:42.956] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T23:04:44.211] [DEBUG] default - 登陆用户为 { '账号': '11111111111', '密码': '111111' }
+[2018-06-10T23:04:44.232] [DEBUG] default - 检查结果 [ RowDataPacket {
+    id: 1,
+    name: '咩咩咩',
+    email: '111@qq.com',
+    phone: '11111111111',
+    password: '111111',
+    portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+    status: 1,
+    level: 1,
+    remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+    createtime: 1524647597643,
+    updatetime: 1527928524265 } ]
+[2018-06-10T23:04:44.242] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/login HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:04:49.390] [DEBUG] default - cookie 9815286430842351.mWW7x6gbpm9hqM4rD2htmLXwS5fX9c02FavZZyq8Tr4= fresh 1
+[2018-06-10T23:04:49.391] [DEBUG] default - session { id: 1,
+  name: '咩咩咩',
+  email: '111@qq.com',
+  phone: '11111111111',
+  password: '111111',
+  portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+  status: 1,
+  level: 1,
+  remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+  createtime: 1524647597643,
+  updatetime: 1527928524265 }
+[2018-06-10T23:04:49.414] [ERROR] default - 添加留言出错 { Error: ER_BAD_FIELD_ERROR: Unknown column 'essayid' in 'field list'
+    at Query.Sequence._packetToError (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Sequence.js:52:14)
+    at Query.ErrorPacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\sequences\Query.js:77:18)
+    at Protocol._parsePacket (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Protocol.js:279:23)
+    at Parser.write (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Parser.js:76:12)
+    at Protocol.write (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\protocol\Protocol.js:39:16)
+    at Socket.<anonymous> (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\Connection.js:103:28)
+    at emitOne (events.js:116:13)
+    at Socket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+    --------------------
+    at Pool.query (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\mysql\lib\Pool.js:199:23)
+    at Object.db.queryQarams (F:\JetBrains\web project\BlogNew\BlogServer\common\db.js:29:10)
+    at add_comment (F:\JetBrains\web project\BlogNew\BlogServer\model\comment.js:7:8)
+    at add_comment (F:\JetBrains\web project\BlogNew\BlogServer\controllers\comment.js:72:5)
+    at Layer.handle [as handle_request] (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\express\lib\router\layer.js:95:5)
+    at next (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\express\lib\router\route.js:137:13)
+    at check_auth (F:\JetBrains\web project\BlogNew\BlogServer\middleware\auth.js:45:5)
+    at Layer.handle [as handle_request] (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\express\lib\router\layer.js:95:5)
+    at next (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (F:\JetBrains\web project\BlogNew\BlogServer\node_modules\express\lib\router\route.js:112:3)
+  code: 'ER_BAD_FIELD_ERROR',
+  errno: 1054,
+  sqlMessage: 'Unknown column \'essayid\' in \'field list\'',
+  sqlState: '42S22',
+  index: 0,
+  sql: 'insert into reply(essayid, sendid, text, createtime) values(\'888\', 1, \'顶顶顶顶顶顶顶顶顶顶顶顶\', 1528643089392)' }
+[2018-06-10T23:04:49.424] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/comment HTTP/1.1" 200 47 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:06:28.139] [INFO] default - server is listening on port 6600
+[2018-06-10T23:06:28.146] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T23:06:28.147] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T23:06:34.197] [DEBUG] default - 登陆用户为 { '账号': '11111111111', '密码': '111111' }
+[2018-06-10T23:06:34.223] [DEBUG] default - 检查结果 [ RowDataPacket {
+    id: 1,
+    name: '咩咩咩',
+    email: '111@qq.com',
+    phone: '11111111111',
+    password: '111111',
+    portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+    status: 1,
+    level: 1,
+    remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+    createtime: 1524647597643,
+    updatetime: 1527928524265 } ]
+[2018-06-10T23:06:34.241] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/login HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:06:36.121] [DEBUG] default - cookie 8415286431942291.2ohaYcs546iTezrm8e9Xu73xobpm0ndT4H23bKiXl0c= fresh 1
+[2018-06-10T23:06:36.123] [DEBUG] default - session { id: 1,
+  name: '咩咩咩',
+  email: '111@qq.com',
+  phone: '11111111111',
+  password: '111111',
+  portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+  status: 1,
+  level: 1,
+  remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+  createtime: 1524647597643,
+  updatetime: 1527928524265 }
+[2018-06-10T23:06:36.201] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/comment HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:12:42.856] [DEBUG] default - 反馈的评论数据 { comments: 
+   [ RowDataPacket {
+       id: 3,
+       text: 'ddsfsdf',
+       support: 0,
+       time: 31233213213,
+       portrait: 'http://127.0.0.1:6600/api/file/get/e9f64f7b85039d7c3115a2e1f4cba44263c3ca8d04a1e9472b340ba9096f25f1.png',
+       name: '武大郎',
+       replys: [Array] } ],
+  count: 1 }
+[2018-06-10T23:12:42.863] [INFO] default - ::ffff:127.0.0.1 - - "GET /api/essay/comments?size=6&page=1&id=33 HTTP/1.1" 200 429 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:17:37.787] [INFO] default - server is listening on port 6600
+[2018-06-10T23:17:37.793] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T23:17:37.794] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T23:17:41.192] [DEBUG] default - 反馈的评论数据 { comments: 
+   [ RowDataPacket {
+       id: 3,
+       sendid: 4,
+       text: 'ddsfsdf',
+       support: 0,
+       time: 31233213213,
+       portrait: 'http://127.0.0.1:6600/api/file/get/e9f64f7b85039d7c3115a2e1f4cba44263c3ca8d04a1e9472b340ba9096f25f1.png',
+       name: '武大郎',
+       replys: [Array] } ],
+  count: 1 }
+[2018-06-10T23:17:41.209] [INFO] default - ::ffff:127.0.0.1 - - "GET /api/essay/comments?size=6&page=1&id=33 HTTP/1.1" 200 462 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:17:46.674] [DEBUG] default - 登陆用户为 { '账号': '11111111111', '密码': '111111' }
+[2018-06-10T23:17:46.705] [DEBUG] default - 检查结果 [ RowDataPacket {
+    id: 1,
+    name: '咩咩咩',
+    email: '111@qq.com',
+    phone: '11111111111',
+    password: '111111',
+    portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+    status: 1,
+    level: 1,
+    remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+    createtime: 1524647597643,
+    updatetime: 1527928524265 } ]
+[2018-06-10T23:17:46.714] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/login HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:17:48.429] [DEBUG] default - cookie 8215286438667101.wzC13/GCWtX0KlnvCuKDdelntoz1EFhRq1cfTtuPPgA= fresh 1
+[2018-06-10T23:17:48.431] [DEBUG] default - session { id: 1,
+  name: '咩咩咩',
+  email: '111@qq.com',
+  phone: '11111111111',
+  password: '111111',
+  portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+  status: 1,
+  level: 1,
+  remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+  createtime: 1524647597643,
+  updatetime: 1527928524265 }
+[2018-06-10T23:17:48.476] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/comment HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:19:23.414] [DEBUG] default - cookie 8215286438667101.wzC13/GCWtX0KlnvCuKDdelntoz1EFhRq1cfTtuPPgA= fresh 1
+[2018-06-10T23:19:23.416] [DEBUG] default - session { id: 1,
+  name: '咩咩咩',
+  email: '111@qq.com',
+  phone: '11111111111',
+  password: '111111',
+  portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+  status: 1,
+  level: 1,
+  remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+  createtime: 1524647597643,
+  updatetime: 1527928524265 }
+[2018-06-10T23:19:23.423] [ERROR] default - ::ffff:127.0.0.1 - - "POST /api/user/reply HTTP/1.1" 500 - "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:20:36.634] [INFO] default - server is listening on port 6600
+[2018-06-10T23:20:36.644] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T23:20:36.645] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T23:20:44.478] [DEBUG] default - cookie 8215286438667101.wzC13/GCWtX0KlnvCuKDdelntoz1EFhRq1cfTtuPPgA= fresh 1
+[2018-06-10T23:20:44.490] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/reply HTTP/1.1" 200 44 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:20:46.399] [DEBUG] default - 登陆用户为 { '账号': '11111111111', '密码': '111111' }
+[2018-06-10T23:20:46.422] [DEBUG] default - 检查结果 [ RowDataPacket {
+    id: 1,
+    name: '咩咩咩',
+    email: '111@qq.com',
+    phone: '11111111111',
+    password: '111111',
+    portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+    status: 1,
+    level: 1,
+    remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+    createtime: 1524647597643,
+    updatetime: 1527928524265 } ]
+[2018-06-10T23:20:46.433] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/login HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:20:47.881] [DEBUG] default - cookie 1915286440464281.d0USzWQjGTCKvDNhZXHdYaeVXS7TnAN1wRCqz07En4Q= fresh 1
+[2018-06-10T23:20:47.882] [DEBUG] default - session { id: 1,
+  name: '咩咩咩',
+  email: '111@qq.com',
+  phone: '11111111111',
+  password: '111111',
+  portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+  status: 1,
+  level: 1,
+  remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+  createtime: 1524647597643,
+  updatetime: 1527928524265 }
+[2018-06-10T23:20:47.948] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/reply HTTP/1.1" 200 38 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:20:51.582] [DEBUG] default - cookie 1915286440464281.d0USzWQjGTCKvDNhZXHdYaeVXS7TnAN1wRCqz07En4Q= fresh 1
+[2018-06-10T23:20:51.583] [DEBUG] default - session { id: 1,
+  name: '咩咩咩',
+  email: '111@qq.com',
+  phone: '11111111111',
+  password: '111111',
+  portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+  status: 1,
+  level: 1,
+  remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+  createtime: 1524647597643,
+  updatetime: 1527928524265 }
+[2018-06-10T23:20:51.625] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/comment HTTP/1.1" 200 38 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:21:11.891] [DEBUG] default - cookie 1915286440464281.d0USzWQjGTCKvDNhZXHdYaeVXS7TnAN1wRCqz07En4Q= fresh 1
+[2018-06-10T23:21:11.893] [DEBUG] default - session { id: 1,
+  name: '咩咩咩',
+  email: '111@qq.com',
+  phone: '11111111111',
+  password: '111111',
+  portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+  status: 1,
+  level: 1,
+  remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+  createtime: 1524647597643,
+  updatetime: 1527928524265 }
+[2018-06-10T23:21:11.939] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/reply HTTP/1.1" 200 38 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:29:40.119] [INFO] default - server is listening on port 6600
+[2018-06-10T23:29:40.128] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T23:29:40.129] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T23:30:53.835] [DEBUG] default - 登陆用户为 { '账号': '11111111111', '密码': '111111' }
+[2018-06-10T23:30:53.869] [DEBUG] default - 检查结果 [ RowDataPacket {
+    id: 1,
+    name: '咩咩咩',
+    email: '111@qq.com',
+    phone: '11111111111',
+    password: '111111',
+    portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+    status: 1,
+    level: 1,
+    remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+    createtime: 1524647597643,
+    updatetime: 1527928524265 } ]
+[2018-06-10T23:30:53.890] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/login HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:30:57.062] [DEBUG] default - cookie 2015286446538761.bPXY1U21Yu63RpTv313nDOISxLsxTeTZ9S8g4nUz20M= fresh 1
+[2018-06-10T23:30:57.064] [DEBUG] default - session { id: 1,
+  name: '咩咩咩',
+  email: '111@qq.com',
+  phone: '11111111111',
+  password: '111111',
+  portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+  status: 1,
+  level: 1,
+  remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+  createtime: 1524647597643,
+  updatetime: 1527928524265 }
+[2018-06-10T23:30:57.086] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/reply/del HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:33:54.992] [DEBUG] default - cookie 2015286446538761.bPXY1U21Yu63RpTv313nDOISxLsxTeTZ9S8g4nUz20M= fresh 1
+[2018-06-10T23:33:54.994] [DEBUG] default - session { id: 1,
+  name: '咩咩咩',
+  email: '111@qq.com',
+  phone: '11111111111',
+  password: '111111',
+  portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+  status: 1,
+  level: 1,
+  remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+  createtime: 1524647597643,
+  updatetime: 1527928524265 }
+[2018-06-10T23:33:55.015] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/reply/del HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:34:45.788] [DEBUG] default - cookie 2015286446538761.bPXY1U21Yu63RpTv313nDOISxLsxTeTZ9S8g4nUz20M= fresh 1
+[2018-06-10T23:34:45.791] [DEBUG] default - session { id: 1,
+  name: '咩咩咩',
+  email: '111@qq.com',
+  phone: '11111111111',
+  password: '111111',
+  portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+  status: 1,
+  level: 1,
+  remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+  createtime: 1524647597643,
+  updatetime: 1527928524265 }
+[2018-06-10T23:34:45.842] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/reply HTTP/1.1" 200 38 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:35:13.078] [INFO] default - server is listening on port 6600
+[2018-06-10T23:35:13.083] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T23:35:13.084] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T23:35:57.748] [DEBUG] default - 登陆用户为 { '账号': '11111111111', '密码': '111111' }
+[2018-06-10T23:35:57.776] [DEBUG] default - 检查结果 [ RowDataPacket {
+    id: 1,
+    name: '咩咩咩',
+    email: '111@qq.com',
+    phone: '11111111111',
+    password: '111111',
+    portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+    status: 1,
+    level: 1,
+    remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+    createtime: 1524647597643,
+    updatetime: 1527928524265 } ]
+[2018-06-10T23:35:57.793] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/login HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:36:00.185] [DEBUG] default - cookie 6015286449577801.jtszbtnjP0O3dhcAn5Kdc0lId7bbwnpaWxTaWAGTBN0= fresh 1
+[2018-06-10T23:36:00.188] [DEBUG] default - session { id: 1,
+  name: '咩咩咩',
+  email: '111@qq.com',
+  phone: '11111111111',
+  password: '111111',
+  portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+  status: 1,
+  level: 1,
+  remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+  createtime: 1524647597643,
+  updatetime: 1527928524265 }
+[2018-06-10T23:36:00.215] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/reply/del HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:36:08.171] [DEBUG] default - cookie 6015286449577801.jtszbtnjP0O3dhcAn5Kdc0lId7bbwnpaWxTaWAGTBN0= fresh 1
+[2018-06-10T23:36:08.172] [DEBUG] default - session { id: 1,
+  name: '咩咩咩',
+  email: '111@qq.com',
+  phone: '11111111111',
+  password: '111111',
+  portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+  status: 1,
+  level: 1,
+  remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+  createtime: 1524647597643,
+  updatetime: 1527928524265 }
+[2018-06-10T23:36:08.197] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/reply/del HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:36:31.731] [INFO] default - server is listening on port 6600
+[2018-06-10T23:36:31.736] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T23:36:31.737] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T23:36:34.719] [DEBUG] default - 登陆用户为 { '账号': '11111111111', '密码': '111111' }
+[2018-06-10T23:36:34.741] [DEBUG] default - 检查结果 [ RowDataPacket {
+    id: 1,
+    name: '咩咩咩',
+    email: '111@qq.com',
+    phone: '11111111111',
+    password: '111111',
+    portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+    status: 1,
+    level: 1,
+    remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+    createtime: 1524647597643,
+    updatetime: 1527928524265 } ]
+[2018-06-10T23:36:34.755] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/login HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:36:37.214] [DEBUG] default - cookie 515286449947461.+xbLaK+3eFFR4IgVtZjelIPDh3sKS0lqQRrwCPt0Oqg= fresh 1
+[2018-06-10T23:36:37.216] [DEBUG] default - session { id: 1,
+  name: '咩咩咩',
+  email: '111@qq.com',
+  phone: '11111111111',
+  password: '111111',
+  portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+  status: 1,
+  level: 1,
+  remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+  createtime: 1524647597643,
+  updatetime: 1527928524265 }
+[2018-06-10T23:36:37.235] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/reply/del HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:37:49.315] [INFO] default - server is listening on port 6600
+[2018-06-10T23:37:49.324] [INFO] default - static file dirname F:\JetBrains\web project\BlogNew\BlogServer\public\cfile
+[2018-06-10T23:37:49.325] [INFO] default - static template dirname F:\JetBrains\web project\BlogNew\BlogServer\public\dist
+[2018-06-10T23:38:16.888] [DEBUG] default - cookie 515286449947461.+xbLaK+3eFFR4IgVtZjelIPDh3sKS0lqQRrwCPt0Oqg= fresh 1
+[2018-06-10T23:38:16.909] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/comment/del HTTP/1.1" 200 44 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:38:20.284] [DEBUG] default - 登陆用户为 { '账号': '11111111111', '密码': '111111' }
+[2018-06-10T23:38:20.313] [DEBUG] default - 检查结果 [ RowDataPacket {
+    id: 1,
+    name: '咩咩咩',
+    email: '111@qq.com',
+    phone: '11111111111',
+    password: '111111',
+    portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+    status: 1,
+    level: 1,
+    remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+    createtime: 1524647597643,
+    updatetime: 1527928524265 } ]
+[2018-06-10T23:38:20.325] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/login HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:38:23.549] [DEBUG] default - cookie 1115286451003191.xtz83UXLfPKYJfSer36JmyvNR65beKsVyDFg9JxcfuQ= fresh 1
+[2018-06-10T23:38:23.551] [DEBUG] default - session { id: 1,
+  name: '咩咩咩',
+  email: '111@qq.com',
+  phone: '11111111111',
+  password: '111111',
+  portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+  status: 1,
+  level: 1,
+  remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+  createtime: 1524647597643,
+  updatetime: 1527928524265 }
+[2018-06-10T23:38:23.576] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/comment/del HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"
+[2018-06-10T23:38:28.875] [DEBUG] default - cookie 1115286451003191.xtz83UXLfPKYJfSer36JmyvNR65beKsVyDFg9JxcfuQ= fresh 1
+[2018-06-10T23:38:28.876] [DEBUG] default - session { id: 1,
+  name: '咩咩咩',
+  email: '111@qq.com',
+  phone: '11111111111',
+  password: '111111',
+  portrait: 'http://www.proj.xin:6600/api/file/get/e9d5d690b44f9b72ada649dcdabe2123e3ed6db4581990f47282117b1e74ec25.jpg',
+  status: 1,
+  level: 1,
+  remark: '这个人很懒什么都没留下。。因为真的什么都没有！',
+  createtime: 1524647597643,
+  updatetime: 1527928524265 }
+[2018-06-10T23:38:28.899] [INFO] default - ::ffff:127.0.0.1 - - "POST /api/user/reply/del HTTP/1.1" 200 32 "" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36"

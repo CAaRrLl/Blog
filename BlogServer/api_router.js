@@ -21,7 +21,11 @@ var getInfo = require('./controllers/user').get_info;
 var getDataSum = require('./controllers/user').get_data_sum;
 var saveInfo = require('./controllers/user').save_info;
 var essay_publish_auth = require('./middleware/auth').essay_publish_auth;
-
+var get_comments = require('./controllers/comment').get_comments;
+var add_comment = require('./controllers/comment').add_comment;
+var add_reply = require('./controllers/comment').add_reply;
+var del_comment = require('./controllers/comment').del_comment;
+var del_reply = require('./controllers/comment').del_reply;
 
 var multipart = require('connect-multiparty');
 
@@ -64,5 +68,12 @@ router.post('/essay/save', check_auth, save_essay);
 router.get('/essay/publish', check_auth, publish);
 router.get('/essay/getcollection');
 router.get('/essay/settag', check_auth, set_essay_tag);
+
+//评论
+router.get('/essay/comments', get_comments);
+router.post('/user/comment', check_auth, add_comment);
+router.post('/user/reply', check_auth, add_reply);
+router.post('/user/comment/del', check_auth, del_comment);
+router.post('/user/reply/del', check_auth, del_reply);
 
 module.exports=router;

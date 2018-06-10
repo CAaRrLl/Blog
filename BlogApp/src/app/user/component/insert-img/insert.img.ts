@@ -4,6 +4,7 @@ import { Logger } from '../../../service/logger.service';
 import { HttpService } from '../../../service/http.service';
 import { api } from '../../../constant/api';
 import { AlertService, AlertType } from '../../../component/alert/alert.service';
+import { EventService, EventList } from '../../../service/event.service';
 
 @Component({
     selector:'app-insert-img',
@@ -13,7 +14,7 @@ import { AlertService, AlertType } from '../../../component/alert/alert.service'
 
 export class InsertImgComponent implements OnDestroy{
     
-    constructor(private dialog: DialogService, private log: Logger, 
+    constructor(private dialog: DialogService, private log: Logger, private event:EventService,
         private alert: AlertService, private http: HttpService) {}
 
     text: string; 
@@ -82,11 +83,14 @@ export class InsertImgComponent implements OnDestroy{
                 });
                 this.essay.text += this.text;
                 this.cancel();
+                this.event.emit(EventList.SYNCLOAD, {time: 500, tip: '上传头像中'});
             },err => {
                 this.log.error('InsertImg', 'getImgFromLocal', err);
                 this.cancel();
+                this.event.emit(EventList.SYNCLOAD, {time: 500, tip: '上传头像中'});
             }
         );
+        this.event.emit(EventList.SYNCLOAD, {time: 5000, tip: '上传头像中'});
     }
 
     getImgUrl(target) {

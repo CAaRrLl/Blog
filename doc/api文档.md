@@ -812,6 +812,153 @@
 }
 ```
 
+### 添加一条留言
+``POST``
+``api/user/comment``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|essayid|是|String|文章id|
+|text|是|String|留言内容|
+
+``response``
+```
+成功
+{
+    code:1000,
+    msg:'',
+    data:{
+        id: 121
+    }
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
+### 删除一条留言
+``POST``
+``api/user/comment/del``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|id|是|String|留言id|
+
+``response``
+```
+成功
+{
+    code:1000,
+    msg:'',
+    data:{}
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
+### 添加一条回复
+``POST``
+``api/user/reply``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|commentid|是|String|留言id|
+|recvid|是|String|接收者id|
+|text|是|String|留言内容|
+
+``response``
+```
+成功
+{
+    code:1000,
+    msg:'',
+    data:{
+        id: 121
+    }
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
+### 删除一条回复
+``POST``
+``api/user/reply/del``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|id|是|String|回复id|
+
+``response``
+```
+成功
+{
+    code:1000,
+    msg:'',
+    data:{}
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
+### 获取某文章下面的留言和回复
+``GET``
+``api/essay/comments``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|id|是|String|文章id|
+|page|是|number|页码|
+|size|是|number|页的大小|
+
+``response``
+```
+成功
+{
+    code:1000,
+    msg:'',
+    data:{
+        comments: [
+            {
+                id: 12,
+                portrait:'foisfsdjfksfklsd',
+                sendid: 12,
+                name: '大哥大',
+                time: 1223232323,
+                text: '附件是复临凡看来是开始了棱角分明珀尔',
+                support: 12,
+                replys: [
+                    {
+                        id: 321,
+                        name: '顶顶顶',
+                        time: 232434231,
+                        sendid: 13,
+                        recvid: 312,
+                        text: '的快捷方式进口潘克拉斯反馈到i爱父母都是卡夫卡'
+                    }
+                ]
+            }
+        ],
+        count: 100
+    }
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
 ### 获取用户统计信息
 ``GET``
 ``api/user/dataSum``

@@ -9,6 +9,7 @@ import { Logger } from './service/logger.service';
         <app-alert></app-alert>
         <app-dialog></app-dialog>
         <app-side-tool></app-side-tool>
+        <app-sync-loading></app-sync-loading>
     `
 })
 export class AppComponent implements OnInit{
