@@ -13,6 +13,7 @@ var get_info = function(req, res, next) {
         logger.warn('用户会话不存在');
         fb(res, code.sessionNoExist, '会话不存在', {});
     }
+    info.id = session.id;
     info.name = session.name;
     info.email = session.email;
     info.phone = session.phone;

@@ -1,10 +1,13 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { HttpService } from '../../../service/http.service';
 import { api } from '../../../constant/api';
 import { Logger } from '../../../service/logger.service';
 import { AlertService, AlertType } from '../../../component/alert/alert.service';
 import { CommentEditorModel, TYPE } from '../essay.comment.editor/essay.comment.editor';
 import { util } from '../../../tool/utils';
+import { SessionStorage, KEY } from '../../../service/sessionStorage.service';
+import { EIO } from 'constants';
+import { DialogService } from '../../../component/dialog/dialog.service';
 
 @Component({
     selector: 'app-essay-comment',
@@ -12,13 +15,14 @@ import { util } from '../../../tool/utils';
     styleUrls: ['./essay.comment.component.scss']
 })
 
-export class EssayCommentComponent implements OnChanges{
+export class EssayCommentComponent implements OnChanges, OnInit{
     @Input() essayid: string;
     @Input() change: boolean = false;
 
     prestatus: boolean = false;
     
-    constructor(private http: HttpService, private log: Logger, private alert: AlertService) {}
+    constructor(private http: HttpService, private log: Logger, private alert: AlertService, 
+        private storage: SessionStorage, private dialog: DialogService) {}
 
     replyEditorModel: CommentEditorModel = {comment: '', send: {func: null, params: []}, cancel: null, type: TYPE.REPLY};
 
@@ -29,6 +33,14 @@ export class EssayCommentComponent implements OnChanges{
     comments: any;
 
     replyCommentid: number;
+
+    //用于判断是否有删除评论的权限
+    userID: number; 
+
+    ngOnInit() {
+        let info = this.storage.get(KEY.MYHOMECP_USERINFO);
+        this.userID = info && info.id;
+    }
 
     ngOnChanges() {
         if(this.change != this.prestatus) {
@@ -84,6 +96,7 @@ export class EssayCommentComponent implements OnChanges{
         }
         this.replyEditorModel.comment = "@" + recvname + ' ';
         this.replyCommentid = commentid;
+        location.hash = '#' + commentid;
         this.bindReplyEditorEvent(commentid, recvid);
     }
 
@@ -114,5 +127,62 @@ export class EssayCommentComponent implements OnChanges{
     cancelEditor = () => {
         this.replyCommentid = null;
         this.replyEditorModel.comment = "";
+    }
+
+    showDel(event) {
+        let container = event.target;
+        let delEl = container.querySelector('a.del');
+        if(!delEl) return;
+        delEl.style.display = 'initial';
+    }
+
+    hiddenDel(event) {
+        let container = event.target;
+        let delEl = container.querySelector('a.del');
+        if(!delEl) return;
+        delEl.style.display = 'none';
+    }
+
+    replyDel(id: number) {
+        this.dialog.show({
+            title: '删除回复',
+            confirmBtn: {
+                func: () => {
+                    this.http.postJson(api.delReply, {id: id}).subscribe(
+                        res => {
+                            this.alert.show({type: AlertType.Success, msg: '回复已删除', time: 2000});
+                            this.updateView();
+                            this.dialog.close();
+                        }, err => {
+                            this.log.error('EssayCommentComponent', 'replyDel', err);
+                            this.dialog.close();
+                        }
+                    );
+                }
+            },
+            content: '确认要删除该回复?'
+        });
+        
+    }
+
+    commentDel(id: number) {
+        this.dialog.show({
+            title: '删除留言',
+            confirmBtn: {
+                func: () => {
+                        this.http.postJson(api.delComment, {id: id}).subscribe(
+                        res => {
+                            this.alert.show({type: AlertType.Success, msg: '评论已删除', time: 2000});
+                            this.updateView();
+                            this.dialog.close();
+                        }, err => {
+                            this.log.error('EssayCommentComponent', 'commentDel', err);
+                            this.dialog.close();
+                        }
+                    )
+                }
+            },
+            content: '确认要删除该留言?'
+        });
     }
 }
