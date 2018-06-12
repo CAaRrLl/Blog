@@ -38,6 +38,7 @@ export const iconMap={
     eye: '&#xe800',
     userinfo: '&#xe800',
     essay: '&#xe800',
+    support: '&#xe800',
     arrows: '&#xe802',
     columns: '&#xf0db',
     pen: '&#xe801',

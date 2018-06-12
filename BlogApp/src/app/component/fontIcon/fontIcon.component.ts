@@ -4,12 +4,14 @@ import { OnChanges, OnInit } from "@angular/core/src/metadata/lifecycle_hooks";
 
 @Component({
     selector:'app-icon',
-    template:`<a class={{iconClass}} [class.spin]="isSpin" innerHtml={{icon}}></a>`,
+    template:`<a class={{iconClass}} [class.spin]="isSpin" innerHtml={{icon}}></a>
+            <span *ngIf="text">{{text}}</span>`,
     styleUrls:['./fontIcon.component.scss']
 })
 
 export class FontIconComponent implements OnChanges{
-    @Input() tag:string;
+    @Input() tag: string;
+    @Input() text: string;
     iconClass:string;
     icon:string;
     isSpin:boolean = false;

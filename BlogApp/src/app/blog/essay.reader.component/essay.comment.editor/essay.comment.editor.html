@@ -1,0 +1,14 @@
+<div class="reply" [style.height]="isCommenting||_TYPE.REPLY === model.type? '8rem':'5rem'">
+    <img [src]="isUser? userImg: '../../../assets/img/default-head.png'" *ngIf="_TYPE.REPLY !== model.type">
+    <div class="textholder" [class.need-login]="!isUser" [style.margin-left]="_TYPE.REPLY !== model.type? '3rem':'0'">
+        <textarea maxlength="500" spellcheck="false" placeholder="写下你的评论..." 
+            [style.display]="isUser? 'initial': 'none'" #textarea [(ngModel)]="model.comment">
+        </textarea>
+        <a class="btn" *ngIf="!isUser" [href]="userSignUrl">登陆</a>
+        <span *ngIf="!isUser">后发表评论</span>
+    </div>
+    <div class="btngrounp" *ngIf="isUser">
+        <span (click)="cancelComment()">取消</span>
+        <span (click)="sendComment()">发送</span>
+    </div>
+</div>

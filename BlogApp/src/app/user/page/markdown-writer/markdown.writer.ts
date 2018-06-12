@@ -496,6 +496,10 @@ export class MarkdownWriter implements OnInit, OnDestroy{
             this.log.warn('MarkdownWriter', 'saveEssay', '要保存的文章id不存在');
             return;
         }
+        if(!this.essayData.text) {
+            this.alert.show({type: AlertType.Warn, msg: '文章内容不能为空', time: 2000});
+            return;
+        }
         this.saveEssay();
         this.service.publishEssay(this.activeEssayKey, (err) => {
             if(err) {

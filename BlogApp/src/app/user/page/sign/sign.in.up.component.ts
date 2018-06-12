@@ -17,6 +17,8 @@ import { routes } from '../../../app.routes';
 })
 
 export class SignInUpComponent implements OnInit{
+    @ViewChild('in') in: ElementRef;
+    @ViewChild('up') up: ElementRef;
     
     signInView: InputJson = new InputJson();
     signUpView: InputJson = new InputJson();
@@ -79,6 +81,20 @@ export class SignInUpComponent implements OnInit{
                 case 'up':
                     this.setTab(false);
                     break;
+            }
+        });
+        window.addEventListener('keyup', (event) => {
+            if(event.keyCode === 13) {
+                switch (this.currentTab) {
+                    case true:
+                    this.in['showFirstValidTip']();
+                    this.signIn();
+                    break;
+                    case false:
+                    this.up['showFirstValidTip']();
+                    this.signUp();
+                    break;
+                }
             }
         });
     }

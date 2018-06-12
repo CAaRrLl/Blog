@@ -40,5 +40,13 @@ export let util={
             array.push(res[key]);
         }
         return array;
+    },
+    //去除字符串两端的空格
+    trim(str) { 
+        return str.replace(/(^\s*)|(\s*$)/g, ""); 
+    },
+    //去掉左边的空格
+    trimleft(str) {
+        return str.replace(/^\s*/g, "");
     }
 }

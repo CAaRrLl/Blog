@@ -1,3 +1,5 @@
 <div class="container">
     <app-html-render class="content" [html]="essayText" [title]="essayTitle"></app-html-render>
+    <app-essay-comment-editor [model]="commentEditorModel"></app-essay-comment-editor>
+    <app-essay-comment [change]="change" [essayid]="essayid"></app-essay-comment>
 </div>

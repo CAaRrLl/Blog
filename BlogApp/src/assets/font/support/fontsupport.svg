@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2018 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="thumbs-up" unicode="&#xe800;" d="M582 480q2-6 58-13t108-24 52-47q0-72-61-284t-107-212q-144 0-288 42t-144 88l0 342q0 14 15 34t46 45 53 41 62 43 46 31q50 34 104 100t85 104 41 26q48-76 29-137t-59-119-40-60z m-432-4q14 0 0-14-50-50-50-104l0-318q0-50 52-104 10-10-2-10-26 0-55 8t-62 45-33 99l0 242q0 62 33 100t63 47 54 9z" horiz-adv-x="800" />
+</font>
+</defs>
+</svg>

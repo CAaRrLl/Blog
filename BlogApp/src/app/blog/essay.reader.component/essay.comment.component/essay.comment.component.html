@@ -1,0 +1,23 @@
+<div class="head">
+    <h4>{{count}}条评论</h4>
+</div>
+<div class="comment" *ngFor="let comment of comments, let i = index">
+    <img [src]="comment.portrait">
+    <h4>{{comment.name}}</h4>
+    <span>{{getFloor(i)}}楼</span>
+    <span>{{getTime(comment.time)}}</span>
+    <p [innerHTML]="getParagraph(comment.text)"></p>
+    <app-icon class="oper" tag="support" text="{{comment.support? comment.support + '人':''}}赞"></app-icon>
+    <app-icon class="oper" tag="msg" text="回复" (click)="replyEditor(comment.id, comment.sendid, comment.name)"></app-icon>
+    <div class="reply" *ngFor="let reply of comment.replys">
+        <a href="void:javascript()">{{reply.name}}</a>:
+        <span [innerHTML]="getParagraph(reply.text)"></span><br>
+        <span class="time">{{getTime(reply.time)}}</span>
+        <app-icon tag="msg" class="oper" text="回复" (click)="replyEditor(comment.id, reply.sendid, reply.name)"></app-icon>
+    </div>
+    <div class="new-reply" *ngIf="comment.replys.length > 0">
+        <app-icon tag="pen" (click)="replyEditor(comment.id, comment.sendid, comment.name)" text="添加新评论"></app-icon>
+    </div>
+    <app-essay-comment-editor class="reply-editor" [model]="replyEditorModel" [class.reply-editor-show]="isReplyEditorShow(comment.id)">
+    </app-essay-comment-editor>
+</div>

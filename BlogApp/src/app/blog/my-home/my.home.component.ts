@@ -36,16 +36,21 @@ export class MyHomeComponent implements OnInit{
         private router: Router, private event: EventService) {}
 
     ngOnInit() {
-        this.router.events.subscribe(e => {
-            if(e.constructor === NavigationEnd) {
-                if((e as NavigationEnd).url === route.myinfo) {
-                    this.activeNav = Nav.Info;
-                } else {
-                    this.activeNav = Nav.Essay;
-                }
-            }
-        })
-        
+        if(window.location.pathname === route.myinfo) {
+            this.activeNav = Nav.Info;
+        } else if(window.location.pathname === route.myessay) {
+            this.activeNav = Nav.Essay;
+        }
+        // this.router.events.subscribe(e => {
+        //     if(e.constructor === NavigationEnd) {
+        //         console.log(e['url']);
+        //         if((e as NavigationEnd).url === route.myinfo) {
+        //             this.activeNav = Nav.Info;
+        //         } else {
+        //             this.activeNav = Nav.Essay;
+        //         }
+        //     }
+        // })
         this.getUserInfo();
         this.http.getJson(api.getDataSum).subscribe(
             res => {

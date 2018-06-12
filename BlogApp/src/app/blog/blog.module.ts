@@ -13,6 +13,8 @@ import { MyEssayComponent } from './my-home/my-essay/my.essay.component';
 import { MyHomeComponent } from './my-home/my.home.component';
 import { EssayPublishComponent } from './component/essay.publish/essay.publish.component';
 import { FormsModule } from '@angular/forms';
+import { EssayCommentComponent } from './essay.reader.component/essay.comment.component/essay.comment.component';
+import { EssayCommentEditor } from './essay.reader.component/essay.comment.editor/essay.comment.editor';
 
 @NgModule({
     declarations:[
@@ -24,7 +26,9 @@ import { FormsModule } from '@angular/forms';
         MyHomeComponent,
         MyInfoComponent,
         MyEssayComponent,
-        EssayPublishComponent
+        EssayPublishComponent,
+        EssayCommentComponent,
+        EssayCommentEditor
     ],
     imports:[
         CommonModule,
