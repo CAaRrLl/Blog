@@ -4,6 +4,26 @@
     -moz-transition: $content;
     -o-transition: $content;
 }
+@mixin animation($content) {
+    animation: $content;
+    -webkit-animation: $content;
+    -o-animation: $content;
+    -moz-animation: $content;
+}
+@mixin keyframes($name) {
+    @keyframes #{$name} {
+        @content;
+    }
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+}
 .head {
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
@@ -110,4 +130,102 @@
     &:hover{
         color: #999!important
     }
+}
+.load {
+    background-color: white;
+    padding: 1rem;
+    &>.img {
+        background-color: #cbcbcb;
+        float: left;
+        height: 2.5rem;
+        width: 2.5rem;
+        border-radius: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+    &>.name {
+        background-color: #cbcbcb;
+        height: 1.1rem;
+        width: 4rem;
+        margin-left: 3rem;
+        margin-bottom: 0.45rem;
+    }
+    &>.floor {
+        background-color: #cbcbcb;
+        height: 0.95rem;
+        width: 5rem;
+        float: left;
+        margin-left: 4rem;
+        margin-bottom: 0.5rem;        
+    }
+    &>.time {
+        background-color: #cbcbcb;
+        height: 0.95rem;
+        width: 3rem;
+        margin-left: 3rem;
+        margin-bottom: 0.5rem;
+    }
+    @include keyframes(loading1) {
+        0% {width: 70%}
+        50% {width: 80%}
+        100% {width: 70%}
+    }
+    @include keyframes(loading2) {
+        0% {width: 90%}
+        50% {width: 50%}
+        100% {width: 90%}
+    }
+    @include keyframes(loading3) {
+        0% {width: 40%}
+        50% {width: 80%}
+        100% {width: 40%}
+    }
+    &>.text1 {
+        background-color: #cbcbcb;
+        height: 1rem;
+        width: 70%;
+        margin-bottom: 0.5rem;
+        $content: loading1 1s linear 0s infinite;
+        @include animation($content);
+    }
+    &>.text2 {
+        background-color: #cbcbcb;
+        height: 1rem;
+        width: 90%;   
+        margin-bottom: 0.5rem;
+        $content: loading2 1s linear 0s infinite;
+        @include animation($content);
+    }
+    &>.text3 {
+        background-color: #cbcbcb;
+        height: 1rem;
+        width: 40%;  
+        margin-bottom: 0.5rem;
+        $content: loading3 1s linear 0s infinite;
+        @include animation($content);
+    }
+}
+.empty {
+    position: relative;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    height: 10rem;
+    background-color: white;
+    &>img {
+        height: 3rem;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+}
+.page {
+    background-color: white;
+    display: block;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 0.5rem;
+    text-align: right;
+    padding-right: 1rem;
 }

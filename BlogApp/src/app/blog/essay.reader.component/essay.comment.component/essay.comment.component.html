@@ -1,6 +1,18 @@
 <div class="head">
     <h4>{{count?count:0}}条评论</h4>
 </div>
+<div class="load" *ngIf="loading">
+    <div class="img"></div>
+    <div class="name"></div>
+    <div class="floor"></div>
+    <div class="time"></div>
+    <div class="text1"></div>
+    <div class="text2"></div>
+    <div class="text3"></div>
+</div>
+<div class="empty" *ngIf="comments.length <= 0">
+    <img src="../../../../assets/img/comments-empty.png">
+</div>
 <div class="comment" *ngFor="let comment of comments, let i = index" 
     (mouseenter)="showDel($event)" (mouseleave)="hiddenDel($event)">
     <img [src]="comment.portrait">
@@ -10,14 +22,14 @@
     <p [innerHTML]="getParagraph(comment.text)"></p>
     <app-icon class="oper" tag="support" text="{{comment.support? comment.support + '人':''}}赞"></app-icon>
     <app-icon class="oper" tag="msg" text="回复" (click)="replyEditor(comment.id, comment.sendid, comment.name)"></app-icon>
-    <a class="del" href="void:javascript()" (click)="commentDel(comment.id)" *ngIf="userID==comment.sendid">删除</a>
+    <a class="del" href="javascript:void(0)" (click)="commentDel(comment.id)" *ngIf="userID==comment.sendid&&isUser">删除</a>
     <div class="reply" *ngFor="let reply of comment.replys"
         (mouseenter)="showDel($event)" (mouseleave)="hiddenDel($event)">
-        <a href="void:javascript()">{{reply.name}}</a>:
+        <a href="javascript:void(0)">{{reply.name}}</a>:
         <span [innerHTML]="getParagraph(reply.text)"></span><br>
         <span class="time">{{getTime(reply.time)}}</span>
         <app-icon tag="msg" class="oper" text="回复" (click)="replyEditor(comment.id, reply.sendid, reply.name)"></app-icon>
-        <a class="del" href="void:javascript()" (click)="replyDel(reply.id)"  *ngIf="userID==reply.sendid">删除</a>
+        <a class="del" href="javascript:void(0)" (click)="replyDel(reply.id)"  *ngIf="userID==reply.sendid&&isUser">删除</a>
     </div>
     <div class="new-reply" [id]="comment.id" *ngIf="comment.replys.length > 0">
         <app-icon tag="pen" (click)="replyEditor(comment.id, comment.sendid, comment.name)" text="添加新评论"></app-icon>
@@ -25,3 +37,4 @@
     <app-essay-comment-editor class="reply-editor" [model]="replyEditorModel" [class.reply-editor-show]="isReplyEditorShow(comment.id)">
     </app-essay-comment-editor>
 </div>
+<app-pagination class="page" [model]="paginationModel"></app-pagination>

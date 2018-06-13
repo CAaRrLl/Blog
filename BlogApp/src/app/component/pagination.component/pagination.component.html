@@ -1,0 +1,5 @@
+<div class="page-container" *ngIf="model && model.count > 0">
+    <span (click)="clickPage(1)">首页</span>
+    <span *ngFor="let page of pageArr" (click)="clickPage(page)" [class.active]="isActive(page)">{{page}}</span>
+    <span (click)="clickPage(getPageLength())">尾页</span>
+</div>

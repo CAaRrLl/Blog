@@ -1,0 +1,29 @@
+.page-container {
+    &>span {
+        border: 1px solid #d7d7d7;
+        border-radius: 2rem;
+        cursor: pointer;
+        width: 2.2rem;
+        height: 2rem;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        color: #8c8c8c;
+        margin-right: 0.3rem;
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.075);
+        }
+        &:first-child {
+            width: 4rem;
+        }
+        &:last-child {
+            width: 4rem;
+        }
+    }
+    .active {
+        border: none;
+        &:hover {
+            background-color: initial;
+        }
+    }
+}

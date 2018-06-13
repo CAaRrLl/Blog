@@ -8,6 +8,9 @@ import { util } from '../../../tool/utils';
 import { SessionStorage, KEY } from '../../../service/sessionStorage.service';
 import { EIO } from 'constants';
 import { DialogService } from '../../../component/dialog/dialog.service';
+import { PaginationModel } from '../../../component/pagination.component/pagination.component';
+import { LocalStorageService, LKEY } from '../../../service/localstorage.service';
+import { constant } from '../../../constant/constant';
 
 @Component({
     selector: 'app-essay-comment',
@@ -22,29 +25,34 @@ export class EssayCommentComponent implements OnChanges, OnInit{
     prestatus: boolean = false;
     
     constructor(private http: HttpService, private log: Logger, private alert: AlertService, 
-        private storage: SessionStorage, private dialog: DialogService) {}
+        private storage: SessionStorage, private dialog: DialogService, private lstorage: LocalStorageService) {}
 
     replyEditorModel: CommentEditorModel = {comment: '', send: {func: null, params: []}, cancel: null, type: TYPE.REPLY};
 
-    page: number = 1;
-    size: number = 5;
     count: number = 0;
 
-    comments: any;
+    comments: any = [];
 
     replyCommentid: number;
 
     //用于判断是否有删除评论的权限
     userID: number; 
+    isUser: boolean = false;
+
+    loading: boolean = false;
+
+    //分页数据模型
+    paginationModel: PaginationModel;
 
     ngOnInit() {
         let info = this.storage.get(KEY.MYHOMECP_USERINFO);
         this.userID = info && info.id;
+        this.isUser = this.lstorage.get(LKEY.loginStatus) == constant.isUser? true : false;
     }
 
     ngOnChanges() {
         if(this.change != this.prestatus) {
-            this.updateView();
+            this.getComments(this.updateView);
         }
     }
 
@@ -55,21 +63,41 @@ export class EssayCommentComponent implements OnChanges, OnInit{
     }
 
     getComments(refresh: Function) {
-        this.http.getJson(api.getComments, {id: this.essayid, page: this.page, size: this.size}).subscribe(
+        this.loading = true;
+        this.http.getJson(api.getComments, {id: this.essayid, page: 1, size: 5}).subscribe(
             res => {
                 refresh((res as any).data);
+                this.paginationModel = {count: res['data'].count || 0, curPage: 1, size: 5, request: this.nextComments};
+                this.loading = false;
             }, err => {
                 this.log.error('EssayCommentComponent', 'getComments', err);
+                this.loading = false;
             }
         )
     }
 
-    updateView() {
-        this.getComments(data => {
-            this.count = data.count;
-            this.comments = data.comments;
-            this.prestatus = this.change;
-        });
+    nextComments = () => {
+        this.loading = true;
+        this.http.getJson(api.getComments, {id: this.essayid, page: this.paginationModel.curPage, size: this.paginationModel.size})
+        .subscribe(
+            res => {
+                let data = res['data'];
+                this.count = data.count || 0;
+                this.comments = data.comments || [];
+                this.prestatus = this.change;
+                this.paginationModel.count = this.count;
+                this.loading = false;
+            }, err => {
+                this.log.error('EssayCommetComponent', 'nextComments', err);
+                this.loading = false;
+            }
+        )
+    }
+
+    updateView = (data) => {
+        this.count = data.count || 0;
+        this.comments = data.comments || [];
+        this.prestatus = this.change;
     }
 
     getTime(timestamp: number) {
@@ -112,7 +140,7 @@ export class EssayCommentComponent implements OnChanges, OnInit{
         this.http.postJson(api.addReply, {commentid: commentid, recvid: recvid, text: this.replyEditorModel.comment})
         .subscribe(
             res => {
-                this.updateView();
+                this.getComments(this.updateView);  
                 if(afterSend) {
                     afterSend();
                 }
@@ -151,7 +179,7 @@ export class EssayCommentComponent implements OnChanges, OnInit{
                     this.http.postJson(api.delReply, {id: id}).subscribe(
                         res => {
                             this.alert.show({type: AlertType.Success, msg: '回复已删除', time: 2000});
-                            this.updateView();
+                            this.getComments(this.updateView);
                             this.dialog.close();
                         }, err => {
                             this.log.error('EssayCommentComponent', 'replyDel', err);
@@ -173,7 +201,7 @@ export class EssayCommentComponent implements OnChanges, OnInit{
                         this.http.postJson(api.delComment, {id: id}).subscribe(
                         res => {
                             this.alert.show({type: AlertType.Success, msg: '评论已删除', time: 2000});
-                            this.updateView();
+                            this.getComments(this.updateView);
                             this.dialog.close();
                         }, err => {
                             this.log.error('EssayCommentComponent', 'commentDel', err);

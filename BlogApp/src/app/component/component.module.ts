@@ -15,6 +15,7 @@ import { SelectComponent } from "./select.component/select.component";
 import { HtmlRender } from "./html-render/html.render";
 import { SideToolComponent } from "./side.tool/side.tool.component";
 import { SyncLoadingComponent } from './sync.loading/sync.loading.component';
+import { PaginationComponent } from "./pagination.component/pagination.component";
 
 @NgModule({
     declarations:[
@@ -30,7 +31,8 @@ import { SyncLoadingComponent } from './sync.loading/sync.loading.component';
         SelectComponent,
         HtmlRender,
         SideToolComponent,
-        SyncLoadingComponent
+        SyncLoadingComponent,
+        PaginationComponent
     ],
     imports:[
         FormsModule,
@@ -47,7 +49,8 @@ import { SyncLoadingComponent } from './sync.loading/sync.loading.component';
         SiderbarComponent,
         HtmlRender,
         SideToolComponent,
-        SyncLoadingComponent
+        SyncLoadingComponent,
+        PaginationComponent
     ],
     entryComponents: [
         InsertImgComponent,
