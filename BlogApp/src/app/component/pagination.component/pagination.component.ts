@@ -21,9 +21,8 @@ export class PaginationComponent implements OnChanges{
         this.pageArr = [];
         if(!this.model) return;
         let pageMaxNum = this.getPageLength();
-        for(let i = this.model.curPage, 
-            end = pageMaxNum > i + this.config.num - 1? i + this.config.num - 1 : pageMaxNum; 
-            i <= end; i++) {
+        let end = pageMaxNum > this.model.curPage + this.config.num - 1? this.model.curPage + this.config.num - 1 : pageMaxNum;
+        for(let i = end - this.config.num + 1; i <= end; i++) {
                 this.pageArr.push(i);
         }
     }

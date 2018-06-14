@@ -64,10 +64,11 @@ export class EssayCommentComponent implements OnChanges, OnInit{
 
     getComments(refresh: Function) {
         this.loading = true;
-        this.http.getJson(api.getComments, {id: this.essayid, page: 1, size: 5}).subscribe(
+        let curPage = this.paginationModel && this.paginationModel.curPage || 1
+        this.http.getJson(api.getComments, {id: this.essayid, page: curPage, size: 5}).subscribe(
             res => {
                 refresh((res as any).data);
-                this.paginationModel = {count: res['data'].count || 0, curPage: 1, size: 5, request: this.nextComments};
+                this.paginationModel = {count: res['data'].count || 0, curPage: curPage, size: 5, request: this.nextComments};
                 this.loading = false;
             }, err => {
                 this.log.error('EssayCommentComponent', 'getComments', err);

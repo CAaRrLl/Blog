@@ -26,7 +26,7 @@
     <div class="reply" *ngFor="let reply of comment.replys"
         (mouseenter)="showDel($event)" (mouseleave)="hiddenDel($event)">
         <a href="javascript:void(0)">{{reply.name}}</a>:
-        <span [innerHTML]="getParagraph(reply.text)"></span><br>
+        <span style="word-break: break-all" [innerHTML]="getParagraph(reply.text)"></span><br>
         <span class="time">{{getTime(reply.time)}}</span>
         <app-icon tag="msg" class="oper" text="回复" (click)="replyEditor(comment.id, reply.sendid, reply.name)"></app-icon>
         <a class="del" href="javascript:void(0)" (click)="replyDel(reply.id)"  *ngIf="userID==reply.sendid&&isUser">删除</a>
