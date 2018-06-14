@@ -104,5 +104,14 @@
         }
       }
     }
+    &>span {
+      display: block;
+      text-align: center;
+      cursor: pointer;
+      color: #cbcbcb;
+      &:hover {
+        color: #999999;
+      }
+    }
   }
 }

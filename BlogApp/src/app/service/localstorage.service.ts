@@ -17,7 +17,10 @@ export class LocalStorageService {
         if(!val) return undefined;
         return JSON.parse(val).data;
     }
-    delete(key:string){
+    delete(key:number|string){
+        if(typeof key==='number'){
+            key=String(key);
+        }
         localStorage.removeItem(key);
     }
     clear(){
@@ -25,5 +28,6 @@ export class LocalStorageService {
     }
 }
 export enum LKEY{
-    loginStatus
+    loginStatus,
+    SEARCHHISTORY
 }

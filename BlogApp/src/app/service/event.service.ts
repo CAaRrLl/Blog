@@ -19,5 +19,6 @@ export class EventService {
 export enum EventList{
     USERINFO,
     SIDETOOL,
-    SYNCLOAD
+    SYNCLOAD,
+    SEARCH
 }

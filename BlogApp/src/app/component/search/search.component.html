@@ -1,13 +1,14 @@
 <div class="container">
-    <input class="input" [placeholder]="tip" type="text" [value]="val"
+    <input class="input" [placeholder]="tip" type="text" [(ngModel)]="val"
     (focus)="focus(true)" 
-    (change)="change($event.target.value)">
+    (keyup)="change()">
     <app-icon class="search" tag="search" (click)="emitVal()"></app-icon>
     <ul *ngIf="isFocus&&history.length">
         <li *ngFor="let v of history,let i=index" (click)="setVal(v)">
             <app-icon class="icon" tag="clock"></app-icon>
             {{v}}
-            <app-icon class="icon-right" tag="close" (click)="deleteHistory($event, i)"></app-icon>
+            <app-icon class="icon-right" tag="close" (click)="deleteHistory($event, v)"></app-icon>
         </li>
+        <span (click)="clearHistory()">清空历史</span>
     </ul>
 </div>

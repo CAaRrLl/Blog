@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { EventService, EventList } from '../../service/event.service';
 
 @Component({
     selector: 'app-home',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
     styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent{
+export class HomeComponent implements OnInit{
+    search: string = '';
+    constructor(private event: EventService) {}
+
+    ngOnInit() {
+        this.event.on(EventList.SEARCH).subscribe(search => this.search = search || '');
+    }
 }

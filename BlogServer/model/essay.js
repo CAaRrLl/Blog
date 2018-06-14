@@ -79,12 +79,14 @@ exports.essay_drop=essay_drop;
 var get_publish=function(size, pos, search, hostid, tag, callback){
 
     var get_essay_sql=
-    `select * from essay where ${search?'text like %?% or title like %?% and':''} 
+    `select * from essay where ${search?'text like ? or title like ? and':''} 
     ${hostid?'hostid=? and': ''} ${tag?'tag=? and': ''} status=1 order by updatetime desc limit ?,?`;
 
     var get_count_sql=
-    `select count(*) as count from essay where ${search?'text like %?% or title like %?% and':''}
+    `select count(*) as count from essay where ${search?'text like ? or title like ? and':''}
     ${hostid?'hostid=? and': ''} ${tag?'tag=? and': ''} status=1`;
+
+    search = search? '%' + search + '%' : '';
 
     var get_essay=function(){
         return new Promise(function(resolve,reject){

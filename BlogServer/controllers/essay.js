@@ -440,6 +440,7 @@ var get_publish_essay = function(req, res, next) {
     get_publish(size, pos, search, self, tag, function(err, result) {
         if(err) {
             logger.error('获取发布文章列表数据库出错', err);
+            fb(res, code.dataBaseErr, '数据库出错', {});
             return;
         }
         if(result.length !== 2) {

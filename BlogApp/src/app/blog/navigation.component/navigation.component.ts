@@ -144,6 +144,7 @@ export class NavigationComponent implements OnInit, OnDestroy{
     //搜索
     search(val: string) {
         this.log.debug('NavigationComponent', 'search', val);
+        this.event.emit(EventList.SEARCH, val);
     }
 
     //打开侧边栏

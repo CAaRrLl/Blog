@@ -43,9 +43,9 @@ export class PaginationComponent implements OnChanges{
                 this.pageArr.push(i);
             }
         } else if(curPage === this.pageArr[0]){
-            this.pageArr.map(val => val - 1);
+            this.pageArr = this.pageArr.map(val => val - 1);
         } else if(curPage === this.pageArr[this.pageArr.length - 1]) {
-            this.pageArr.map(val => val + 1);
+            this.pageArr = this.pageArr.map(val => val + 1);
         }
     }
 
