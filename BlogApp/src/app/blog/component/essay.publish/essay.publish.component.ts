@@ -136,7 +136,7 @@ export class EssayPublishComponent implements OnInit, OnChanges{
 
     gotoTop() {
         setTimeout(() => {
-            if(document.body.scrollTop <= 0) return;
+            if((document.documentElement.scrollTop || document.body.scrollTop) <= 0) return;
             window.scrollBy(0, -100);
             this.gotoTop();
         }, 1000/60);

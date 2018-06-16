@@ -17,6 +17,9 @@ var essay_publish = require('../model/essay').essay_publish;
 var update_essay_tag = require('../model/essay').update_essay_tag;
 var get_publish = require('../model/essay').get_publish;
 var get_user = require('../model/user').get_user;
+var add_readtime = require('../model/essay').add_readtime;
+var get_collect_count = require('../model/collection').get_collect_count;
+var get_comment_count = require('../model/comment').get_comment_count;
 
 function get_tag_list(hostid) {
     if(!hostid) return;
@@ -407,7 +410,21 @@ function get_publish_merge(essayData) {
             }
             essayData.text = essayData.text.replace(/!\[([\u4e00-\u9fa5\d\w\(\)._]+)\]\([^()]+\)/gi, '$1');
             essayData.text = essayData.text.length > 90? essayData.text.substr(0, 90) + '...': essayData.text;
-            resolve(essayData);
+            get_collect_count(essayData.id, function(err, count) {
+                if(err) {
+                    reject({feedback:[code.dataBaseErr, '获取收藏量数据库出错', {}], err: err});
+                    return;
+                }
+                essayData.collected = count;
+                get_comment_count(essayData.id, function(err, count) {
+                    if(err){
+                        reject({feedback:[code.dataBaseErr, '获取评论量数据库出错', {}], err: err});
+                        return;
+                    }
+                    essayData.msg = count;
+                    resolve(essayData);
+                });
+            });
         })
     });
     return p;
@@ -468,3 +485,21 @@ var get_publish_essay = function(req, res, next) {
     });
 }
 exports.get_publish_essay = get_publish_essay;
+
+var add_read_time = function(req, res, next) {
+    var id = req.query.id;
+    if(!id) {
+        logger.error('阅读文章参数错误');
+        fb(res, code.paramsErr, '请求参数错误', {});
+        return;
+    }
+    add_readtime(id, function(err) {
+        if(err) {
+            logger.error('阅读文章数据库出错', err);
+            fb(res, code.paramsErr, '数据库出错', {});
+            return;
+        }
+        fb(res, code.success, '', {});
+    })
+}
+exports.add_read_time = add_read_time;

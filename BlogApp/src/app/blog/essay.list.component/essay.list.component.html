@@ -9,7 +9,7 @@
         <p class="text">{{item.text}}</p>
         <div class="icon">
             <span class="item"><app-icon tag="eye" class="pos"></app-icon>{{item.visited}}</span>
-            <span class="item"><app-icon tag="msg" class="pos"></app-icon>{{item.msg}}</span>
+            <span class="item"><app-icon tag="msg" class="pos" (click)="toReaderComment(item.id)"></app-icon>{{item.msg}}</span>
             <span class="item"><app-icon tag="heart" class="pos"></app-icon>{{item.collected}}</span>
         </div>
     </div>

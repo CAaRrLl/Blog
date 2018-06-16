@@ -16,13 +16,13 @@ exports.collect=collect;
 
 //获取某篇文章的收藏数
 var get_collect_count=function(id,callback){
-    var sql=`select count(*) from collection where id=?`;
+    var sql=`select count(*) as count from collection where id=?`;
     db.queryQarams(sql,[id],function(err,result,fields){
         if(err){
             callback(err,null);
             return;
         }
-        callback(null,result);
+        callback(null,result[0].count || 0);
     });
 }
 exports.get_collect_count=get_collect_count;

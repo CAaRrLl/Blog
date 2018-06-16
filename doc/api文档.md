@@ -675,6 +675,8 @@
                 text:"内容靠脑补",    
                 size:5,
                 readtime:11,
+                msg: 1,
+                collected: 1,
                 remark:"很棒",
                 createtime:1523242343232,
                 updatetime:1523242343232
@@ -686,6 +688,8 @@
                 text:"内容靠脑补",   
                 size:5,
                 readtime:22,
+                msg: 1,
+                collected: 1,
                 remark:"很棒",
                 createtime:1523242343232,
                 updatetime:1523242343232
@@ -950,6 +954,29 @@
         ],
         count: 100
     }
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
+### 文章阅读
+``GET``
+``api/essay/read``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|id|是|String|文章id|
+``response``
+
+```
+成功
+{
+    code:1000,
+    msg:'',
+    data:{}
 }
 失败
 {

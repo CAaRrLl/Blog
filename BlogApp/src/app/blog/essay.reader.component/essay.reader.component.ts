@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Logger } from '../../service/logger.service';
 import { HttpService } from '../../service/http.service';
 import { api } from '../../constant/api';
@@ -9,6 +9,8 @@ import { route } from '../../constant/router';
 import { AlertService, AlertType } from '../../component/alert/alert.service';
 import { CommentEditorModel } from './essay.comment.editor/essay.comment.editor';
 import { util } from '../../tool/utils';
+import { ActivatedRoute } from '@angular/router';
+import { Observable} from 'rxjs';
 
 @Component({
     selector: 'app-essay-reader',
@@ -16,7 +18,8 @@ import { util } from '../../tool/utils';
     styleUrls: ['./essay.reader.component.scss']
 })
 
-export class EssayReaderComponent implements OnInit{
+export class EssayReaderComponent implements OnInit, AfterViewInit{
+    
     essayid: string;
     essayText: string;
     essayTitle: string;
@@ -26,7 +29,7 @@ export class EssayReaderComponent implements OnInit{
     change: boolean = true;
 
     constructor(private log: Logger, private http: HttpService, private alert: AlertService,
-        private storage: SessionStorage) {}
+        private storage: SessionStorage, private aroute: ActivatedRoute) {}
 
     ngOnInit() {
         this.essayid = this.storage.get(KEY.READER_ESSAYID);
@@ -34,6 +37,9 @@ export class EssayReaderComponent implements OnInit{
             history.go(-1);
             return;
         }
+        this.http.getJson(api.readEssay, {id: this.essayid}).subscribe(res => {}, err => {
+            this.log.error('EssayReader', 'ngOnInit', err);
+        });
         this.http.getJson(api.getEssay, {id: this.essayid}).subscribe(
             res => {
                 let data = res['data'];
@@ -43,7 +49,20 @@ export class EssayReaderComponent implements OnInit{
                 this.log.error('EssayReader', 'ngOnInit', err);
             }
         )
-        this.initCommentEditorModel();
+        this.initCommentEditorModel();        
+    }
+
+    ngAfterViewInit(): void {
+        setTimeout(() => {
+            this.aroute.queryParams.map(params => params.mao).subscribe(
+                mao => {
+                    if(mao) {
+                        let comment = document.getElementById('comment');
+                        this.goToComment(comment.offsetTop);        
+                    }
+                }
+            );
+        }, 500);
     }
 
     initCommentEditorModel() {
@@ -71,5 +90,16 @@ export class EssayReaderComponent implements OnInit{
                 }
             }
         )
+    }
+
+    goToComment(offsetTop) {
+        setTimeout(() => {
+            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            let scrollHeight = document.body.scrollHeight;
+            if(offsetTop - scrollTop <= 200 && offsetTop - scrollTop >= 0 
+                || Math.abs(scrollHeight - scrollTop - window.innerHeight) < 10) return;
+            window.scrollBy(0, 50);
+            this.goToComment(offsetTop);
+        }, 1000/60);
     }
 }

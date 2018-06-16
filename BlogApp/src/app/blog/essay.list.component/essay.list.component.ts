@@ -18,7 +18,13 @@ export class EssayListComponent {
     toReader(essayid: string) {
         if(!essayid) return;
         this.storage.set(KEY.READER_ESSAYID, essayid);
-        this.router.navigateByUrl(route.reader);
+        this.router.navigate([route.reader]);
+    }
+
+    toReaderComment(essayid: string) {
+        if(!essayid) return;
+        this.storage.set(KEY.READER_ESSAYID, essayid);
+        this.router.navigate([route.reader], {queryParams: {mao: 1}});
     }
 }
 

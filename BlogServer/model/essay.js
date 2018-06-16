@@ -201,6 +201,19 @@ var get_myessay=function(hostid,pos,size,type,callback){
 }
 exports.get_myessay=get_myessay;
 
+
+var add_readtime = function(essayid, callback) {
+    var sql =  `update essay set readtime=readtime+1 where id = ?`;
+    db.queryQarams(sql, [essayid], function(err, result) {
+        if(err) {
+            callback(err);
+            return;    
+        }
+        callback(null);
+    });
+}
+exports.add_readtime = add_readtime;
+
 var table=`
 create table if not exists essay(
     id varchar(100) primary key,     

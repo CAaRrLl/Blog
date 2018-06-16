@@ -58,6 +58,18 @@ var get_comment = function(essayid, page, size, callback) {
 }
 exports.get_comment = get_comment;
 
+var get_comment_count = function(id, callback) {
+    var sql = `select count(*) as count from comment where essayid = ?`;
+    db.queryQarams(sql, [id], function(err, result) {
+        if(err) {
+            callback(err, null);
+            return;
+        }
+        callback(null, result[0].count || 0);
+    })
+}
+exports.get_comment_count = get_comment_count;
+
 var table=`
 create table if not exists comment(
     id int auto_increment primary key,

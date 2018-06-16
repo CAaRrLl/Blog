@@ -27,4 +27,5 @@ export const api={
     delComment: `${prefix}/user/comment/del`,   //删除留言
     delReply: `${prefix}/user/reply/del`,   //删除回复
     getComments: `${prefix}/essay/comments`, //获取文章下的评论
+    readEssay: `${prefix}/essay/read`,        //读一次文章
 }
