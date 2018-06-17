@@ -28,4 +28,7 @@ export const api={
     delReply: `${prefix}/user/reply/del`,   //删除回复
     getComments: `${prefix}/essay/comments`, //获取文章下的评论
     readEssay: `${prefix}/essay/read`,        //读一次文章
+    collectEssay: `${prefix}/essay/collection`, //收藏文章
+    isCollected: `${prefix}/essay/iscollected`, //判断用户是否收藏了该文章
+    collectCancal: `${prefix}/essay/collection/cancel` //取消收藏
 }

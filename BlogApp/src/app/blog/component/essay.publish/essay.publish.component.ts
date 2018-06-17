@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input, OnChanges, OnDestroy } from '@angular/core';
 import { Logger } from '../../../service/logger.service';
 import { HttpService } from '../../../service/http.service';
 import { EssayListModel } from '../../essay.list.component/essay.list.component';
 import { Observable } from 'rxjs/Observable';
 import { api } from '../../../constant/api';
 import { EventService, EventList } from '../../../service/event.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-essay-publish',
@@ -12,7 +13,7 @@ import { EventService, EventList } from '../../../service/event.service';
     styleUrls: ['./essay.publish.component.scss']
 })
 
-export class EssayPublishComponent implements OnInit, OnChanges{
+export class EssayPublishComponent implements OnInit, OnChanges, OnDestroy{
     @ViewChild('loadNextMark') loadNextMarkRef: ElementRef;
     
     constructor(private http: HttpService, private log: Logger, private event: EventService) {}
@@ -30,29 +31,17 @@ export class EssayPublishComponent implements OnInit, OnChanges{
 
     essaylistData: EssayListData[];
 
+    subscription: Subscription;
+
     ngOnInit() {
         this.initModel();
         this.loadData();
-        Observable.fromEvent(window, 'scroll').debounceTime(400).subscribe(
+        this.subscription = Observable.fromEvent(window, 'scroll').debounceTime(400).subscribe(
             () => {
                 let loadNextMarkDom = this.loadNextMarkRef.nativeElement as HTMLElement;
                 let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
                 if(loadNextMarkDom.offsetTop < scrollTop + window.screen.availHeight) {
                     this.loadNextData();
-                }
-                if(scrollTop > window.screen.availHeight) {
-                    this.event.emit(EventList.SIDETOOL, [
-                        {
-                            iconTag: 'up',
-                            tip: '回到顶部',
-                            func: () => {
-                                this.gotoTop();
-                            }
-                        }
-                    ]);
-                }
-                if(scrollTop <= window.screen.availHeight) {
-                    this.event.emit(EventList.SIDETOOL, []);
                 }
             }
         );
@@ -134,13 +123,12 @@ export class EssayPublishComponent implements OnInit, OnChanges{
         this.pos = 1;
     }
 
-    gotoTop() {
-        setTimeout(() => {
-            if((document.documentElement.scrollTop || document.body.scrollTop) <= 0) return;
-            window.scrollBy(0, -100);
-            this.gotoTop();
-        }, 1000/60);
+    ngOnDestroy() {
+        if(this.subscription) {
+            this.subscription.unsubscribe();
+        }
     }
+    
 }
 
 interface EssayListData {

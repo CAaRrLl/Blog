@@ -27,6 +27,9 @@ var add_reply = require('./controllers/comment').add_reply;
 var del_comment = require('./controllers/comment').del_comment;
 var del_reply = require('./controllers/comment').del_reply;
 var addEssayReadTime = require('./controllers/essay').add_read_time;
+var collect = require('./controllers/collection').collect_essay;
+var is_collected = require('./controllers/collection').is_collected;
+var collect_cancel = require('./controllers/collection').collect_cancel;
 
 var multipart = require('connect-multiparty');
 
@@ -70,6 +73,9 @@ router.get('/essay/publish', check_auth, publish);
 router.get('/essay/getcollection');
 router.get('/essay/settag', check_auth, set_essay_tag);
 router.get('/essay/read', addEssayReadTime);
+router.get('/essay/iscollected', check_auth, is_collected);
+router.get('/essay/collection', check_auth, collect);
+router.get('/essay/collection/cancel', check_auth, collect_cancel);
 
 //评论
 router.get('/essay/comments', get_comments);

@@ -1,5 +1,5 @@
-<ul class="container" *ngIf="model.length>0">
-    <li *ngFor="let item of model" (click)="item.func()">
-        <app-icon [tag]="item.iconTag"></app-icon>
+<ul class="container" *ngIf="index.length>0">
+    <li *ngFor="let item of index" [class.active]="model[item].active" (click)="doClick(model[item])">
+        <app-icon [tag]="model[item].iconTag"></app-icon>
     </li>
 </ul>

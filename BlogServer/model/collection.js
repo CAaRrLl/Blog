@@ -4,7 +4,7 @@ var logger=require('../common/logger').logger;
 //收藏文章
 var collect=function(id,hostid,callback){
     var sql=`insert into collection values(?,?)`;
-    db.queryQarams(sql,[id,hostid],function(err,result,fields){
+    db.queryQarams(sql,[hostid,id],function(err,result,fields){
         if(err){
             callback(err,null);
             return;
@@ -41,7 +41,7 @@ var get_collect_essay=function(hostid,callback){
 exports.get_collect_essay=get_collect_essay;
 
 //取消收藏
-var cancel_collect=function(id,hostid){
+var cancel_collect=function(id,hostid, callback){
     var sql=`delete from collection where id=? and hostid=?`;
     db.queryQarams(sql,[id,hostid],function(err,result,fields){
         if(err){
@@ -53,10 +53,22 @@ var cancel_collect=function(id,hostid){
 }
 exports.cancel_collect=cancel_collect;
 
+var is_collected = function(id, hostid, callback) {
+    var sql =  `select count(*) as count from collection where id = ? and hostid = ?`;
+    db.queryQarams(sql, [id, hostid], function(err, result) {
+        if(err) {
+            callback(err, null);
+            return;
+        }
+        callback(null, result[0].count || 0);
+    });
+}
+exports.is_collected = is_collected;
+
 var table=`
 create table if not exists collection(
     hostid int,    
-    id int,
+    id varchar(100),
     primary key (hostid,id)             
 )`;
 exports.table=table;

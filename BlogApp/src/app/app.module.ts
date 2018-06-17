@@ -15,6 +15,7 @@ import { AuthGuard } from './service/auth.guard.service';
 import { SiderbarService } from './component/sidebar.component/siderbar.service';
 import { SessionStorage } from './service/sessionStorage.service';
 import { EventService } from './service/event.service';
+import { SideToolService } from './component/side.tool/side.tool.service';
 
 @NgModule({
     declarations:[
@@ -36,6 +37,7 @@ import { EventService } from './service/event.service';
         SiderbarService,
         SessionStorage,
         EventService,
+        SideToolService,
         {provide:HTTP_INTERCEPTORS,useClass:MyInterceptor,multi:true}
     ],
     bootstrap:[AppComponent]

@@ -986,6 +986,54 @@
 }
 ```
 
+### 收藏文章
+``GET``
+``api/essay/collection``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|id|是|String|文章id|
+``response``
+
+```
+成功
+{
+    code:1000,
+    msg:'',
+    data:{}
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
+### 判断用户是否收藏了文章
+``GET``
+``api/essay/iscollected``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|id|是|String|文章id|
+``response``
+
+```
+成功
+{
+    code:1000,
+    msg:'',
+    data:{
+        iscollected: true;
+    }
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
 ### 获取用户统计信息
 ``GET``
 ``api/user/dataSum``

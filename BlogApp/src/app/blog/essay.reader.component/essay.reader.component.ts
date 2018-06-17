@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { Logger } from '../../service/logger.service';
 import { HttpService } from '../../service/http.service';
 import { api } from '../../constant/api';
@@ -11,6 +11,7 @@ import { CommentEditorModel } from './essay.comment.editor/essay.comment.editor'
 import { util } from '../../tool/utils';
 import { ActivatedRoute } from '@angular/router';
 import { Observable} from 'rxjs';
+import { SideToolService } from '../../component/side.tool/side.tool.service';
 
 @Component({
     selector: 'app-essay-reader',
@@ -18,18 +19,20 @@ import { Observable} from 'rxjs';
     styleUrls: ['./essay.reader.component.scss']
 })
 
-export class EssayReaderComponent implements OnInit, AfterViewInit{
-    
+export class EssayReaderComponent implements OnInit, AfterViewInit, OnDestroy{
+       
     essayid: string;
     essayText: string;
     essayTitle: string;
+
+    collected: boolean;
 
     commentEditorModel: CommentEditorModel = {comment: '', send: {func: null, params: []}};
     //通知评论区更新
     change: boolean = true;
 
-    constructor(private log: Logger, private http: HttpService, private alert: AlertService,
-        private storage: SessionStorage, private aroute: ActivatedRoute) {}
+    constructor(private log: Logger, private http: HttpService, private alert: AlertService, private lstorage: LocalStorageService,
+        private storage: SessionStorage, private aroute: ActivatedRoute, private sideToolService: SideToolService) {}
 
     ngOnInit() {
         this.essayid = this.storage.get(KEY.READER_ESSAYID);
@@ -49,7 +52,63 @@ export class EssayReaderComponent implements OnInit, AfterViewInit{
                 this.log.error('EssayReader', 'ngOnInit', err);
             }
         )
-        this.initCommentEditorModel();        
+        this.initCommentEditorModel();
+        if(this.lstorage.get(LKEY.loginStatus) === constant.isUser) {
+            this.isCollectedByUser().subscribe(
+                res => {
+                    let data = res['data'];
+                    if(data && data.iscollected) {
+                        this.addCollectionTool(true);
+                    } else {
+                        this.addCollectionTool(false);
+                    }
+                }, err => {
+                    this.log.error('EssayReaderComponent', 'ngOnInit', err);
+                }
+            )
+        }       
+    }
+
+    isCollectedByUser() {
+        return this.http.getJson(api.isCollected, {id: this.essayid});
+    }
+
+    addCollectionTool(isActive: boolean) {
+        if(!this.essayid) return;
+        let _func: Function;
+        if(!isActive) {
+            _func = () => {
+                this.http.getJson(api.collectEssay, {id: this.essayid}).subscribe(
+                    res => {
+                        this.alert.show({type: AlertType.Success, msg: '已收藏', time: 2000});
+                        this.addCollectionTool(true);
+                    }, err => {
+                        this.log.error('EssayReaderComponent', 'addCollectionTool', err);
+                    }
+                );
+            }
+        } else {
+            _func = () => {
+                this.http.getJson(api.collectCancal, {id: this.essayid}).subscribe(
+                    res => {
+                        this.alert.show({type: AlertType.Success, msg: '已取消收藏', time: 2000});
+                        this.addCollectionTool(false);
+                    }, err => {
+                        this.log.error('EssayReaderComponent', 'addCollectionTool', err);
+                    }
+                )
+            }
+        }
+        this.sideToolService.add({ 
+            iconTag: 'heart', 
+            tip: '点击收藏', 
+            func: _func,
+            active: isActive
+        });
+    }
+
+    removeCollectionTool() {
+        this.sideToolService.delete('heart');
     }
 
     ngAfterViewInit(): void {
@@ -102,4 +161,11 @@ export class EssayReaderComponent implements OnInit, AfterViewInit{
             this.goToComment(offsetTop);
         }, 1000/60);
     }
+
+    ngOnDestroy() {
+        if(this.lstorage.get(LKEY.loginStatus) === constant.isUser) {
+            this.removeCollectionTool();
+        }  
+    }
+
 }
