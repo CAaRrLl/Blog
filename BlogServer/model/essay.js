@@ -187,6 +187,7 @@ var get_myessay=function(hostid,pos,size,type,callback){
                 function(err,result,fields){
                     if(err){
                         reject(err);
+                        return;
                     }
                     resolve(result);
                 });
@@ -201,6 +202,21 @@ var get_myessay=function(hostid,pos,size,type,callback){
 }
 exports.get_myessay=get_myessay;
 
+var get_essay_count = function(hostid) {
+    var sql = `select count(*) as count from essay ${hostid? 'where hostid = ?':''}`;
+    
+    return new Promise(function(resolve, reject) {
+        var params = [];
+        if(hostid) params.push(hostid);
+        db.queryQarams(sql, params, function(err, result) {
+            if(err){
+                reject(err);
+            }
+            resolve(result[0].count || 0);
+        });
+    });
+}
+exports.get_essay_count = get_essay_count;
 
 var add_readtime = function(essayid, callback) {
     var sql =  `update essay set readtime=readtime+1 where id = ?`;
@@ -213,6 +229,20 @@ var add_readtime = function(essayid, callback) {
     });
 }
 exports.add_readtime = add_readtime;
+
+var get_sum_word = function(hostid) {
+    var sql = `select sum(size) as sum from essay where hostid = ?`;
+    return new Promise(function(resolve, reject) {
+        db.queryQarams(sql, [hostid], function(err, result) {
+            if(err) {
+                reject(err);
+                return;
+            }
+            resolve(result[0].sum || 0);
+        });
+    });
+}
+exports.get_sum_word = get_sum_word;
 
 var table=`
 create table if not exists essay(

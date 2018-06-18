@@ -948,9 +948,17 @@ body {
 @include font-face(support);
 .support-icon {font-family: "fontsupport"}
 
+/*arrowright e800*/
+@include font-face(arrowright);
+.arrowright-icon {font-family: "fontarrowright"}
+
 /*pen e801*/
 @include font-face(pen);
 .pen-icon {font-family: "fontpen"}
+
+/*arrowleft e801*/
+@include font-face(arrowleft);
+.arrowleft-icon {font-family: "fontarrowleft"}
 
 /*up f176*/
 @include font-face(up);

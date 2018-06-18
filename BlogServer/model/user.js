@@ -75,16 +75,44 @@ var set_info = function(id, name, portrait, remark, callback){
 }
 exports.set_info = set_info;
 
-//获取用户列表
-var get_users=function(callback) {
-    var sql=`select * from where status!=-1`;
-    db.query(sql,function(err,result) {
-        if(err) {
-            callback(err,null);
-            return;
-        }
-        logger.debug('获取用户列表成功',result);
-        callback(null,result);
+//获取用户
+var get_users=function(page, size, callback) {
+    var sql=`select * from user where status!=-1 order by updatetime desc ${page && size? 'limit ?,?':''}`;
+    var get_count_sql=`select count(*) as count from user where status!=-1`;
+    var params = [];
+    if(page && size) {
+        params = [(page-1)*size, +size];
+    }
+    var get_user = function() {
+        return new Promise(function(resolve,reject){
+            db.queryQarams(sql, params, function(err,result) {
+                if(err) {
+                    reject(err);
+                    return;
+                }
+                resolve(result);
+            });
+        })
+    }
+    var get_count = function() {
+        return new Promise(function(resolve,reject){
+            db.query(get_count_sql, function(err,result){
+                if(err){
+                    reject(err);
+                    return;
+                }
+                resolve(result[0].count || 0);
+            });
+        })
+    }
+
+    Promise.all([get_user(), get_count()])
+    .then(function(data) {
+        callback(null, {userlist: data[0], count: data[1]});
+    })
+    .catch(function(err) {
+        logger.error('获取用户列表数据库出错', err);
+        callback(err, null);
     });
 }
 exports.get_users=get_users;

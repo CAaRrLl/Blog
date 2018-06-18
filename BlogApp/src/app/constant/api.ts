@@ -30,5 +30,8 @@ export const api={
     readEssay: `${prefix}/essay/read`,        //读一次文章
     collectEssay: `${prefix}/essay/collection`, //收藏文章
     isCollected: `${prefix}/essay/iscollected`, //判断用户是否收藏了该文章
-    collectCancal: `${prefix}/essay/collection/cancel` //取消收藏
+    collectCancal: `${prefix}/essay/collection/cancel`, //取消收藏
+    concern: `${prefix}/concern/confirm`,    //关注用户
+    unconcern: `${prefix}/concern/cancel`,   //取消关注
+    getUserInfoList: `${prefix}/user/infolist`,   //获取用户信息列表,用于关注
 }

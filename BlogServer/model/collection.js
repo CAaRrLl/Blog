@@ -30,7 +30,7 @@ exports.get_collect_count=get_collect_count;
 //获取某个用户收藏的文章
 var get_collect_essay=function(hostid,callback){
     var sql=`select id from collection where hostid=?`;
-    db.queryQarams(sql,[hostid],function(){
+    db.queryQarams(sql,[hostid],function(err, result){
         if(err){
             callback(err,null);
             return;
@@ -39,6 +39,21 @@ var get_collect_essay=function(hostid,callback){
     });
 }
 exports.get_collect_essay=get_collect_essay;
+
+var get_collect_essay_count = function(hostid) {
+    var sql = `select count(*) as count from collection where hostid = ?`;
+
+    return new Promise(function(resolve, reject) {
+        db.queryQarams(sql, [hostid], function(err, result) {
+            if(err) {
+                reject(err);
+                return;
+            }
+            resolve(result[0].count || 0);
+        });
+    });
+}
+exports.get_collect_essay_count = get_collect_essay_count;
 
 //取消收藏
 var cancel_collect=function(id,hostid, callback){

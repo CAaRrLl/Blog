@@ -1055,6 +1055,82 @@
 }
 ```
 
+### 获取用户关注列表
+``GET``
+``api/user/infolist``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|size|是|number|请求条数|
+|page|是|number|请求的页码|
+
+``response``
+```
+成功
+{
+    code:1000,
+    msg:'',
+    data:{
+        userlist: [
+            {
+                id: 11;
+                name: "fdsffsd";
+                portrait: "fdsfsd";
+                wordnum: 22;
+                collectnum: 11;
+                concern: 1;
+            }
+        ]
+        count: 10
+    }
+}
+```
+
+### 关注某用户
+``POST``
+``api/concern/confirm``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|id|是|String|用户id|
+
+``response``
+```
+成功
+{
+    code:1000,
+    msg:'',
+    data:{}
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
+### 取消关注某用户
+``POST``
+``api/concern/cancel``
+|字段|必选项|类型|描述|
+|---|------|----|----|
+|id|是|String|用户id|
+
+``response``
+```
+成功
+{
+    code:1000,
+    msg:'',
+    data:{}
+}
+失败
+{
+    code:2005,
+    msg:"请求参数错误",
+    data:{}
+}
+```
+
 ### 冻结用户
 ``GET``
 ``api/lock/user``

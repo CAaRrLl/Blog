@@ -1,0 +1,19 @@
+<div class="header">
+    <app-icon tag="arrowleft" class="icon" (click)="lastPage()"></app-icon>
+    <span>共有{{num}}名作者</span>
+    <app-icon tag="arrowright" class="icon" (click)="nextPage()"></app-icon>
+</div>
+<ul class="body">
+    <li *ngFor="let item of model,let i=index">
+        <img class="head-img" [src]="item.portrait?item.portrait:'../../../../assets/img/default-head.png'">
+        <span class="name">{{item.name}}</span><br>
+        <span class="info">写了{{item.wordnum}}字  {{item.collectnum}}个喜欢</span>
+        <app-icon class="icon"  tag="plus" text="关注" *ngIf="!item.concern||!isUser" (click)="concern(item.id, i)">
+        </app-icon>
+        <app-icon class="icon icon-concern" tag="close" text="取消关注" *ngIf="item.concern&&isUser" (click)="unconcern(item.id, i)">
+        </app-icon>
+    </li>
+    <div class="empty" *ngIf="!model || model.length <= 0">
+        <img src="../../../../assets/img/user.png">
+    </div>
+</ul>

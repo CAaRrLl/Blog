@@ -1,0 +1,87 @@
+.header {
+    background-color: white;
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    color: #9b9b9b;
+    &>.icon {
+        cursor: pointer;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        line-height: 2rem;
+        &:hover {
+            color: #6b6b6b;
+        }
+        &:first-child {
+            float: left;
+        }
+        &:last-child {
+            float: right;
+        }
+    }
+    &>span {
+        display: inline-block;
+        font-size: 0.8rem;
+        margin: 0.5rem;
+    }
+}
+.body {
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    margin-top: 0.2rem;
+    padding: 0;
+    &>li {
+        background-color: white;
+        padding: 0.7rem;
+        overflow: hidden;
+        &:last-child {
+            border-bottom-left-radius: 0.5rem;
+            border-bottom-right-radius: 0.5rem;
+        }
+        .head-img {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 2.5rem;
+            border: 1px solid #d0d0d0;
+            background-color: white;
+            float: left;
+        }
+        .name {
+            float: left;
+            margin-left: 0.5rem;
+            font-size: 0.8rem;
+            color: #6b6b6b;
+        }
+        .info {
+            float: left;
+            margin-left: 0.5rem;
+            color: #9b9b9b;
+            font-size: 0.7rem;
+            margin-top: 0.3rem;
+        }
+        .icon {
+            cursor: pointer;
+            float: right;
+            color: #41a724;
+            font-size: 0.8rem;
+        }
+        .icon-concern {
+            color: #6b6b6b;
+        }
+    }
+    .empty {
+        background-color: white;
+        position: relative;
+        height: 10rem;
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+        &>img {
+            position: absolute;
+            width: 2rem;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    }
+}

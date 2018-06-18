@@ -30,6 +30,9 @@ var addEssayReadTime = require('./controllers/essay').add_read_time;
 var collect = require('./controllers/collection').collect_essay;
 var is_collected = require('./controllers/collection').is_collected;
 var collect_cancel = require('./controllers/collection').collect_cancel;
+var getUserInfoList = require('./controllers/user').get_user_info_list;
+var concern = require('./controllers/concern').concern;
+var unconcern = require('./controllers/concern').unconcern;
 
 var multipart = require('connect-multiparty');
 
@@ -52,6 +55,7 @@ router.post('/file/upload', check_auth, multipartMiddleware, uploadFile);
 router.post('/user/info/save', check_auth, saveInfo)
 router.get('/user/info', check_auth, getInfo);
 router.get('/user/datasum', check_auth, getDataSum);
+router.get('/user/infolist', getUserInfoList);
 
 //注销
 router.get('/layout', check_auth, layout);
@@ -83,5 +87,9 @@ router.post('/user/comment', check_auth, add_comment);
 router.post('/user/reply', check_auth, add_reply);
 router.post('/user/comment/del', check_auth, del_comment);
 router.post('/user/reply/del', check_auth, del_reply);
+
+//关注
+router.post('/concern/confirm', check_auth, concern);
+router.post('/concern/cancel', check_auth, unconcern);
 
 module.exports=router;

@@ -39,8 +39,10 @@ export const iconMap={
     userinfo: '&#xe800',
     essay: '&#xe800',
     support: '&#xe800',
+    arrowright: '&#xe800',
     arrows: '&#xe802',
     columns: '&#xf0db',
     pen: '&#xe801',
+    arrowleft: '&#xe801',
     up: '&#xf176'
 }

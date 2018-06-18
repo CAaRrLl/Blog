@@ -7,7 +7,7 @@
     .left {
         position: relative;
         display: inline-block;
-        width: 35rem;
+        width: 40rem;
         @media screen and (max-width: 768px){
             width: 100%;
         }
@@ -17,6 +17,7 @@
         display: inline-block;
         width: 20rem;
         vertical-align: top;
+        margin-left: 1rem;
         @media screen and (max-width: 768px){
             display: none;
         }

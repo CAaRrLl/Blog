@@ -15,6 +15,7 @@ import { EssayPublishComponent } from './component/essay.publish/essay.publish.c
 import { FormsModule } from '@angular/forms';
 import { EssayCommentComponent } from './essay.reader.component/essay.comment.component/essay.comment.component';
 import { EssayCommentEditor } from './essay.reader.component/essay.comment.editor/essay.comment.editor';
+import { UserListComponent } from './component/user.list/user.list.component';
 
 @NgModule({
     declarations:[
@@ -27,6 +28,7 @@ import { EssayCommentEditor } from './essay.reader.component/essay.comment.edito
         MyInfoComponent,
         MyEssayComponent,
         EssayPublishComponent,
+        UserListComponent,
         EssayCommentComponent,
         EssayCommentEditor
     ],

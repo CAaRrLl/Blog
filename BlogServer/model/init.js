@@ -20,13 +20,15 @@ var user = base('user');
 var essay = base('essay');
 var tag = base('tag');
 var collection = base('collection');
+var concern = base('concern');
 var comment = base('comment');
 var reply = base('reply');
 var fileinfo = base('fileinfo');
 var frontlog = base('frontlog');
 
 var init_table = function() {
-    admin().then(user).then(essay).then(tag).then(collection).then(comment).then(reply).then(fileinfo).then(frontlog)
+    admin().then(user).then(essay).then(tag).then(collection)
+    .then(concern).then(comment).then(reply).then(fileinfo).then(frontlog)
     .catch(function(err) {
         logger.error(err);
     });
