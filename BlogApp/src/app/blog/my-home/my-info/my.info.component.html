@@ -21,7 +21,7 @@
             <app-icon class="edit" tag="pen" (click)="setEditItem(EditList.Remark)"></app-icon>
         </span>
         <div class="right">
-            <input [(ngModel)]="remark" [readonly]="!isEditing(EditList.Remark)" [class.input-edit]="isEditing(EditList.Remark)">
+            <input [(ngModel)]="remark" maxlength="99" [readonly]="!isEditing(EditList.Remark)" [class.input-edit]="isEditing(EditList.Remark)">
             <app-icon class="ok" tag="success" [style.visibility]="isEditing(EditList.Remark)?'visible':'hidden'" (click)="editOk()"></app-icon>
         </div>
     </div>

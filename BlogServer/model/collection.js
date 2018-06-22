@@ -41,7 +41,7 @@ var get_collect_essay=function(hostid,callback){
 exports.get_collect_essay=get_collect_essay;
 
 var get_collect_essay_count = function(hostid) {
-    var sql = `select count(*) as count from collection where hostid = ?`;
+    var sql = `select count(*) as count from collection as c, essay as e where e.hostid = ? and c.id = e.id`;
 
     return new Promise(function(resolve, reject) {
         db.queryQarams(sql, [hostid], function(err, result) {
