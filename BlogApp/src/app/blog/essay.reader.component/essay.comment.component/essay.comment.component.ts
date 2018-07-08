@@ -107,7 +107,7 @@ export class EssayCommentComponent implements OnChanges, OnInit{
     }
 
     getFloor(index: number) {
-        return this.count - index;
+        return this.count - (index + (this.paginationModel.curPage - 1)*this.paginationModel.size);
     }
 
     getParagraph(text: string) {
