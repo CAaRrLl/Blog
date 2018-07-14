@@ -1,12 +1,13 @@
 import {environment} from '../../environments/environment';
 const server={
-    protocol:'http',
+    protocol:'https',
+    devProtocol:'http',
     host:'www.proj.xin',
-    port:'6600',
+    port:'80',
     devHost:'127.0.0.1',
     devPort:'6600'
 }
-const host=`${server.protocol}://${environment.production?server.host:server.devHost}`;
+const host=`${environment.production?server.protocol:server.devProtocol}://${environment.production?server.host:server.devHost}`;
 const port=`${environment.production?server.port:server.devPort}`;
 export const config={
     production:environment.production,
