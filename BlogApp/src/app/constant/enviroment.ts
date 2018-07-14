@@ -3,7 +3,7 @@ const server={
     protocol:'https',
     devProtocol:'http',
     host:'www.proj.xin',
-    port:'80',
+    port:'443',
     devHost:'127.0.0.1',
     devPort:'6600'
 }
